@@ -16,10 +16,6 @@ body {
   font-family: var(--font-dm-sans);
 }
 
-@utility title{
-  @apply text-3xl lg:text-4xl font-playfair-display leading-10 lg:leading-12;
-} 
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -129,6 +125,26 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@utility title {
+  @apply text-3xl lg:text-4xl font-playfair-display leading-10 lg:leading-12;
+}
+
+@utility wrapper {
+  @apply max-w-6xl mx-auto px-4 py-32 sm:px-6 lg:px-8 lg:py-20;
+}
+
+@utility flex-center {
+  @apply flex flex-col justify-center items-center text-center gap-2;
+}
+
+@utility heading {
+  @apply text-2xl lg:text-[42px] font-bold font-playfair-display;
+}
+
+@utility sub-heading {
+  @apply text-lg text-secondary font-medium;
 }
 
 @layer base {
