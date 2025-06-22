@@ -49,13 +49,13 @@ const HeroSection = ({
                   href="https://www.facebook.com/ChaiyoCeylon"
                   target="_blank"
                 >
-                  <img src="/icons/facebook.svg" alt="chai shops near me" />
+                  <Image src="/icons/facebook.svg" alt="chai shops near me" />
                 </Link>
                 <Link
                   href="https://www.instagram.com/ChaiyoCeylon"
                   target="_blank"
                 >
-                  <img src="/icons/instagram.svg" alt="chai shops near me" />
+                  <Image src="/icons/instagram.svg" alt="chai shops near me" />
                 </Link>
               </>
             )}

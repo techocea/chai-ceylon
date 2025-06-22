@@ -22,7 +22,7 @@ const AboutSection = ({
             <h3 className="heading">{title}</h3>
             <span>
               {icon && (
-                <img
+                <Image
                   src="/icons/Cup.png"
                   width={58}
                   height={58}

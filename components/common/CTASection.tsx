@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CTASectionProps {
   title?: string;
@@ -20,7 +21,7 @@ const CTASection = ({
 }: CTASectionProps) => {
   return (
     <div className="relative bg-accent h-[600px] lg:h-80 flex items-center justify-center mb-28 lg:my-32 w-full">
-      <img
+      <Image
         src="/images/pattern.png"
         className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         alt="Pattern background"

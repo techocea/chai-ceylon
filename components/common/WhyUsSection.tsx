@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Heading from "./Heading";
 import { WHYUS_DATA } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ const WhyUsSection = () => {
             key={id}
             className="flex flex-col items-center justify-center h-48 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <img src={imageSrc} alt={label} className="w-16 h-16" />
+            <Image src={imageSrc} alt={label} className="w-16 h-16" />
             <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
               {label}
             </p>

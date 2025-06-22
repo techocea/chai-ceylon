@@ -1,11 +1,12 @@
 import { Clock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
     <footer className="relative text-white bg-black h-full">
-      <img
+      <Image
         src="/images/pattern.png"
         className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         alt="Pattern background"
@@ -13,7 +14,7 @@ const Footer = () => {
       <div className="relative z-10 footer-wrapper h-full flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
           <div className="flex flex-col items-start gap-6 max-w-xs">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Chaiyo Ceylon"
               width={150}
@@ -28,13 +29,13 @@ const Footer = () => {
                 href="https://www.facebook.com/ChaiyoCeylon"
                 target="_blank"
               >
-                <img src="/icons/facebook.svg" alt="chai shops near me" />
+                <Image src="/icons/facebook.svg" alt="chai shops near me" />
               </Link>
               <Link
                 href="https://www.instagram.com/ChaiyoCeylon"
                 target="_blank"
               >
-                <img src="/icons/instagram.svg" alt="chai shops near me" />
+                <Image src="/icons/instagram.svg" alt="chai shops near me" />
               </Link>
             </div>
           </div>
