@@ -1,3 +1,5 @@
+import { Clock, MailCheck, MapPin, PhoneCall } from "lucide-react";
+
 export const NAV_ITEMS = [
   {
     id: 1,
@@ -65,6 +67,33 @@ export const WHYUS_DATA = [
     label: "Fresh & Healing",
   },
 ];
+
+export const CONTACT_DATA = [
+  {
+    id:1,
+    icon:MapPin,
+    label:"Our Office",
+    description:"Station Road, Bambalapitiya, CMB"
+  },
+  {
+    id:2,
+    icon:PhoneCall,
+    label:"Call Us",
+    description:"+94-75-310-2400"
+  },
+  {
+    id:3,
+    icon:MailCheck,
+    label:"Email Us",
+    description:"info@chaiyoceylon.com"
+  },
+  {
+    id:4,
+    icon:Clock,
+    label:"Opening Hours",
+    description:"Mon - Sat : 9:00 PM - 11:30 PM"
+  },
+]
 
 export const CONTENT = [
   {

@@ -1,6 +1,6 @@
+import Navbar from "@/components/common/Navbar";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
-import Navbar from "@/components/common/Navbar";
 import WhyUsSection from "@/components/common/WhyUsSection";
 import ServicesSection from "@/components/landing/ServicesSection";
 
