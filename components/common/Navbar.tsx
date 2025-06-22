@@ -20,7 +20,7 @@ const Navbar = () => {
           {NAV_ITEMS.map(({ id, href, label }) => (
             <Button
               key={id}
-              variant={id === 5 ? "secondary" : "ghost"}
+              variant={id === 5 ? "default" : "ghost"}
               className={cn(
                 "px-4 py-2",
                 id !== 5 &&

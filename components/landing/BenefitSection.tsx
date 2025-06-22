@@ -1,18 +1,16 @@
 import { BENEFITS } from "@/lib/constants";
 import Image from "next/image";
-import React from "react";
+import Heading from "@/components/common/Heading";
 
 const BenefitSection = () => {
   return (
     <section className="wrapper h-full">
       <div className="flex flex-col items-center justify-center h-full space-y-8">
-        <div className="flex-center">
-          <h3 className="heading">Benefits</h3>
-          <p className="sub-heading max-w-lg">
-            It`s a comforting blend of spices that energizes your body, supports
-            digestion, boosts immunity, and soothes the soul
-          </p>
-        </div>
+        <Heading
+          title="Benefits"
+          description="It`s a comforting blend of spices that energizes your body, supports
+            digestion, boosts immunity, and soothes the soul"
+        />
         <div className="w-full mt-10 flex flex-col space-y-4 sm:max-w-6xl sm:relative sm:h-[600px]">
           <div className="hidden sm:block absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[388px] h-[375px]">
             <Image

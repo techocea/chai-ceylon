@@ -1,13 +1,10 @@
-import React from "react";
 import ImageGallery from "./ImageGallery";
+import Heading from "@/components/common/Heading";
 
 const GallerySection = () => {
   return (
     <section className="wrapper">
-      <div className="flex-center">
-        <h3 className="heading">Our Gallery</h3>
-        <p className="sub-heading max-w-lg">Some enjoyable moments</p>
-      </div>
+      <Heading title="Our Gallery" description="Some enjoyable moments" />
       <div className="mt-12">
         <ImageGallery />
       </div>

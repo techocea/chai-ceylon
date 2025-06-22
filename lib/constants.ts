@@ -43,3 +43,25 @@ export const MENU_ITEMS = [
   { id: 5, label: "Earl Grey Tea", price: 5.3 },
 ];
 
+export const WHYUS_DATA = [
+  {
+    id: 1,
+    imageSrc: "/images/leaf-glass.png",
+    label: "Organic Tea",
+  },
+  {
+    id: 2,
+    imageSrc: "/images/tea-pot.png",
+    label: "Best Quality",
+  },
+  {
+    id: 3,
+    imageSrc: "/images/tea-bag.png",
+    label: "Local Taste",
+  },
+  {
+    id: 4,
+    imageSrc: "/images/tea-cup.png",
+    label: "Fresh & Healing",
+  },
+];
