@@ -34,13 +34,13 @@ const CTASection = ({
             "bg-white shadow-lg p-8 max-w-2xl w-full",
             renderType === "newsletter"
               ? "flex flex-col items-start"
-              : "flex-center"
+              : "flex-center text-center"
           )}
         >
           <h2 className="text-2xl md:text-3xl font-bold font-playfair-display mb-2">
             {CTATitle}
           </h2>
-          <p className="text-base md:text-sm text-gray-700 mb-6">
+          <p className="text-base md:text-sm text-gray-700 mb-6 lg:max-w-md">
             {CTADescription}
           </p>
           {renderType === "newsletter" ? (
@@ -50,7 +50,7 @@ const CTASection = ({
             </form>
           ) : (
             <div>
-              <Button>Proceed Now</Button>
+              <Button>Become a vendor</Button>
             </div>
           )}
         </div>
