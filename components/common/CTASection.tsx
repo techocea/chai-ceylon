@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface CTASectionProps {
   title?: string;
@@ -50,7 +51,9 @@ const CTASection = ({
             </form>
           ) : (
             <div>
-              <Button>Become a vendor</Button>
+              <Button>
+                <Link href="/services/become-a-vendor">Become a vendor</Link>
+              </Button>
             </div>
           )}
         </div>

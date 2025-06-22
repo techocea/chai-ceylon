@@ -128,7 +128,7 @@ body {
 }
 
 @utility title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-playfair-display leading-10 lg:leading-12;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-semibold font-playfair-display leading-10 lg:leading-12;
 }
 
 @utility wrapper {
