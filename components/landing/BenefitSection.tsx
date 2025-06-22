@@ -18,7 +18,7 @@ const BenefitSection = () => {
               width={388}
               height={375}
               alt="best chai tea"
-              className="w-full h-full object-cover animate-spin"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -36,7 +36,7 @@ const BenefitSection = () => {
             return (
               <div
                 key={idx}
-                className={`bg-secondary text-white h-16 p-4 w-full flex items-center justify-start shadow ${position} sm:w-[300px] sm:absolute`}
+                className={`border-[2px] border-primary lg:bg-secondary text-primary lg:text-white h-16 p-4 w-full flex items-center justify-start shadow ${position} sm:w-[300px] sm:absolute`}
               >
                 {item}
               </div>

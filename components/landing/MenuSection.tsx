@@ -17,7 +17,9 @@ const MenuSection = () => {
               className="flex items-center justify-between border-b border-gray-200"
             >
               <h3 className="title">{label}</h3>
-              <p className="text-xl font-bold">${price}</p>
+              <p className="text-xl font-bold">
+                ${price}
+              </p>
             </div>
           ))}
         </div>

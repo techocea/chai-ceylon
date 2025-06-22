@@ -38,7 +38,7 @@ const HeroSection = ({
           <p className="text-sm">{subTitle}</p>
           <div>
             <Button variant="outline" className="flex gap-2">
-              {buttonText}
+              <Link href="/menu">{buttonText}</Link>
               <ArrowRight />
             </Button>
           </div>

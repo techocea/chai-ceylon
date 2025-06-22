@@ -10,7 +10,7 @@ const Footer = () => {
         className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         alt="Pattern background"
       />
-      <div className="relative z-10 wrapper h-full flex flex-col justify-between">
+      <div className="relative z-10 footer-wrapper h-full flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
           <div className="flex flex-col items-start gap-6 max-w-xs">
             <img

@@ -62,7 +62,7 @@ const ContactForm = () => {
         )}
         <div className="space-y-3">
           <Label>Name</Label>
-          <Input {...register("name")} placeholder="Enter your name" />
+          <Input  {...register("name")} placeholder="Enter your name" />
         </div>
         <div className="space-y-3">
           <Label>Phone</Label>

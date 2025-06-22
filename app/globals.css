@@ -135,6 +135,10 @@ body {
   @apply max-w-6xl mx-auto px-4 py-28 sm:px-6 lg:px-8 lg:py-32;
 }
 
+@utility footer-wrapper{
+  @apply max-w-6xl mx-auto px-4 py-16 sm:py-16 sm:px-6 lg:px-8;
+}
+
 @utility flex-center {
   @apply flex flex-col justify-center items-center  gap-2;
 }
