@@ -37,12 +37,86 @@ export const BENEFITS = [
   "Reduces inflammation with spices",
 ];
 
-export const MENU_ITEMS = [
-  { id: 1, label: "Cammomile Tea", price: 5.3 },
-  { id: 2, label: "Sweet Cinnamon Tea", price: 5.3 },
-  { id: 3, label: "Japanese Green Tea", price: 5.3 },
-  { id: 4, label: "Herbal Spice Tea", price: 5.3 },
-  { id: 5, label: "Earl Grey Tea", price: 5.3 },
+export const MENU_SECTIONS = [
+  {
+    id: 1,
+    title: "Hot Beverages",
+    description: "",
+    items: [
+      { id: 1, label: "Spice Milk Tea", price: 200 },
+      { id: 2, label: "Cardamom Milk Tea", price: 200 },
+      { id: 3, label: "Cinnamon Plain Tea", price: 100 },
+      { id: 4, label: "Ginger Plain Tea", price: 100 },
+      { id: 5, label: "Black Coffee", price: 100 },
+      { id: 6, label: "Black Coffee with Ghee", price: 150 },
+      { id: 7, label: "Qahwa", price: 200 },
+      { id: 8, label: "Badham Doodh", price: 300 },
+    ],
+  },
+  {
+    id: 2,
+    title: "Cold Beverages",
+    description: "",
+    items: [
+      { id: 1, label: "Almond & Date Shake", price: 250 },
+      { id: 2, label: "Iced Coffee", price: 250 },
+      { id: 8, label: "Faluda", price: 250 },
+    ],
+  },
+  {
+    id: 3,
+    title: "Savoury",
+    description: "",
+    items: [
+      { id: 1, label: "Chicken Samosa", price: 100 },
+      { id: 7, label: "Fish Rolls", price: 100 },
+      {
+        id: 8,
+        label:
+          "Chaat Samosa - (2 samosas topped with spicy chana mix, chutneys, onions, and curd)",
+        price: 500,
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Breakfast Packs (Available Morning Only)",
+    description: "",
+    items: [
+      { id: 1, label: "Chickpea Pack", price: 250 },
+      { id: 2, label: "Cassava Pack", price: 250 },
+      {
+        id: 3,
+        label:
+          "String Hoppers - (10 string hoppers with pol sambol & fish gravy)",
+        price: 250,
+      },
+      {
+        id: 4,
+        label: "Roast Paan Pack - (2 roast paan with pol sambol & fish gravy)",
+        price: 300,
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Wraps (All Day)",
+    description: "",
+    items: [
+      {
+        id: 1,
+        label:
+          "Chicken Fajita Wrap - (Tender chicken with bell peppers and spices in a pita wrap)",
+        price: 200,
+      },
+      {
+        id: 2,
+        label:
+          "Paratha Wrap - (Stuffed, rolled, and grilled for a hearty bite)",
+        price: 300,
+      },
+    ],
+  },
 ];
 
 export const WHYUS_DATA = [
