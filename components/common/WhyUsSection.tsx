@@ -15,7 +15,13 @@ const WhyUsSection = () => {
             key={id}
             className="flex flex-col items-center justify-center h-48 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <Image src={imageSrc} alt={label} className="w-16 h-16" />
+            <Image
+              src={imageSrc}
+              width={64}
+              height={64}
+              alt={label}
+              className="w-16 h-16"
+            />
             <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
               {label}
             </p>

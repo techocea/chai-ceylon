@@ -13,7 +13,7 @@ const MenuPage = () => {
       <div>
         <HeroSection
           title="Our Menu"
-          subTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+          subTitle="Discover our handcrafted blends, curated with bold flavor and warmth."
           buttonText="Explore Menu"
           socialIcons={false}
           imageSrc="/images/banner5.jpg"

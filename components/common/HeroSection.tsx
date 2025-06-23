@@ -33,33 +33,43 @@ const HeroSection = ({
       </div>
 
       <div className="absolute w-screen h-[596px] z-10 bg-primary/80  top-0 left-0 lg:left-10 lg:max-w-md lg:rounded-none lg:shadow-none lg:top-0 lg:h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]">
-        <div className="max-w-xs lg:max-w-full absolute pr-2 z-20 space-y-6 top-1/2 left-4 transform -translate-y-1/2 text-white">
+        <div className="max-w-sm w-full absolute pr-2 z-20 space-y-6 top-1/2 left-4 transform -translate-y-1/2 text-white">
           <h1 className="title">{title}</h1>
-          <p className="text-sm">{subTitle}</p>
-          <div>
-            <Button variant="outline" className="flex gap-2">
-              <Link href="/menu">{buttonText}</Link>
-              <ArrowRight />
+          <p className="text-sm lg:max-w-xs">{subTitle}</p>
+
+          <Link href="/menu" passHref>
+            <Button variant="outline" className="flex items-center gap-2">
+              {buttonText}
+              <ArrowRight size={18} />
             </Button>
-          </div>
-          <div className="flex space-x-4">
-            {socialIcons && (
-              <>
-                <Link
-                  href="https://www.facebook.com/ChaiyoCeylon"
-                  target="_blank"
-                >
-                  <Image src="/icons/facebook.svg" alt="chai shops near me" />
-                </Link>
-                <Link
-                  href="https://www.instagram.com/ChaiyoCeylon"
-                  target="_blank"
-                >
-                  <Image src="/icons/instagram.svg" alt="chai shops near me" />
-                </Link>
-              </>
-            )}
-          </div>
+          </Link>
+
+          {socialIcons && (
+            <div className="flex space-x-4 pt-4">
+              <Link
+                href="https://www.facebook.com/ChaiyoCeylon"
+                target="_blank"
+              >
+                <Image
+                  src="/icons/facebook.svg"
+                  width={28}
+                  height={28}
+                  alt="Facebook"
+                />
+              </Link>
+              <Link
+                href="https://www.instagram.com/ChaiyoCeylon"
+                target="_blank"
+              >
+                <Image
+                  src="/icons/instagram.svg"
+                  width={28}
+                  height={28}
+                  alt="Instagram"
+                />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>

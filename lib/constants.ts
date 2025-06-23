@@ -70,30 +70,30 @@ export const WHYUS_DATA = [
 
 export const CONTACT_DATA = [
   {
-    id:1,
-    icon:MapPin,
-    label:"Our Office",
-    description:"Station Road, Bambalapitiya, CMB"
+    id: 1,
+    icon: MapPin,
+    label: "Our Office",
+    description: "Station Road, Bambalapitiya, CMB",
   },
   {
-    id:2,
-    icon:PhoneCall,
-    label:"Call Us",
-    description:"+94-75-310-2400"
+    id: 2,
+    icon: PhoneCall,
+    label: "Call Us",
+    description: "+94-75-310-2400",
   },
   {
-    id:3,
-    icon:MailCheck,
-    label:"Email Us",
-    description:"info@chaiyoceylon.com"
+    id: 3,
+    icon: MailCheck,
+    label: "Email Us",
+    description: "info@chaiyoceylon.com",
   },
   {
-    id:4,
-    icon:Clock,
-    label:"Opening Hours",
-    description:"Mon - Sat : 9:00 PM - 11:30 PM"
+    id: 4,
+    icon: Clock,
+    label: "Opening Hours",
+    description: "Mon - Sat : 9:00 PM - 11:30 PM",
   },
-]
+];
 
 export const CONTENT = [
   {
@@ -143,5 +143,52 @@ export const CONTENT = [
       "Barista-led experiences & chai-making workshops",
     ],
     imageSrc: "/images/banner3.jpg",
+  },
+];
+
+export const US_SPECIAL_DATA = [
+  "Ready-Made & Fresh: Enjoy your favorite tea without the wait.",
+  "Authentic Sri Lankan Flavors: From classic milk tea to bold spice blends.",
+  "High-Quality Ingredients: Pure Ceylon tea, natural spices, and real flavor.",
+  "Affordable Indulgence: Delicious drinks at prices everyone can enjoy.",
+  "Locally Rooted: Proudly made in Sri Lanka, for tea lovers everywhere.",
+];
+
+export const SIGNATURE_OFFERINGS = [
+  {
+    id: 1,
+    name: "Spice Milk Tea",
+    overlayedText: "Comfort in every cup",
+    imageSrc: "/images/spice-milk.jpg",
+  },
+  {
+    id: 2,
+    name: "Cardamom Tea",
+    overlayedText: "Fragrant, calming, and rich",
+    imageSrc: "/images/cardamon-tea.jpg",
+  },
+  {
+    id: 3,
+    name: "Ginger & Cinnamon Tea",
+    overlayedText: "Great for digestion and warmth",
+    imageSrc: "/images/ginger-cinnamon.jpg",
+  },
+  {
+    id: 4,
+    name: "Qahwa (Arabic Coffee)",
+    overlayedText: "Spiced coffee for deep flavor seekers",
+    imageSrc: "/images/qahwa.jpg",
+  },
+  {
+    id: 5,
+    name: "Badham Doodh",
+    overlayedText: "Creamy almond milk infused with saffron",
+    imageSrc: "/images/badam-doodh.jpeg",
+  },
+  {
+    id: 6,
+    name: "Samosas & Rolls",
+    overlayedText: "The perfect savory side to your tea",
+    imageSrc: "/images/samosa.jpg",
   },
 ];

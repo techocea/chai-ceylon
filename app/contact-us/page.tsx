@@ -11,7 +11,7 @@ const ContactPage = () => {
       <div>
         <HeroSection
           title="Contact Us"
-          subTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+          subTitle="We’d love to hear from you — let’s talk tea."
           buttonText="Reach Out"
           socialIcons={false}
           imageSrc="/images/banner4.jpg"

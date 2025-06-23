@@ -13,7 +13,7 @@ const ServicePage = () => {
       <div>
         <HeroSection
           title="Our Services"
-          subTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+          subTitle="Chai experiences crafted for events, gifting, and everyday joy."
           buttonText="Explore More"
           socialIcons={false}
           imageSrc="/images/banner3.jpg"

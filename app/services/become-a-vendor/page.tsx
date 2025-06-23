@@ -11,7 +11,7 @@ const JoinAsVendorPage = () => {
       <div>
         <HeroSection
           title="How to earn with Chaiyo Ceylon"
-          subTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+          subTitle="Serve the magic of chai, grow with us — one cup at a time."
           buttonText="Explore More"
           socialIcons={false}
           imageSrc="/images/banner3.jpg"

@@ -23,6 +23,8 @@ const CTASection = ({
     <div className="relative bg-accent h-[600px] lg:h-80 flex items-center justify-center mb-28 lg:my-32 w-full">
       <Image
         src="/images/pattern.png"
+        width={1920}
+        height={400}
         className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         alt="Pattern background"
       />

@@ -6,11 +6,15 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="relative text-white bg-black h-full">
-      <Image
-        src="/images/pattern.png"
-        className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
-        alt="Pattern background"
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
+        <Image
+          src="/images/pattern.png"
+          alt="Pattern background"
+          width={1920}
+          height={400}
+          className="w-full h-full object-cover opacity-15"
       />
+      </div>
       <div className="relative z-10 footer-wrapper h-full flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
           <div className="flex flex-col items-start gap-6 max-w-xs">
@@ -29,13 +33,23 @@ const Footer = () => {
                 href="https://www.facebook.com/ChaiyoCeylon"
                 target="_blank"
               >
-                <Image src="/icons/facebook.svg" alt="chai shops near me" />
+                <Image
+                  src="/icons/facebook.svg"
+                  width={32}
+                  height={32}
+                  alt="chai shops near me"
+                />
               </Link>
               <Link
                 href="https://www.instagram.com/ChaiyoCeylon"
                 target="_blank"
               >
-                <Image src="/icons/instagram.svg" alt="chai shops near me" />
+                <Image
+                  src="/icons/instagram.svg"
+                  width={32}
+                  height={32}
+                  alt="chai shops near me"
+                />
               </Link>
             </div>
           </div>
