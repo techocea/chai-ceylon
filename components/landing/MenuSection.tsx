@@ -41,10 +41,10 @@ const MenuSection = ({ data, renderType }: MenuSectionProps) => (
                   key={menu.id}
                   className="flex items-center justify-between border-b border-gray-200"
                 >
-                  <h3 className="text-sm lg:text-lg max-w-xs w-full lg:max-w-xl">
+                  <h3 className="text-sm lg:text-lg max-w-2xs w-full lg:max-w-xl">
                     {menu.label}
                   </h3>
-                  <p className="text-lg font-bold">{menu.price} LKR</p>
+                  <p className="text-sm lg:text-lg font-bold">{menu.price} LKR</p>
                 </div>
               ))}
             </div>
