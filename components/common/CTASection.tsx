@@ -20,7 +20,7 @@ const CTASection = ({
   renderType = "newsletter",
 }: CTASectionProps) => {
   return (
-    <div className="relative bg-accent lg:h-[380px] h-[440px] flex items-center justify-center my-28 lg:my-32 w-full px-2 sm:px-4">
+    <div className="relative bg-accent lg:h-[380px] h-[410px] flex items-center justify-center my-28 lg:my-32 w-full px-2 sm:px-4">
       <Image
         src="/images/pattern.png"
         width={1920}
