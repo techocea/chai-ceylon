@@ -32,10 +32,11 @@ const HeroSection = ({
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="absolute w-screen h-[596px] z-10 bg-primary/80  top-0 left-0 lg:left-10 lg:max-w-md lg:rounded-none lg:shadow-none lg:top-0 lg:h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]">
-        <div className="max-w-sm w-full absolute pr-2 z-20 space-y-6 top-1/2 left-4 transform -translate-y-1/2 text-white">
+      <div className="absolute w-screen h-[596px] z-10 bg-primary/80 top-0 left-0 lg:left-10 lg:max-w-md lg:rounded-none lg:shadow-none lg:top-0 lg:h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]">
+       
+        <div className="w-full absolute pr-2 z-20 space-y-6 top-1/2 left-4 transform -translate-y-1/2 text-white">
           <h1 className="title">{title}</h1>
-          <p className="text-sm lg:max-w-xs">{subTitle}</p>
+          <p className="text-sm lg:max-w-sm w-full">{subTitle}</p>
 
           <Link href="/menu" passHref>
             <Button variant="outline" className="flex items-center gap-2">

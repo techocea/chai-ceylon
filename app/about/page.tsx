@@ -4,8 +4,8 @@ import AboutSection from "@/components/common/AboutSection";
 import CTASection from "@/components/common/CTASection";
 import WhatMakesUsSpecial from "@/components/landing/WhatMakesUsSpecial";
 import SignatureItems from "@/components/landing/SignatureItems";
+import BrandHighlights from "@/components/common/BrandHighlights";
 import { SIGNATURE_OFFERINGS, US_SPECIAL_DATA } from "@/lib/constants";
-import BrandHighlights from "@/components/landing/BrandHighlights";
 
 const AboutPage = () => {
   return (
@@ -47,11 +47,13 @@ const AboutPage = () => {
         />
 
         <BrandHighlights
+          renderType="about"
           title="Where to Find Us?"
           description="You’ll find Chaiyo Ceylon at food stalls, mobile tea carts, events, and pop-up locations across Sri Lanka. Whether it's a tea break on a busy street or a warm drink at a celebration, we’re always ready to serve."
         />
 
         <BrandHighlights
+          renderType="about"
           title="Our Promise"
           description="We don't just make tea — we create moments. With every cup of Chaiyo, you're sipping tradition, care, and community."
         />

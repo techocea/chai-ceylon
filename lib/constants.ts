@@ -98,7 +98,7 @@ export const CONTACT_DATA = [
 export const CONTENT = [
   {
     title: "Tea Kiosk",
-    description: "Compact, stylish, and full of flavor",
+    description: "Compact tea station for high-footfall areas and storefront",
     points: [
       "Ideal for malls, campuses, and coworking spaces",
       "Minimal footprint with high throughput",
@@ -110,7 +110,7 @@ export const CONTENT = [
   },
   {
     title: "Tea Box",
-    description: "A curated tea experience in a box",
+    description: "A bicycle-mounted mobile tea unit for neighborhood routes",
     points: [
       "Includes 3–6 signature chai blends",
       "Comes with honey sticks, cinnamon, and a clay cup",
@@ -122,7 +122,20 @@ export const CONTENT = [
   },
   {
     title: "Tea Cart",
-    description: "Bring the authentic taste to your event",
+    description: "Ideal for weddings, birthdays & indoor events",
+    points: [
+      "Perfect for weddings, corporate events & private parties",
+      "Professionally dressed chai servers",
+      "Live brewing experience with authentic spices",
+      "Customizable branding available",
+      "Power & water supply options included",
+    ],
+    imageSrc: "/images/tea-cart.jpg",
+  },
+  {
+    title: "Tea Wheel",
+    description:
+      "A converted three-wheeler for outdoor events and mobile sales",
     points: [
       "Perfect for weddings, corporate events & private parties",
       "Professionally dressed chai servers",
@@ -134,7 +147,21 @@ export const CONTENT = [
   },
   {
     title: "Tea Bar",
-    description: "The Ultimate Chai Lounge",
+    description:
+      "A stylish sit-down setup for cafes, restaurants, and loungese",
+    points: [
+      "Wide range of chai varieties: classic, iced, herbal, & more",
+      "Instagrammable interior with traditional-modern blend",
+      "Dine-in with fusion snacks and desserts",
+      "Ideal for high-footfall areas or franchise models",
+      "Barista-led experiences & chai-making workshops",
+    ],
+    imageSrc: "/images/banner3.jpg",
+  },
+  {
+    title: "Tea Shop",
+    description:
+      " Permanent retail location offering the full Chaiyo experience",
     points: [
       "Wide range of chai varieties: classic, iced, herbal, & more",
       "Instagrammable interior with traditional-modern blend",
@@ -190,5 +217,27 @@ export const SIGNATURE_OFFERINGS = [
     name: "Samosas & Rolls",
     overlayedText: "The perfect savory side to your tea",
     imageSrc: "/images/samosa.jpg",
+  },
+];
+
+export const BRANDING_HIGHLIGHTS = [
+  {
+    id: 1,
+    title: "We bring the authentic taste of Ceylon to:",
+    points: [
+      "Streets & Markets",
+      "Offices & Events",
+      "Community Gatherings & Private Functions",
+    ],
+  },
+  {
+    id: 2,
+    title: "What We Serve:",
+    points: [
+      "Authentic Ceylon Milk Teas",
+      "Spiced Herbal Teas & Qahwa",
+      "Traditional Savoury Snacks",
+      "Breakfast Packs Inspired by Local Flavours",
+    ],
   },
 ];

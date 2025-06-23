@@ -5,7 +5,7 @@ import { CONTENT } from "@/lib/constants";
 
 const ServicesSection = () => {
   return (
-    <div className="w-full sm:pt-28 lg:pt-32">
+    <div className="w-full sm:mt-28 lg:mt-32">
       <StickyScroll content={CONTENT} />
     </div>
   );

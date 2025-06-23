@@ -5,15 +5,11 @@ interface WhatMakesUsSpecialProps {
 
 const WhatMakesUsSpecial = ({ title, content }: WhatMakesUsSpecialProps) => {
   return (
-    <section className="wrapper">
+    <section className="wrapper py-0">
       <div>
-        <a
-          href="https://www.flaticon.com/free-icons/green-tea"
-          title="green tea icons"
-        ></a>
-        <h3 className="title -ml-6">{title}</h3>
+        <h3 className="title lg:-ml-5">{title}</h3>
         <div className="mt-6">
-          <ul className="space-y-3">
+          <ul className="space-y-3 px-4">
             {content.map((item, idx) => {
               const [highlight, rest] = item.split(":");
               return (
