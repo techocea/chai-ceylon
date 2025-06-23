@@ -4,6 +4,7 @@ import BenefitSection from "@/components/landing/BenefitSection";
 import GallerySection from "@/components/landing/GallerySection";
 import HeroSection from "@/components/common/HeroSection";
 import MenuSection from "@/components/landing/MenuSection";
+import { MENU_SECTIONS } from "@/lib/constants";
 
 export default function Page() {
   return (
@@ -26,7 +27,7 @@ export default function Page() {
           imageSrc="/images/about-image.png"
           description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In enim justo, rhoncus ut, imperdiet a, venenatis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In enim justo, rhoncus ut, imperdiet a, venenatis."
         />
-        <MenuSection />
+        <MenuSection renderType="home" data={MENU_SECTIONS} />
         <GallerySection />
       </div>
     </>

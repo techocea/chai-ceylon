@@ -18,7 +18,7 @@ const MenuPage = () => {
           imageSrc="/images/banner5.jpg"
         />
 
-        <MenuSection data={MENU_SECTIONS} />
+        <MenuSection renderType="menu" data={MENU_SECTIONS} />
       </div>
     </main>
   );
