@@ -1,6 +1,7 @@
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import VendorSection from "@/components/landing/VendorSection";
+import BrandHighlights from "@/components/common/BrandHighlights";
 
 const JoinAsVendorPage = () => {
   return (
@@ -15,6 +16,12 @@ const JoinAsVendorPage = () => {
           buttonText="Explore More"
           socialIcons={false}
           imageSrc="/images/banner3.jpg"
+        />
+
+        <BrandHighlights
+          renderType="vendor"
+          title="Chaiyo Ceylon Business Models"
+          description="To deliver high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
         />
 
         <VendorSection />

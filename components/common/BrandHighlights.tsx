@@ -9,7 +9,7 @@ interface BrandContentItem {
 interface BrandHighlightsProps {
   title: string;
   description: string;
-  renderType: "about" | "services";
+  renderType: "about" | "services" | "vendor";
   content?: BrandContentItem[];
 }
 
