@@ -21,7 +21,7 @@ interface MenuSectionProps {
 }
 
 const MenuSection = ({ data, renderType }: MenuSectionProps) => (
-  <section className="wrapper mb-16">
+  <section className="wrapper lg:pt-0">
     <div className="flex-center space-y-16 w-full">
       {data.map((element, idx) => {
         if (renderType === "home" && idx !== 0) return null;

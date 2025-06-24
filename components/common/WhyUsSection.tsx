@@ -4,7 +4,7 @@ import { WHYUS_DATA } from "@/lib/constants";
 
 const WhyUsSection = () => {
   return (
-    <section className="wrapper">
+    <section className="wrapper pt-0">
       <Heading
         title="Why Taste From Chaiyo Ceylon ?"
         description="Organic & ethically sourced, Ground in small batches, Bold & authentic Sri Lankan flavor"
@@ -13,7 +13,7 @@ const WhyUsSection = () => {
         {WHYUS_DATA.map(({ id, imageSrc, label }) => (
           <div
             key={id}
-            className="flex flex-col items-center justify-center h-48 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="flex-center h-48 py-4 px-1.5 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <Image
               src={imageSrc}
@@ -22,7 +22,7 @@ const WhyUsSection = () => {
               alt={label}
               className="w-16 h-16"
             />
-            <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
+            <p className="mt-2 text-primary text-center font-playfair-display text-lg font-bold">
               {label}
             </p>
           </div>

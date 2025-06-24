@@ -13,7 +13,7 @@ const AboutPage = () => {
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
-      <div>
+      <div className="pb-32">
         <HeroSection
           title="About Chaiyo Ceylon"
           subTitle="Our journey is brewed with passion, culture, and a love for chai"
@@ -36,7 +36,7 @@ const AboutPage = () => {
         <CTASection
           renderType="newsletter"
           title="The Best Tea Quality"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+          description="high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
           CTATitle="Love chai? Stay in the loop."
           CTADescription="Get the latest updates, promos, and recipes—fresh in your inbox every week."
         />

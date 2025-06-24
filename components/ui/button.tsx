@@ -18,7 +18,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-white shadow-xs hover:bg-secondary/80 cursor-pointer",
         ghost:
-          "hover:bg-inherit cursor-pointer",
+          "cursor-pointer",
         link: "text-primary underline-offset-4 hover:underline cursor-pointer",
       },
       size: {

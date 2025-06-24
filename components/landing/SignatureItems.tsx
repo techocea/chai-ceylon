@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Heading from "@/components/common/Heading";
 import Image from "next/image";
 
@@ -15,8 +17,9 @@ type SignatureItemsProps = {
 };
 
 const SignatureItems = ({ title, content }: SignatureItemsProps) => {
+  const [activeId, setActiveId] = useState<number | null>(null);
   return (
-    <section className="wrapper">
+    <section className="wrapper lg:py-0">
       <div className="flex-center">
         <Heading title={title} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full mt-10">
@@ -30,7 +33,16 @@ const SignatureItems = ({ title, content }: SignatureItemsProps) => {
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+              <div
+                className={`absolute inset-0 bg-black/40 flex items-center justify-center duration-300 ${
+                  activeId === id
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                }`}
+                tabIndex={0}
+                onClick={() => setActiveId(id)}
+                onTouchStart={() => setActiveId(id)}
+              >
                 <span className="max-w-2xs text-white text-lg text-center font-semibold">
                   {overlayedText || "Signature Chai"}
                 </span>

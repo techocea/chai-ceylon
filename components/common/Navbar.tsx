@@ -11,15 +11,17 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="lg:max-w-6xl mx-auto p-4 sm:px-6 bg-transparent">
-      <div className="flex items-center justify-between w-full">
+    <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-6">
+      <div className="flex items-end justify-between w-full">
         <div>
-          <Image
-            src="/images/logo.png"
-            alt="Chaiyo Ceylon"
-            width={150}
-            height={75}
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo.png"
+              alt="Chaiyo Ceylon"
+              width={150}
+              height={75}
+            />
+          </Link>
         </div>
         {/* Desktop Nav */}
         <nav className="hidden lg:flex gap-3">
@@ -40,7 +42,7 @@ const Navbar = () => {
         </nav>
         {/* Hamburger Icon */}
         <button
-          className="lg:hidden flex items-center justify-center p-2"
+          className="lg:hidden flex items-center justify-center"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen((open) => !open)}
         >
@@ -79,7 +81,7 @@ const Navbar = () => {
       </div>
       {/* Mobile Nav */}
       {mobileOpen && (
-        <nav className="lg:hidden h-96 mt-4 flex flex-col gap-2 w-screen absolute left-0 bg-black rounded p-4">
+        <nav className="lg:hidden h-96 mt-4 flex flex-col gap-2 w-screen absolute left-0 bg-black p-4">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {NAV_ITEMS.map(({ id, href, label }) => (
               <Button

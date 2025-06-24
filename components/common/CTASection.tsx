@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import Heading from "./Heading";
 
 interface CTASectionProps {
   title: string;
@@ -20,7 +21,7 @@ const CTASection = ({
   renderType = "newsletter",
 }: CTASectionProps) => {
   return (
-    <div className="relative bg-accent lg:h-[380px] h-[410px] flex items-center justify-center my-28 lg:my-32 w-full px-2 sm:px-4">
+    <div className="relative bg-accent min-h-[420px] flex flex-col items-center justify-center py-16 sm:py-20 md:py-24 w-full px-2 sm:px-4 my-32">
       <Image
         src="/images/pattern.png"
         width={1920}
@@ -29,25 +30,26 @@ const CTASection = ({
         alt="Pattern background"
         priority
       />
-      <div className="absolute top-8 md:top-12 flex flex-col items-center text-center px-2 sm:px-4 md:px-0 max-w-full md:max-w-xl w-full text-white">
-        <h2 className="title">{title}</h2>
-        <p className="text-sm sm:text-sm md:text-base lg:max-w-sm w-full mt-2">
-          {description}
-        </p>
+      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-2xl px-2 sm:px-4">
+        <Heading
+          title={title}
+          description={description}
+          className="text-white"
+        />
       </div>
-      <div className="absolute bottom-8 md:bottom-12 lg:-bottom-20 z-10 w-full flex justify-center px-2">
+      <div className="relative z-20 w-full flex justify-center mt-8">
         <div
           className={cn(
-            "bg-white shadow-lg p-4 sm:p-6 md:p-8 max-w-full sm:max-w-2xl w-full space-y-3",
+            "bg-white shadow-lg p-4 sm:p-6 md:p-8 w-full lg:max-w-2xl space-y-4 flex flex-col items-center",
             renderType === "newsletter"
-              ? "flex flex-col items-start"
-              : "flex flex-col items-center text-center"
+              ? "items-start text-left"
+              : "items-center text-center"
           )}
         >
-          <h2 className="text-lg sm:text-2xl md:text-3xl font-bold font-playfair-display">
+          <h2 className="text-lg sm:text-2xl md:text-3xl font-bold font-playfair-display w-full">
             {CTATitle}
           </h2>
-          <p className="text-sm sm:text-sm md:text-base lg:max-w-md w-full text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground w-full">
             {CTADescription}
           </p>
           {renderType === "newsletter" ? (
@@ -61,9 +63,9 @@ const CTASection = ({
             </form>
           ) : (
             <div className="w-full flex justify-center">
-              <Button className="w-full sm:w-auto">
-                <Link href="/services/become-a-vendor">Become a vendor</Link>
-              </Button>
+              <Link href="/services/become-a-vendor" passHref>
+                <Button className="w-full sm:w-auto">Become a vendor</Button>
+              </Link>
             </div>
           )}
         </div>

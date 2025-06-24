@@ -15,8 +15,8 @@ const AboutSection = ({
   imageSrc,
 }: AboutSectionProps) => {
   return (
-    <section className="wrapper py-0">
-      <div className="flex-center lg:flex-row w-full">
+    <section className="wrapper">
+      <div className="flex-center lg:flex-row w-full gap-10 lg:gap-0">
         <div className="flex flex-col items-start space-y-6 flex-1">
           <div className="flex items-center justify-center gap-5">
             <h3 className="heading">{title}</h3>
@@ -35,13 +35,13 @@ const AboutSection = ({
           <p className="max-w-lg text-start text-muted-foreground font-medium">
             {description}
           </p>
+
         </div>
-        <div className="flex-1">
+        <div className="lg:flex-1">
           <Image
             src={imageSrc}
             width={500}
             height={500}
-            sizes="(max-width: 640px) 100vw, 55vw"
             alt="about chaio ceylon"
             className="w-full h-full object-cover"
           />

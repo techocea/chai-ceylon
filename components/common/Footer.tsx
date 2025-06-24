@@ -1,7 +1,9 @@
+import { NAV_ITEMS } from "@/lib/constants";
 import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Button } from "../ui/button";
 
 const Footer = () => {
   return (
@@ -13,7 +15,7 @@ const Footer = () => {
           width={1920}
           height={400}
           className="w-full h-full object-cover opacity-15"
-      />
+        />
       </div>
       <div className="relative z-10 footer-wrapper h-full flex flex-col justify-between">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
@@ -57,12 +59,14 @@ const Footer = () => {
             <h3 className="text-2xl font-playfair-display border-b-[3px] border-mud-green">
               Quick Links
             </h3>
-            <ul className="space-y-4">
-              <li>&gt;Home</li>
-              <li>&gt;About</li>
-              <li>&gt;Services</li>
-              <li>&gt;Menu</li>
-              <li>&gt;Contact</li>
+            <ul className="space-y-2 flex flex-col items-start">
+              {NAV_ITEMS.map(({ id, href, label }) => (
+                <Button key={id} variant="ghost" className="pl-0">
+                  <Link href={href} className="text-white hover:text-mud-green">
+                    &gt; {label}
+                  </Link>
+                </Button>
+              ))}
             </ul>
           </div>
           <div className="flex flex-col items-start gap-6">
@@ -74,6 +78,17 @@ const Footer = () => {
               <p>8:00 PM - 11:30 PM Monday - Saturday </p>
             </span>
           </div>
+        </div>
+        <div className="w-full text-center py-4 border-t border-mud-green text-sm">
+          Designed and Developed by{" "}
+          <Link
+            href="https://www.webizera.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-mud-green"
+          >
+            Webizera
+          </Link>
         </div>
       </div>
     </footer>

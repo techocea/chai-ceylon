@@ -11,7 +11,7 @@ const MenuPage = () => {
       </div>
       <div>
         <HeroSection
-          title="Our Menu"
+          title="Our Products"
           subTitle="Discover our handcrafted blends, curated with bold flavor and warmth."
           buttonText="Explore Menu"
           socialIcons={false}
