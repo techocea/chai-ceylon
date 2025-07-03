@@ -8,7 +8,6 @@ interface HeroSectionProps {
   title: string;
   subTitle: string;
   buttonText: string;
-  socialIcons?: boolean;
   imageSrc: string;
 }
 
@@ -16,7 +15,6 @@ const HeroSection = ({
   title,
   subTitle,
   buttonText,
-  socialIcons,
   imageSrc,
 }: HeroSectionProps) => {
   return (
@@ -44,37 +42,6 @@ const HeroSection = ({
                 <ArrowRight size={18} />
               </Button>
             </Link>
-          </div>
-
-          <div className="flex space-x-4 mt-4">
-            {socialIcons && (
-              <>
-                <Link
-                  href="https://www.facebook.com/ChaiyoCeylon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src="/icons/facebook.svg"
-                    width={28}
-                    height={28}
-                    alt="Facebook"
-                  />
-                </Link>
-                <Link
-                  href="https://www.instagram.com/ChaiyoCeylon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src="/icons/instagram.svg"
-                    width={28}
-                    height={28}
-                    alt="Instagram"
-                  />
-                </Link>
-              </>
-            )}
           </div>
         </div>
       </div>
