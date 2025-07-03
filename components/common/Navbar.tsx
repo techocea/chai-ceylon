@@ -11,7 +11,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-6">
+    <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-12">
       <div className="flex items-end justify-between w-full">
         <div>
           <Link href="/">

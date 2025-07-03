@@ -1,9 +1,12 @@
+"use client";
+
+import { openWhatsApp } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
 
 const VendorSection = () => {
   return (
-    <section className="wrapper pt-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-3 md:grid-rows-2 gap-16 place-items-center py-0">
+    <section className="wrapper">
+      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-3 md:grid-rows-2 gap-16 place-items-center">
         <VendorDetails
           title="Tea Kiosk"
           subTitle="Compact, stylish, and full of flavor"
@@ -51,12 +54,14 @@ function VendorDetails({
   description: string;
 }) {
   return (
-    <div className="flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm md:max-w-md border">
+    <div className="flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm md:max-w-md">
       <h2 className="title text-primary">{title}</h2>
       <p className="text-primary">{subTitle}</p>
       <p className="my-4 text-muted-foreground font-medium">{description}</p>
       <div>
-        <Button>Proceed Now</Button>
+        <Button onClick={() => openWhatsApp("94724388956", title)}>
+          Proceed Now
+        </Button>
       </div>
     </div>
   );

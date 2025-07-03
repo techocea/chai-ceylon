@@ -31,7 +31,7 @@ const ServicePage = () => {
         <ServicesSection />
 
         <CTASection
-          renderType="vendor"
+          renderType="vendor" 
           title="Tradition Meets Convenience"
           description="Bring the Chaiyo Ceylon experience to your neighborhood or events."
           CTATitle="Be a Vendor and Earn with Us"

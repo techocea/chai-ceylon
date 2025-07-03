@@ -30,7 +30,7 @@ const BenefitSection = () => {
               "sm:top-16 sm:right-16",
               "sm:top-1/2 sm:right-8 sm:transform sm:-translate-y-1/2",
               "sm:bottom-16 sm:right-24",
-              "sm:bottom-20 sm:left-20",
+              "sm:bottom-12 sm:left-20",
               "sm:top-1/2 sm:left-8 sm:transform sm:-translate-y-1/2",
             ];
             const position = positions[idx % positions.length];

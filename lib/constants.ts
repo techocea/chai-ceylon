@@ -13,13 +13,13 @@ export const NAV_ITEMS = [
   },
   {
     id: 3,
-    label: "Services",
-    href: "/services",
+    label: "Our Concepts",
+    href: "/our-concepts",
   },
   {
     id: 4,
-    label: "Menu",
-    href: "/menu",
+    label: "Products",
+    href: "/products",
   },
   {
     id: 5,

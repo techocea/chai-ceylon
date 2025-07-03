@@ -20,8 +20,8 @@ const HeroSection = ({
   imageSrc,
 }: HeroSectionProps) => {
   return (
-    <section className="relative h-[50rem] lg:h-screen">
-      <div className="absolute inset-0 z-0 lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_80%)]">
+    <section className="relative min-h-[70vh] h-auto lg:min-h-screen">
+      <div className="absolute inset-0 z-0 [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_80%)]">
         <Image
           src={imageSrc}
           alt="Chaiyo Ceylon Tea"
@@ -32,13 +32,13 @@ const HeroSection = ({
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="absolute w-screen h-[40rem] z-10 bg-primary/80 top-0 left-0 lg:left-10 lg:max-w-xl lg:rounded-none lg:shadow-none lg:top-0 lg:h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]">
-        <div className="w-full absolute lg:pr-2 z-20 space-y-8 lg:space-y-4 top-1/2 left-4 transform -translate-y-1/2 text-white max-w-xs lg:max-w-lg">
+      <div className="relative w-full h-[55vh] max-w-full z-10 bg-primary/80 top-0 left-0 lg:absolute lg:left-10 lg:max-w-xl lg:rounded-none lg:shadow-none lg:top-0 lg:min-h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_95%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] pt-24 lg:pt-10">
+        <div className="relative w-full sm:pr-2 z-20 space-y-8 lg:space-y-4 mx-auto px-4 lg:px-0 py-8 sm:py-4 lg:py-0 top-0 left-0 text-white max-w-md sm:max-w-lg flex flex-col justify-center h-full">
           <h1 className="title">{title}</h1>
           <p className="text-sm">{subTitle}</p>
 
           <div>
-            <Link href="/menu" passHref>
+            <Link href="/menu">
               <Button variant="outline" className="flex items-center gap-2">
                 {buttonText}
                 <ArrowRight size={18} />
@@ -46,12 +46,13 @@ const HeroSection = ({
             </Link>
           </div>
 
-          <div className="flex space-x-4 mt-10">
+          <div className="flex space-x-4 mt-4">
             {socialIcons && (
               <>
                 <Link
                   href="https://www.facebook.com/ChaiyoCeylon"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Image
                     src="/icons/facebook.svg"
@@ -63,6 +64,7 @@ const HeroSection = ({
                 <Link
                   href="https://www.instagram.com/ChaiyoCeylon"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Image
                     src="/icons/instagram.svg"

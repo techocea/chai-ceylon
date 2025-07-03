@@ -63,7 +63,7 @@ const CTASection = ({
             </form>
           ) : (
             <div className="w-full flex justify-center">
-              <Link href="/services/become-a-vendor" passHref>
+              <Link href="/our-concepts/become-a-vendor" passHref>
                 <Button className="w-full sm:w-auto">Become a vendor</Button>
               </Link>
             </div>

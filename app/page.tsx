@@ -25,7 +25,7 @@ export default function Page() {
           icon={true}
           title="About Us"
           imageSrc="/images/about-image.png"
-          description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In enim justo, rhoncus ut, imperdiet a, venenatis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In enim justo, rhoncus ut, imperdiet a, venenatis."
+          description="At Chaiyo Ceylon, we celebrate the art of tea — not just as a drink, but as a comfort, culture, and connection. Born in the heart of Sri Lanka, our brand brings the rich heritage of Ceylon tea to life through ready-made tea and coffee blends that are easy to enjoy and impossible to forget. We blend tradition with convenience — offering handcrafted milk teas, herbal infusions, and spiced coffees made from locally-sourced ingredients, brewed with love, and served with pride."
         />
         <MenuSection renderType="home" data={MENU_SECTIONS} />
         <GallerySection />

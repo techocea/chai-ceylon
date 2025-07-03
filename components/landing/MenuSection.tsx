@@ -41,7 +41,7 @@ const MenuSection = ({ data, renderType }: MenuSectionProps) => (
                   key={menu.id}
                   className="flex items-center justify-between border-b border-gray-200"
                 >
-                  <h3 className="text-sm lg:text-lg max-w-2xs w-full lg:max-w-xl">
+                  <h3 className="text-sm lg:text-lg max-w-fit w-full lg:max-w-xl">
                     {menu.label}
                   </h3>
                   <p className="text-sm lg:text-lg font-bold">{menu.price} LKR</p>
@@ -52,7 +52,7 @@ const MenuSection = ({ data, renderType }: MenuSectionProps) => (
             {renderType === "home" && (
               <div className="flex-center">
                 <Button asChild>
-                  <Link href="/menu">View All</Link>
+                  <Link href="/products">View All</Link>
                 </Button>
               </div>
             )}

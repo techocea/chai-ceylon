@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 
 const Footer = () => {
   return (
-    <footer className="relative text-white bg-black h-full">
+    <footer className="relative text-white bg-black">
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
           src="/images/pattern.png"
@@ -59,13 +59,15 @@ const Footer = () => {
             <h3 className="text-2xl font-playfair-display border-b-[3px] border-mud-green">
               Quick Links
             </h3>
-            <ul className="space-y-2 flex flex-col items-start">
+            <ul className="space-y-2 grid grid-cols-1 sm:grid-cols-2 justify-start">
               {NAV_ITEMS.map(({ id, href, label }) => (
-                <Button key={id} variant="ghost" className="pl-0">
-                  <Link href={href} className="text-white hover:text-mud-green">
-                    &gt; {label}
+                <li key={id}>
+                  <Link href={href} className="block">
+                    <Button variant="ghost" className="pl-0 text-white hover:text-mud-green" asChild>
+                      <span>&gt; {label}</span>
+                    </Button>
                   </Link>
-                </Button>
+                </li>
               ))}
             </ul>
           </div>
