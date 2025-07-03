@@ -18,7 +18,7 @@ const HeroSection = ({
   imageSrc,
 }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-[70vh] h-auto lg:min-h-screen">
+    <section className="relative min-h-[75vh] h-auto lg:min-h-screen">
       <div className="absolute inset-0 z-0 [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_80%)]">
         <Image
           src={imageSrc}
@@ -36,7 +36,7 @@ const HeroSection = ({
           <p className="text-sm">{subTitle}</p>
 
           <div>
-            <Link href="/menu">
+            <Link href="/products">
               <Button variant="outline" className="flex items-center gap-2">
                 {buttonText}
                 <ArrowRight size={18} />
