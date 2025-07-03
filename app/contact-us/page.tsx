@@ -13,7 +13,7 @@ const ContactPage = () => {
           title="Contact Us"
           subTitle="We’d love to hear from you — let’s talk tea."
           buttonText="Reach Out"
-          socialIcons={false}
+
           imageSrc="/images/banner4.jpg"
         />
 

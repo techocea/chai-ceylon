@@ -14,7 +14,7 @@ const MenuPage = () => {
           title="Our Products"
           subTitle="Discover our handcrafted blends, curated with bold flavor and warmth."
           buttonText="Explore Menu"
-          socialIcons={false}
+
           imageSrc="/images/banner5.jpg"
         />
 

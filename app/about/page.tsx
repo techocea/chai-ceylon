@@ -18,7 +18,7 @@ const AboutPage = () => {
           title="About Chaiyo Ceylon"
           subTitle="Our journey is brewed with passion, culture, and a love for chai"
           buttonText="Learn More"
-          socialIcons={false}
+
           imageSrc="/images/banner2.jpg"
         />
 

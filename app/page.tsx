@@ -17,7 +17,7 @@ export default function Page() {
           title="Experience the Soul of Ceylon in Every Sip"
           subTitle="Sip into something special — where every cup tells a Ceylon story."
           buttonText="Explore Blends"
-          socialIcons={true}
+         
           imageSrc="/images/banner2.jpg"
         />
         <BenefitSection />

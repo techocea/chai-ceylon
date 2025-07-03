@@ -14,7 +14,7 @@ const JoinAsVendorPage = () => {
           title="How to earn with Chaiyo Ceylon"
           subTitle="Serve the magic of chai, grow with us — one cup at a time."
           buttonText="Explore More"
-          socialIcons={false}
+
           imageSrc="/images/banner3.jpg"
         />
 

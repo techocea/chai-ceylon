@@ -17,7 +17,7 @@ const ServicePage = () => {
           title="Our Concept — Tradition Meets Convenience"
           subTitle="To deliver high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
           buttonText="Explore More"
-          socialIcons={false}
+
           imageSrc="/images/banner3.jpg"
         />
 
@@ -31,7 +31,7 @@ const ServicePage = () => {
         <ServicesSection />
 
         <CTASection
-          renderType="vendor" 
+          renderType="vendor"
           title="Tradition Meets Convenience"
           description="Bring the Chaiyo Ceylon experience to your neighborhood or events."
           CTATitle="Be a Vendor and Earn with Us"
