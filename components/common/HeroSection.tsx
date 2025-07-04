@@ -30,7 +30,7 @@ const HeroSection = ({
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative w-full h-[55vh] max-w-full z-10 bg-primary/80 top-0 left-0 lg:absolute lg:left-10 lg:max-w-xl lg:rounded-none lg:shadow-none lg:top-0 lg:min-h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_95%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] pt-24 lg:pt-10">
+      <div className="relative w-full h-[65vh] max-w-full z-10 bg-primary/80 top-0 left-0 lg:absolute lg:left-10 lg:max-w-xl lg:rounded-none lg:shadow-none lg:top-0 lg:min-h-[496px] [clip-path:polygon(0_0,100%_0,100%_100%,0_95%)] lg:[clip-path:polygon(0_0,100%_0,100%_100%,0_90%)] pt-24 lg:pt-10">
         <div className="relative w-full sm:pr-2 z-20 space-y-8 lg:space-y-4 mx-auto px-4 lg:px-0 py-8 sm:py-4 lg:py-0 top-0 left-0 text-white max-w-md sm:max-w-lg flex flex-col justify-center h-full">
           <h1 className="title">{title}</h1>
           <p className="text-sm">{subTitle}</p>
