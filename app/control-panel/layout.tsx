@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-export default async function DashboardLayout({
+export default async function ControlPanelLayout({
   children,
 }: {
   children: ReactNode;
