@@ -12,9 +12,9 @@ export const formSchema = z.object({
 });
 
 export const authFormSchema = z.object({
-  email:z.string().email(),
-  password:z.string().min(8,{message:"Password should be 8 characters"}),
-})
+  email: z.string().min(1, { message: "Email is required" }),
+  password: z.string().min(8, { message: "Password should be 8 characters" }),
+});
 
 export type FormSchema = z.infer<typeof formSchema>;
-export type AuthFormSchema = z.infer<typeof authFormSchema>;
+export type AuthFormValues = z.infer<typeof authFormSchema>;
