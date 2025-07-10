@@ -22,8 +22,8 @@ export const Banner =
 /* ---------- 2.  ABOUT US ---------- */
 const AboutSchema = new mongoose.Schema({
   type: { type: String, required: true },
-  imageSrc: { type: String, required: true }, // uploadthing URL
   title: { type: String, required: true },
+  imageSrc: { type: String, required: true }, // uploadthing URL
   description: { type: String, required: true },
 });
 export const About =
@@ -33,8 +33,18 @@ export const About =
 const FooterSchema = new mongoose.Schema({
   aboutText: { type: String, maxLength: 600, required: true },
   workingHours: { type: String, required: true },
-  quickLinks: [{ type: String, required: true }],
-  socialMediaLinks: [{ type: String, required: true }],
+  quickLinks: [
+    {
+      label: { type: String, required: true },
+      href: { type: String, required: true },
+    },
+  ],
+  socialMediaLinks: [
+    {
+      label: { type: String, required: true },
+      href: { type: String, required: true },
+    },
+  ],
 });
 export const Footer =
   mongoose.models.Footer || mongoose.model("Footer", FooterSchema);
@@ -61,7 +71,7 @@ export const MenuItem =
 const GallerySchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    images: { type: String, required: true },
+    images: [{ type: String, required: true }],
   },
   { timestamps: true }
 );

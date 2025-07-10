@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+export const authFormSchema = z.object({
+  email: z.string().min(1, { message: "Email is required" }),
+  password: z.string().min(8, { message: "Password should be 8 characters" }),
+});
+
 export const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   phone: z
@@ -11,10 +16,29 @@ export const formSchema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
-export const authFormSchema = z.object({
-  email: z.string().min(1, { message: "Email is required" }),
-  password: z.string().min(8, { message: "Password should be 8 characters" }),
+export const footerContentSchema = z.object({
+  aboutText: z
+    .string()
+    .max(255, "Cannot exceed 255 characters")
+    .min(10, "Should be atleast 10 characters long"),
+  quickLinks: z.array(
+    z.object({
+      label: z.string().min(1, "Label is required"),
+      href: z.string().min(1, "Href is required"),
+    })
+  ),
+  socialMediaLinks: z.array(
+    z.object({
+      label: z.string().min(1, "Label is required"),
+      href: z.string().min(1, "Href is required"),
+    })
+  ),
+  workingHours: z
+    .string()
+    .max(64, "Cannot exceed 64 characters")
+    .min(10, "Should be atleast 10 characters long"),
 });
 
-export type FormSchema = z.infer<typeof formSchema>;
+export type FormValues = z.infer<typeof formSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
+export type FooterContentValues = z.infer<typeof footerContentSchema>;

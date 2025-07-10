@@ -1,7 +1,7 @@
 import React from "react";
 
 const ControlPanelPage = () => {
-  return <div>ControlPanelPage</div>;
+  return <div>ControlPanel - Banners</div>;
 };
 
 export default ControlPanelPage;

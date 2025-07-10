@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { formSchema, FormSchema } from "@/lib/zodSchema";
+import { formSchema, FormValues } from "@/lib/zodSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
@@ -19,11 +19,11 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormSchema>({
+  } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     setLoading(true);
     setSuccess("");
     setServerError("");
@@ -36,7 +36,7 @@ const ContactForm = () => {
   };
 
   const getValidationErrorMessage = () => {
-    const errorMessages = (Object.keys(errors) as (keyof FormSchema)[]).map(
+    const errorMessages = (Object.keys(errors) as (keyof FormValues)[]).map(
       (key) => errors[key]?.message as string | undefined
     );
     const filteredMessages = errorMessages.filter(Boolean);

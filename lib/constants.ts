@@ -28,6 +28,14 @@ export const NAV_ITEMS = [
   },
 ];
 
+export const CMS_NAV_ITEMS = [
+  { href: "/control-panel", label: "Banners" },
+  { href: "/control-panel/menu", label: "Menu" },
+  { href: "/control-panel/footer", label: "Footer" },
+  { href: "/control-panel/gallery", label: "Gallery" },
+  { href: "/control-panel/contact-us", label: "Contact Us" },
+];
+
 export const BENEFITS = [
   "Strengthens immunity through antioxidant-rich ingredients",
   "Boosts energy with natural caffeine",

@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,6 @@ import BgGradient from "@/components/control-panel/BgGradient";
 import AuthNavbar from "@/components/control-panel/AuthNavbar";
 import { authFormSchema, AuthFormValues } from "@/lib/zodSchema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
 
 const LoginPage = () => {
   const router = useRouter();

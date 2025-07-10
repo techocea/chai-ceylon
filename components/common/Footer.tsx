@@ -1,11 +1,44 @@
-import { NAV_ITEMS } from "@/lib/constants";
-import { Clock } from "lucide-react";
+"use client";
+
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import { Clock } from "lucide-react";
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface FooterContentProps {
+  _id: string;
+  aboutText: string;
+  quickLinks: LinkItem[];
+  socialMediaLinks: LinkItem[];
+  workingHours: string;
+}
 
 const Footer = () => {
+  const [footerData, setFooterData] = useState<FooterContentProps | null>(null);
+
+  useEffect(() => {
+    const fetchFooterData = async () => {
+      try {
+        const res = await axios.get("/api/footer");
+        if (res.status === 200 && res.data) {
+          setFooterData(res.data.footerContent[0]);
+        } else {
+          console.error("Error in fetching footer content");
+        }
+      } catch (error) {
+        console.error("Error in fetching footer content:", error);
+      }
+    };
+    fetchFooterData();
+  }, []);
+
   return (
     <footer className="relative text-white bg-black">
       <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -26,33 +59,25 @@ const Footer = () => {
               width={150}
               height={105}
             />
-            <p>
-              It’s a comforting blend of spices that energizes your body,
-              supports digestion, boosts immunity, and soothes the soul
-            </p>
+            <p>{footerData?.aboutText}</p>
             <div className="flex space-x-4">
-              <Link
-                href="https://www.facebook.com/ChaiyoCeylon"
-                target="_blank"
-              >
-                <Image
-                  src="/icons/facebook.svg"
-                  width={32}
-                  height={32}
-                  alt="chai shops near me"
-                />
-              </Link>
-              <Link
-                href="https://www.instagram.com/ChaiyoCeylon"
-                target="_blank"
-              >
-                <Image
-                  src="/icons/instagram.svg"
-                  width={32}
-                  height={32}
-                  alt="chai shops near me"
-                />
-              </Link>
+              {footerData?.socialMediaLinks?.map((social, idx) => (
+                <Link key={idx} href={social.href} target="_blank">
+                  {/* You can use social.label to determine which icon to show */}
+                  <Image
+                    src={
+                      social.label.toLowerCase().includes("facebook")
+                        ? "/icons/facebook.svg"
+                        : social.label.toLowerCase().includes("instagram")
+                          ? "/icons/instagram.svg"
+                          : "/icons/facebook.svg"
+                    }
+                    width={32}
+                    height={32}
+                    alt={social.label}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
           <div className="flex flex-col items-start gap-6">
@@ -60,11 +85,15 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="space-y-2 grid grid-cols-1 sm:grid-cols-2 justify-start">
-              {NAV_ITEMS.map(({ id, href, label }) => (
-                <li key={id}>
-                  <Link href={href} className="block">
-                    <Button variant="ghost" className="pl-0 text-white hover:text-mud-green" asChild>
-                      <span>&gt; {label}</span>
+              {footerData?.quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="block">
+                    <Button
+                      variant="ghost"
+                      className="pl-0 text-white hover:text-mud-green"
+                      asChild
+                    >
+                      <span>&gt; {link.label}</span>
                     </Button>
                   </Link>
                 </li>
@@ -77,7 +106,7 @@ const Footer = () => {
             </h3>
             <span className="flex items-center gap-3">
               <Clock className="text-mud-green" />
-              <p>8:00 PM - 11:30 PM Monday - Saturday </p>
+              <p>{footerData?.workingHours}</p>
             </span>
           </div>
         </div>
