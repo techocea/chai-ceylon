@@ -83,9 +83,9 @@ const ContactPageSchema = new mongoose.Schema(
   {
     address: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: String },
+    phone: { type: String, required: true },
     workingHours: { type: String, required: true },
-    locations: [{ type: String, required: true }],
+    location: { type: String, required: true },
   },
   { timestamps: true }
 );

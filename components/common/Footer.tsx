@@ -13,7 +13,6 @@ interface LinkItem {
 }
 
 interface FooterContentProps {
-  _id: string;
   aboutText: string;
   quickLinks: LinkItem[];
   socialMediaLinks: LinkItem[];

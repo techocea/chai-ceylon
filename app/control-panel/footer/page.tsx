@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -8,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { footerContentSchema, FooterContentValues } from "@/lib/zodSchema";
-import { Loader2 } from "lucide-react";
 
 const FooterPage = () => {
   const [loading, setLoading] = useState(false);
@@ -19,13 +19,7 @@ const FooterPage = () => {
     formState: { errors },
     reset,
   } = useForm<FooterContentValues>({
-    resolver: zodResolver(footerContentSchema),
-    defaultValues: {
-      aboutText: "",
-      quickLinks: [],
-      socialMediaLinks: [],
-      workingHours: "",
-    },
+    resolver: zodResolver(footerContentSchema)
   });
 
   useEffect(() => {
@@ -49,10 +43,9 @@ const FooterPage = () => {
   const onSubmit = async (data: FooterContentValues) => {
     setLoading(true);
     try {
-      const API_URL = "/api/footer";
       const res = isEditing
-        ? await axios.patch(`${API_URL}/update`, data)
-        : await axios.post(API_URL, data);
+        ? await axios.patch("/api/footer/update", data)
+        : await axios.post("/api/footer", data);
 
       if (res.status === 200) {
         alert("Footer content saved successfully");

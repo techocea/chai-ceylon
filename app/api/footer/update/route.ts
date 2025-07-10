@@ -36,7 +36,7 @@ export async function PATCH(req: NextRequest) {
 
     if (!updatedFooter) {
       return NextResponse.json(
-        { message: "Footer Content Not Found" },
+        { message: "No update content found[FOOTER]" },
         { status: 404 }
       );
     }

@@ -39,6 +39,27 @@ export const footerContentSchema = z.object({
     .min(10, "Should be atleast 10 characters long"),
 });
 
+export const contactPageContentSchema = z.object({
+  address: z
+    .string()
+    .max(255, "Cannot exceed 255 characters")
+    .min(10, "Should be atleast 10 characters long"),
+  email: z.string().email(),
+  phone: z
+    .string()
+    .max(16, "Should not exceed 16 characters")
+    .min(10, "Should contain 10 digits"),
+  workingHours: z
+    .string()
+    .max(64, "Cannot exceed 64 characters")
+    .min(10, "Should be atleast 10 characters long"),
+  location: z
+    .string()
+    .max(255, "Cannot exceed 255 characters")
+    .min(10, "Should be atleast 10 characters long"),
+});
+
 export type FormValues = z.infer<typeof formSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
 export type FooterContentValues = z.infer<typeof footerContentSchema>;
+export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;
