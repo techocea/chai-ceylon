@@ -59,7 +59,30 @@ export const contactPageContentSchema = z.object({
     .min(10, "Should be atleast 10 characters long"),
 });
 
+export const menuSchema = z.object({
+  menu: z.array(
+    z.object({
+      category: z
+        .string()
+        .min(2, "Category name is too short")
+        .max(255, "Category name too long"),
+      products: z.array(
+        z.object({
+          name: z
+            .string()
+            .min(2, "Name is too short")
+            .max(255, "Name too long"),
+          price: z.coerce.number().min(1, "Price must be greater than 0"),
+          description: z.string().max(255),
+          isAvailable: z.boolean(),
+        })
+      ),
+    })
+  ),
+});
+
 export type FormValues = z.infer<typeof formSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
 export type FooterContentValues = z.infer<typeof footerContentSchema>;
 export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;
+export type MenuValues = z.infer<typeof menuSchema>;

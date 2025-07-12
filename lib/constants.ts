@@ -33,6 +33,7 @@ export const CMS_NAV_ITEMS = [
   { href: "/control-panel/menu", label: "Menu" },
   { href: "/control-panel/footer", label: "Footer" },
   { href: "/control-panel/gallery", label: "Gallery" },
+  { href: "/control-panel/about", label: "About Us" },
   { href: "/control-panel/contact-us", label: "Contact Us" },
 ];
 
