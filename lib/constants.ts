@@ -50,7 +50,6 @@ export const MENU_SECTIONS = [
   {
     id: 1,
     title: "Hot Beverages",
-    description: "",
     items: [
       { id: 1, label: "Spice Milk Tea", price: 200 },
       { id: 2, label: "Cardamom Milk Tea", price: 200 },
@@ -65,7 +64,6 @@ export const MENU_SECTIONS = [
   {
     id: 2,
     title: "Cold Beverages",
-    description: "",
     items: [
       { id: 1, label: "Almond & Date Shake", price: 250 },
       { id: 2, label: "Iced Coffee", price: 250 },
@@ -75,7 +73,6 @@ export const MENU_SECTIONS = [
   {
     id: 3,
     title: "Savoury",
-    description: "",
     items: [
       { id: 1, label: "Chicken Samosa", price: 100 },
       { id: 7, label: "Fish Rolls", price: 100 },
@@ -90,7 +87,7 @@ export const MENU_SECTIONS = [
   {
     id: 4,
     title: "Breakfast Packs (Available Morning Only)",
-    description: "",
+
     items: [
       { id: 1, label: "Chickpea Pack", price: 250 },
       { id: 2, label: "Cassava Pack", price: 250 },
@@ -110,7 +107,7 @@ export const MENU_SECTIONS = [
   {
     id: 5,
     title: "Wraps (All Day)",
-    description: "",
+
     items: [
       {
         id: 1,

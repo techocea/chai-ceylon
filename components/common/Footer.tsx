@@ -62,7 +62,6 @@ const Footer = () => {
             <div className="flex space-x-4">
               {footerData?.socialMediaLinks?.map((social, idx) => (
                 <Link key={idx} href={social.href} target="_blank">
-                  {/* You can use social.label to determine which icon to show */}
                   <Image
                     src={
                       social.label.toLowerCase().includes("facebook")
