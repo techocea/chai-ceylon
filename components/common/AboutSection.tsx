@@ -5,14 +5,14 @@ interface AboutSectionProps {
   title: string;
   description: string;
   icon?: boolean;
-  imageSrc: string;
+  imageUrl: string;
 }
 
 const AboutSection = ({
   title,
   description,
   icon,
-  imageSrc,
+  imageUrl,
 }: AboutSectionProps) => {
   return (
     <section className="wrapper">
@@ -39,7 +39,7 @@ const AboutSection = ({
         </div>
         <div className="lg:flex-1">
           <Image
-            src={imageSrc}
+            src={imageUrl}
             width={500}
             height={500}
             alt="about chaio ceylon"

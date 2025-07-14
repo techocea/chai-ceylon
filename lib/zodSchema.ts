@@ -59,6 +59,26 @@ export const contactPageContentSchema = z.object({
     .min(10, "Should be atleast 10 characters long"),
 });
 
+export const aboutContentSchema = z.object({
+  aboutUsContent: z.array(
+    z.object({
+      page: z
+        .string()
+        .max(255, "Should not exceed 255 characters")
+        .min(6, "Should be atleast 6 characters long"),
+      title: z
+        .string()
+        .max(64, "Should not exceed 64 characters")
+        .min(6, "Should be atleast 6 characters long"),
+      imageUrl: z.string(),
+      description: z
+        .string()
+        .max(555, "Should not exceed 555 characters")
+        .min(10, "Should be atleast 10 characters long"),
+    })
+  ),
+});
+
 export const menuSchema = z.object({
   menu: z.array(
     z.object({
@@ -82,7 +102,8 @@ export const menuSchema = z.object({
 });
 
 export type FormValues = z.infer<typeof formSchema>;
+export type MenuValues = z.infer<typeof menuSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
+export type AboutContentValues = z.infer<typeof aboutContentSchema>;
 export type FooterContentValues = z.infer<typeof footerContentSchema>;
 export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;
-export type MenuValues = z.infer<typeof menuSchema>;

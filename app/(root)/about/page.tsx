@@ -1,3 +1,7 @@
+"use client";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import AboutSection from "@/components/common/AboutSection";
@@ -7,7 +11,39 @@ import SignatureItems from "@/components/landing/SignatureItems";
 import BrandHighlights from "@/components/common/BrandHighlights";
 import { SIGNATURE_OFFERINGS, US_SPECIAL_DATA } from "@/lib/constants";
 
+interface AboutDataProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
 const AboutPage = () => {
+  const [data, setData] = useState<AboutDataProps | null>(null);
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const res = await axios.get("/api/about");
+        if (
+          res.data &&
+          res.status === 200 &&
+          Array.isArray(res.data.aboutUsContent) &&
+          res.data.aboutUsContent.length > 0
+        ) {
+          setData(res.data.aboutUsContent[1]);
+          console.log(res.data.aboutUsContent[1]);
+        } else {
+          alert("error in fetching data");
+          console.log("Error in fetching about data:");
+          setData(null);
+        }
+      } catch (error) {
+        console.log("Error in fetching about data:", error);
+        setData(null);
+      }
+    };
+    fetchAboutData();
+  }, []);
+
   return (
     <main>
       <div className="absolute w-full z-20">
@@ -18,15 +54,17 @@ const AboutPage = () => {
           title="About Chaiyo Ceylon"
           subTitle="Our journey is brewed with passion, culture, and a love for chai"
           buttonText="Learn More"
-
           imageSrc="/images/banner2.jpg"
         />
 
-        <AboutSection
-          imageSrc="/images/about-image.png"
-          title="About Chaiyo Ceylon - Every sip tells a story"
-          description="At Chaiyo Ceylon, we celebrate the art of tea — not just as a drink, but as a comfort, culture, and connection. Born in the heart of Sri Lanka, our brand brings the rich heritage of Ceylon tea to life through ready-made tea and coffee blends that are easy to enjoy and impossible to forget. We blend tradition with convenience — offering handcrafted milk teas, herbal infusions, and spiced coffees made from locally-sourced ingredients, brewed with love, and served with pride."
-        />
+        {data && (
+          <AboutSection
+            icon={false}
+            title={data.title}
+            description={data.description}
+            imageUrl={data.imageUrl}
+          />
+        )}
 
         <WhatMakesUsSpecial
           title="What Makes Us Special?"

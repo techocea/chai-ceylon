@@ -2,6 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "@/app/api/uploadthing/core";
+
 const playFairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
   subsets: ["latin"],
@@ -27,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${playFairDisplay.variable} ${dmSans.variable} bg-background antialiased`}
       >
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         {children}
       </body>
     </html>

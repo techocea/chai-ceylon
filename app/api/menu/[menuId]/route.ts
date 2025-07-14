@@ -12,7 +12,7 @@ interface MenuItemProps {
 export async function PUT(req: NextRequest, { params }: MenuItemProps) {
   try {
     const { menuId } = params;
-    const body = await req.json();
+    const { category, products } = await req.json();
 
     if (!mongoose.Types.ObjectId.isValid(menuId)) {
       return NextResponse.json(
@@ -20,8 +20,6 @@ export async function PUT(req: NextRequest, { params }: MenuItemProps) {
         { status: 400 }
       );
     }
-
-    const { category, products } = body;
 
     if (!category || !Array.isArray(products)) {
       return NextResponse.json(

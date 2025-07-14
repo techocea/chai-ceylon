@@ -20,12 +20,15 @@ export const Banner =
   mongoose.models.Banner || mongoose.model("Banner", BannerSchema);
 
 /* ---------- 2.  ABOUT US ---------- */
-const AboutSchema = new mongoose.Schema({
-  type: { type: String, required: true },
-  title: { type: String, required: true },
-  imageSrc: { type: String, required: true }, // uploadthing URL
-  description: { type: String, required: true },
-});
+const AboutSchema = new mongoose.Schema(
+  {
+    page: { type: String, required: true },
+    title: { type: String, required: true },
+    imageUrl: { type: String, required: true }, // uploadthing URL
+    description: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 export const About =
   mongoose.models.About || mongoose.model("About", AboutSchema);
 
