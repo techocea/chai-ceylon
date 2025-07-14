@@ -8,7 +8,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { footerContentSchema, FooterContentValues } from "@/lib/zodSchema";
+import { footerContentSchema } from "@/lib/zodSchema";
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface FooterContentValues {
+  aboutText: string;
+  quickLinks: LinkItem[];
+  socialMediaLinks: LinkItem[];
+  workingHours: string;
+}
 
 const FooterPage = () => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +31,7 @@ const FooterPage = () => {
     formState: { errors },
     reset,
   } = useForm<FooterContentValues>({
-    resolver: zodResolver(footerContentSchema)
+    resolver: zodResolver(footerContentSchema),
   });
 
   useEffect(() => {
@@ -29,8 +41,10 @@ const FooterPage = () => {
         if (res.status === 200 && res.data) {
           setIsEditing(true);
           reset(res.data.footerContent[0]);
+        } else {
+          console.error("Failed to fetch footer data:");
         }
-        console.log(res.data.footerContent[0]);
+        console.log(res.data.footerContent);
       } catch (error) {
         console.error("Failed to fetch footer data:", error);
         setIsEditing(false);
@@ -38,7 +52,7 @@ const FooterPage = () => {
     };
 
     fetchFooterData();
-  }, []);
+  }, [reset]);
 
   const onSubmit = async (data: FooterContentValues) => {
     setLoading(true);
