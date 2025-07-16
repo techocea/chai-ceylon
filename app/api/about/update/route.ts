@@ -2,15 +2,8 @@ import connectDB from "@/lib/db";
 import { About } from "@/lib/models";
 import { NextRequest, NextResponse } from "next/server";
 
-interface AboutUsProps {
-  params: {
-    aboutId: string;
-  };
-}
-
-export async function PATCH(req: NextRequest, { params }: AboutUsProps) {
+export async function PATCH(req: NextRequest) {
   try {
-    const { aboutId } = params;
     const { title, imageUrl, description } = await req.json();
 
     if (!title || !imageUrl || !description)
@@ -21,14 +14,14 @@ export async function PATCH(req: NextRequest, { params }: AboutUsProps) {
 
     await connectDB();
 
-    const updatedAboutUsContent = await About.findByIdAndUpdate(
-      aboutId,
+    const updatedAboutUsContent = await About.findOneAndUpdate(
+      {},
       {
-        title: String(title),
-        imageUrl: String(imageUrl),
-        description: String(description),
+        title,
+        imageUrl,
+        description,
       },
-      { new: true, runValidators: true }
+      { new: true }
     );
 
     if (!updatedAboutUsContent) {

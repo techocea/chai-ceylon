@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/common/Navbar";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
@@ -5,8 +7,11 @@ import WhyUsSection from "@/components/common/WhyUsSection";
 import ServicesSection from "@/components/landing/ServicesSection";
 import BrandHighlights from "@/components/common/BrandHighlights";
 import { BRANDING_HIGHLIGHTS } from "@/lib/constants";
+import { getBannerData } from "@/app/hooks/getBannerData";
 
 const ServicePage = () => {
+  const banner = getBannerData("our-concepts");
+
   return (
     <main>
       <div className="absolute w-full z-20">
@@ -14,11 +19,10 @@ const ServicePage = () => {
       </div>
       <div>
         <HeroSection
-          title="Our Concept — Tradition Meets Convenience"
-          subTitle="To deliver high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
-          buttonText="Explore More"
-
-          imageSrc="/images/banner3.jpg"
+          title={banner?.title}
+          description={banner?.description}
+          buttonText="Explore Bends"
+          imageUrl={banner?.imageUrl || "/images/banner3.jpg"}
         />
 
         <BrandHighlights

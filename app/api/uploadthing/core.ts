@@ -10,7 +10,7 @@ export const ourFileRouter = {
     // Set permissions and specify a callback for after upload
     .onUploadComplete(async ({ metadata, file }) => {
       // This will be logged to your backend console if you have a custom logger
-      console.log("Upload complete for file:", file.url);
+      console.log("Upload complete for file:", file.ufsUrl);
       // You could save file.url to a database here if needed,
       // but for this specific form, we'll handle saving the URL directly from the frontend.
     }),

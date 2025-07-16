@@ -1,9 +1,13 @@
+"use client";
+
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import VendorSection from "@/components/landing/VendorSection";
 import BrandHighlights from "@/components/common/BrandHighlights";
+import { getBannerData } from "@/app/hooks/getBannerData";
 
 const JoinAsVendorPage = () => {
+  const banner = getBannerData("our-concepts");
   return (
     <main>
       <div className="absolute w-full z-20">
@@ -11,11 +15,10 @@ const JoinAsVendorPage = () => {
       </div>
       <div>
         <HeroSection
-          title="How to earn with Chaiyo Ceylon"
-          subTitle="Serve the magic of chai, grow with us — one cup at a time."
-          buttonText="Explore More"
-
-          imageSrc="/images/banner3.jpg"
+          title={banner?.title}
+          description={banner?.description}
+          buttonText="Explore Bends"
+          imageUrl={banner?.imageUrl || "/images/banner5.jpg"}
         />
 
         <BrandHighlights

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import CategoryBlock from "@/components/control-panel/CategoryBlock";
 import { useForm, useFieldArray, FormProvider } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export interface Product {
   _id?: string;
@@ -155,8 +156,11 @@ const MenuPage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-xl text-gray-700">Loading menu...</p>
+      <div className="min-h-[90vh] w-full flex items-center justify-center">
+        <div className="flex gap-2 items-center">
+          <p>Please wait</p>
+          <Loader2 className="animate-spin" />
+        </div>
       </div>
     );
   }
@@ -178,6 +182,7 @@ const MenuPage = () => {
           <Button
             type="button"
             variant="outline"
+            className="border-primary"
             onClick={() =>
               appendCategory({
                 category: "",
@@ -191,7 +196,14 @@ const MenuPage = () => {
           </Button>
 
           <Button type="submit" disabled={isSubmitting || !isDirty}>
-            {isSubmitting ? "Updating Menu..." : "Update"}
+            {isSubmitting ? (
+              <div className="flex gap-2 items-center">
+                <p>Please wait</p>
+                <Loader2 className="animate-spin" />
+              </div>
+            ) : (
+              "Update"
+            )}
           </Button>
         </div>
       </form>

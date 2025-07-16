@@ -12,7 +12,7 @@ const BannerSchema = new mongoose.Schema(
     type: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
-    imageSrc: { type: String, required: true }, // uploadthing URL
+    imageUrl: { type: String, required: true }, // uploadthing URL
   },
   { timestamps: true }
 );
@@ -22,7 +22,6 @@ export const Banner =
 /* ---------- 2.  ABOUT US ---------- */
 const AboutSchema = new mongoose.Schema(
   {
-    page: { type: String, required: true },
     title: { type: String, required: true },
     imageUrl: { type: String, required: true }, // uploadthing URL
     description: { type: String, required: true },
@@ -73,8 +72,7 @@ export const MenuItem =
 /* ---------- 5.  GALLERY ---------- */
 const GallerySchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    images: [{ type: String, required: true }],
+    imageUrls: [{ type: String, required: true }],
   },
   { timestamps: true }
 );

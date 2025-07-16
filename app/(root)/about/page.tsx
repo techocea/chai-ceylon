@@ -1,7 +1,5 @@
 "use client";
 
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import AboutSection from "@/components/common/AboutSection";
@@ -10,39 +8,10 @@ import WhatMakesUsSpecial from "@/components/landing/WhatMakesUsSpecial";
 import SignatureItems from "@/components/landing/SignatureItems";
 import BrandHighlights from "@/components/common/BrandHighlights";
 import { SIGNATURE_OFFERINGS, US_SPECIAL_DATA } from "@/lib/constants";
-
-interface AboutDataProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-}
+import { getBannerData } from "@/app/hooks/getBannerData";
 
 const AboutPage = () => {
-  const [data, setData] = useState<AboutDataProps | null>(null);
-  useEffect(() => {
-    const fetchAboutData = async () => {
-      try {
-        const res = await axios.get("/api/about");
-        if (
-          res.data &&
-          res.status === 200 &&
-          Array.isArray(res.data.aboutUsContent) &&
-          res.data.aboutUsContent.length > 0
-        ) {
-          setData(res.data.aboutUsContent[1]);
-          console.log(res.data.aboutUsContent[1]);
-        } else {
-          alert("error in fetching data");
-          console.log("Error in fetching about data:");
-          setData(null);
-        }
-      } catch (error) {
-        console.log("Error in fetching about data:", error);
-        setData(null);
-      }
-    };
-    fetchAboutData();
-  }, []);
+  const banner = getBannerData("about");
 
   return (
     <main>
@@ -51,20 +20,13 @@ const AboutPage = () => {
       </div>
       <div className="pb-32">
         <HeroSection
-          title="About Chaiyo Ceylon"
-          subTitle="Our journey is brewed with passion, culture, and a love for chai"
-          buttonText="Learn More"
-          imageSrc="/images/banner2.jpg"
+          title={banner?.title}
+          description={banner?.description}
+          buttonText="Explore Bends"
+          imageUrl={banner?.imageUrl || "/images/banner2.jpg"}
         />
 
-        {data && (
-          <AboutSection
-            icon={false}
-            title={data.title}
-            description={data.description}
-            imageUrl={data.imageUrl}
-          />
-        )}
+        <AboutSection />
 
         <WhatMakesUsSpecial
           title="What Makes Us Special?"

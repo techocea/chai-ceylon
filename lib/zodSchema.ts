@@ -60,23 +60,15 @@ export const contactPageContentSchema = z.object({
 });
 
 export const aboutContentSchema = z.object({
-  aboutUsContent: z.array(
-    z.object({
-      page: z
-        .string()
-        .max(255, "Should not exceed 255 characters")
-        .min(6, "Should be atleast 6 characters long"),
-      title: z
-        .string()
-        .max(64, "Should not exceed 64 characters")
-        .min(6, "Should be atleast 6 characters long"),
-      imageUrl: z.string(),
-      description: z
-        .string()
-        .max(555, "Should not exceed 555 characters")
-        .min(10, "Should be atleast 10 characters long"),
-    })
-  ),
+  title: z
+    .string()
+    .max(64, "Should not exceed 64 characters")
+    .min(6, "Should be atleast 6 characters long"),
+  imageUrl: z.string(),
+  description: z
+    .string()
+    .max(555, "Should not exceed 555 characters")
+    .min(10, "Should be atleast 10 characters long"),
 });
 
 export const menuSchema = z.object({
@@ -101,9 +93,27 @@ export const menuSchema = z.object({
   ),
 });
 
+export const bannerSchema = z.object({
+  banners: z.array(
+    z.object({
+      _id: z.string().optional(),
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      imageUrl: z.string(),
+    })
+  ),
+});
+
+export const gallerySchema = z.object({
+  imageUrls: z.array(z.string().url()),
+});
+
 export type FormValues = z.infer<typeof formSchema>;
 export type MenuValues = z.infer<typeof menuSchema>;
+export type BannerValues = z.infer<typeof bannerSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
+export type GalleryValues = z.infer<typeof gallerySchema>;
 export type AboutContentValues = z.infer<typeof aboutContentSchema>;
 export type FooterContentValues = z.infer<typeof footerContentSchema>;
 export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;

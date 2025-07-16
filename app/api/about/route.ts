@@ -28,17 +28,16 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { page, title, imageUrl, description } = await req.json();
+    const { title, imageUrl, description } = await req.json();
     await connectDB();
 
-    if (!page || !title || !imageUrl || !description)
+    if (!title || !imageUrl || !description)
       return NextResponse.json(
         { message: "All fields are required" },
         { status: 404 }
       );
 
     const aboutUsContent = await About.create({
-      page,
       title,
       imageUrl,
       description,

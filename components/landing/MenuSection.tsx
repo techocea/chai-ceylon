@@ -47,7 +47,7 @@ const MenuSection = ({ renderType }: RenderTypeProps) => {
   }, []);
 
   return (
-    <section className="wrapper lg:pt-0">
+    <section className="wrapper lg:py-0">
       <div className="flex-center space-y-16 w-full">
         <div className="lg:max-w-2xl w-full space-y-24">
           {renderType === "home" ? (
@@ -119,7 +119,7 @@ const MenuSection = ({ renderType }: RenderTypeProps) => {
           )}
 
           {renderType === "home" && (
-            <div className="flex-center">
+            <div className="flex-center -mt-10">
               <Button asChild>
                 <Link href="/products">View All</Link>
               </Button>

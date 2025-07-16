@@ -74,9 +74,20 @@ const FooterPage = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-[90vh] w-full flex items-center justify-center">
+        <div className="flex gap-2 items-center">
+          <p>Please wait</p>
+          <Loader2 className="animate-spin" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
-      <div className="space-y-4">
+      <div className="bg-gray-50 p-6 mb-8 border border-gray-200 shadow-sm space-y-4">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           <div className="flex flex-col gap-3">
             <Label
@@ -152,7 +163,7 @@ const FooterPage = () => {
             )}
           </div>
 
-          <div className="flex float-right">
+          <div className="flex justify-end">
             <Button type="submit" disabled={loading}>
               {loading ? (
                 <div className="flex items-center gap-2">
