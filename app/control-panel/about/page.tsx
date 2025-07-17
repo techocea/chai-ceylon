@@ -27,7 +27,7 @@ const AboutPage = () => {
     setValue,
     watch,
     trigger,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<AboutContentValues>({
     resolver: zodResolver(aboutContentSchema),
   });
@@ -180,10 +180,10 @@ const AboutPage = () => {
           </div>
           <div>
             <div className="flex justify-end">
-              <Button type="submit" disabled={loading}>
+              <Button type="submit" disabled={loading || !isDirty}>
                 {loading ? (
                   <div className="flex items-center gap-2">
-                    Please Wait{" "}
+                    Please Wait
                     <Loader2 className="animate-spin transition-all duration-200" />
                   </div>
                 ) : (

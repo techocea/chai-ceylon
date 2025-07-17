@@ -1,6 +1,8 @@
 import connectDB from "@/lib/db";
+import { signToken, verifyToken } from "@/lib/jwt";
 import { User } from "@/lib/models";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -35,15 +37,67 @@ export async function POST(req: NextRequest) {
     // const adminPassword = await bcrypt.hash("chaiyoShah", salt);
     // console.log(adminPassword);
 
-    return NextResponse.json(
+    const token = signToken({
+      _id: admin._id,
+      email: admin.email,
+    });
+
+    const response = NextResponse.json(
       { message: "Admin logged in successfully" },
       { status: 200 }
     );
+
+    response.cookies.set("adminToken", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "development",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24,
+    });
+
+    return response;
   } catch (error) {
     console.error("Error in ADMIN LOGIN:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
+    );
+  }
+}
+
+interface DecodedToken {
+  _id: string;
+  email: string;
+  role: string;
+  name: string;
+  year: string;
+}
+
+export async function GET() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("adminToken")?.value;
+
+  if (!token) {
+    return NextResponse.json(
+      {
+        message: "Unauthorized",
+      },
+      { status: 401 }
+    );
+  }
+
+  try {
+    const decoded = verifyToken(token) as DecodedToken;
+    return NextResponse.json(decoded);
+  } catch (error) {
+    console.error("Error in verifying user: ", error);
+    return NextResponse.json(
+      {
+        message: "Invalid token",
+      },
+      {
+        status: 401,
+      }
     );
   }
 }

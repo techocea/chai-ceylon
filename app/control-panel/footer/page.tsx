@@ -28,7 +28,7 @@ const FooterPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     reset,
   } = useForm<FooterContentValues>({
     resolver: zodResolver(footerContentSchema),
@@ -164,7 +164,7 @@ const FooterPage = () => {
           </div>
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading || !isDirty}>
               {loading ? (
                 <div className="flex items-center gap-2">
                   Please Wait{" "}

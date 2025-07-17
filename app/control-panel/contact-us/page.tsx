@@ -20,7 +20,7 @@ const ContactPage = () => {
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<ContactPageContentValues>({
     resolver: zodResolver(contactPageContentSchema),
   });
@@ -40,7 +40,7 @@ const ContactPage = () => {
       }
     };
     fetchContactPageContent();
-  }, []);
+  }, [reset]);
 
   const onSubmit = async (data: ContactPageContentValues) => {
     setLoading(true);
@@ -145,7 +145,7 @@ const ContactPage = () => {
           </div>
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading || !isDirty}>
               {loading ? (
                 <div className="flex items-center gap-2">
                   Please Wait

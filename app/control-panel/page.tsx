@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 import { Loader2, XIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { UploadButton } from "@/app/utils/uploadthing";
+import { useForm, useFieldArray } from "react-hook-form";
 import { bannerSchema, BannerValues } from "@/lib/zodSchema";
 
 const bannerTypes = [
@@ -25,7 +25,7 @@ export default function ControlPageBanners() {
     control,
     register,
     handleSubmit,
-    formState,
+    formState: { isDirty },
     trigger,
     watch,
     setValue,
@@ -46,7 +46,6 @@ export default function ControlPageBanners() {
     control,
     keyName: "formId",
   });
-  const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const getBannerData = async () => {
@@ -66,7 +65,7 @@ export default function ControlPageBanners() {
   }, [replace]);
 
   const onSubmit = async (data: BannerValues) => {
-    setSubmitting(true);
+    setLoading(true);
     try {
       const updatePromises = data.banners.map((item) => {
         if (item._id) {
@@ -83,7 +82,7 @@ export default function ControlPageBanners() {
       console.error(e);
       alert("Failed to save");
     } finally {
-      setSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -166,14 +165,14 @@ export default function ControlPageBanners() {
         </div>
       ))}
       <div className="flex justify-end">
-        <Button type="submit" disabled={!formState.isDirty || submitting}>
-          {submitting ? (
-            <div className="flex gap-2 items-center">
-              <p>Please wait</p>
-              <Loader2 className="animate-spin" />
+        <Button type="submit" disabled={loading || !isDirty}>
+          {loading ? (
+            <div className="flex items-center gap-2">
+              Please Wait
+              <Loader2 className="animate-spin transition-all duration-200" />
             </div>
           ) : (
-            "Save Banners"
+            "Update"
           )}
         </Button>
       </div>

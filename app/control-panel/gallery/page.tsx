@@ -1,15 +1,15 @@
 "use client";
 
-import { UploadButton } from "@/app/utils/uploadthing";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { gallerySchema, GalleryValues } from "@/lib/zodSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { Loader2, XIcon } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Loader2, XIcon } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UploadButton } from "@/app/utils/uploadthing";
+import { gallerySchema, GalleryValues } from "@/lib/zodSchema";
 
 const GalleryPage = () => {
   const {
@@ -17,7 +17,7 @@ const GalleryPage = () => {
     setValue,
     watch,
     reset,
-    formState: { isSubmitting },
+    formState: { isDirty },
   } = useForm<GalleryValues>({
     resolver: zodResolver(gallerySchema),
     defaultValues: { imageUrls: [] },
@@ -129,8 +129,8 @@ const GalleryPage = () => {
           </div>
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={loading || isSubmitting}>
-              {loading || isSubmitting ? (
+            <Button type="submit" disabled={loading || !isDirty}>
+              {loading ? (
                 <div className="flex gap-2 items-center">
                   <p>Please wait</p>
                   <Loader2 className="animate-spin" />
