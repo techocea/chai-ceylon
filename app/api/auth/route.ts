@@ -68,9 +68,6 @@ export async function POST(req: NextRequest) {
 interface DecodedToken {
   _id: string;
   email: string;
-  role: string;
-  name: string;
-  year: string;
 }
 
 export async function GET() {
