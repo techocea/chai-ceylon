@@ -63,11 +63,21 @@ const SiteConfigPage = () => {
   const onSubmit = async (data: SiteConfigValues) => {
     setLoading(true);
     try {
-      const res = isEditing
-        ? await axios.patch("/api/site-config", data)
-        : await axios.post("/api/site-config", data);
+      const res = await axios.get("/api/site-config");
+      const hasData =
+        res.status === 200 &&
+        res.data &&
+        Array.isArray(res.data.SiteConfigContent) &&
+        res.data.SiteConfigContent.length > 0;
 
-      if (res.status === 200) {
+      let response;
+      if (hasData) {
+        response = await axios.patch("/api/site-config", data);
+      } else {
+        response = await axios.post("/api/site-config", data);
+      }
+
+      if (response.status === 200) {
         alert("SiteConfig content saved successfully");
       } else {
         alert("Error in saving SiteConfig Content");

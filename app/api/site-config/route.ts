@@ -5,15 +5,14 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET() {
   try {
     await connectDB();
-
     const SiteConfigContent = await SiteConfig.find({});
 
-    if (!SiteConfigContent) {
+    if (SiteConfigContent.length === 0)
       return NextResponse.json(
-        { message: "SiteConfig not found" },
+        { message: "No SiteConfig Content found" },
         { status: 404 }
       );
-    }
+
     return NextResponse.json(
       { message: "Fetched SiteConfig Content Successfully", SiteConfigContent },
       { status: 200 }
