@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/common/Navbar";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
@@ -7,10 +5,19 @@ import WhyUsSection from "@/components/common/WhyUsSection";
 import ServicesSection from "@/components/landing/ServicesSection";
 import BrandHighlights from "@/components/common/BrandHighlights";
 import { BRANDING_HIGHLIGHTS } from "@/lib/constants";
-import { getBannerData } from "@/app/hooks/getBannerData";
 
-const ServicePage = () => {
-  const banner = getBannerData("our-concepts");
+export default async function ServicePage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">Failed to load Banners</div>
+    );
+  }
+
+  const { banners = [] } = await res.json();
 
   return (
     <main>
@@ -19,10 +26,10 @@ const ServicePage = () => {
       </div>
       <div>
         <HeroSection
-          title={banner?.title}
-          description={banner?.description}
+          title={banners[2].title}
+          description={banners[2].description}
           buttonText="Explore Bends"
-          imageUrl={banner?.imageUrl || "/images/banner3.jpg"}
+          imageUrl={banners[2].imageUrl}
         />
 
         <BrandHighlights
@@ -46,6 +53,4 @@ const ServicePage = () => {
       </div>
     </main>
   );
-};
-
-export default ServicePage;
+}

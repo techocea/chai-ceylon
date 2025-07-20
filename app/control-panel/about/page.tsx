@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import Image from "next/image";
-import { Loader2, XCircle, XIcon } from "lucide-react";
+import { Loader2, XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -11,13 +11,6 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { aboutContentSchema, AboutContentValues } from "@/lib/zodSchema";
 import { UploadButton } from "@/app/utils/uploadthing";
-
-// interface AboutContentValues {
-//   _id?: string;
-//   title: string;
-//   description: string;
-//   imageUrl: string;
-// }
 
 const AboutPage = () => {
   const {

@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import AboutSection from "@/components/common/AboutSection";
@@ -8,10 +6,19 @@ import WhatMakesUsSpecial from "@/components/landing/WhatMakesUsSpecial";
 import SignatureItems from "@/components/landing/SignatureItems";
 import BrandHighlights from "@/components/common/BrandHighlights";
 import { SIGNATURE_OFFERINGS, US_SPECIAL_DATA } from "@/lib/constants";
-import { getBannerData } from "@/app/hooks/getBannerData";
 
-const AboutPage = () => {
-  const banner = getBannerData("about");
+export default async function AboutPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">Failed to load Banners</div>
+    );
+  }
+
+  const { banners = [] } = await res.json();
 
   return (
     <main>
@@ -20,10 +27,10 @@ const AboutPage = () => {
       </div>
       <div className="pb-32">
         <HeroSection
-          title={banner?.title}
-          description={banner?.description}
+          title={banners[1].title}
+          description={banners[1].description}
           buttonText="Explore Bends"
-          imageUrl={banner?.imageUrl || "/images/banner2.jpg"}
+          imageUrl={banners[1].imageUrl}
         />
 
         <AboutSection />
@@ -60,6 +67,4 @@ const AboutPage = () => {
       </div>
     </main>
   );
-};
-
-export default AboutPage;
+}

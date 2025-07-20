@@ -17,6 +17,7 @@ const GalleryPage = () => {
     setValue,
     watch,
     reset,
+    register,
     formState: { isDirty },
   } = useForm<GalleryValues>({
     resolver: zodResolver(gallerySchema),
@@ -27,7 +28,7 @@ const GalleryPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getGalleryImages = async () => {
+    const fetchGalleryImages = async () => {
       try {
         setLoading(true);
         const res = await axios.get("/api/gallery");
@@ -40,7 +41,7 @@ const GalleryPage = () => {
         setLoading(false);
       }
     };
-    getGalleryImages();
+    fetchGalleryImages();
   }, [reset]);
 
   const handleImageDelete = (index: number) => {
@@ -51,7 +52,7 @@ const GalleryPage = () => {
 
   const onSubmit = async (data: GalleryValues) => {
     try {
-      const res = await axios.patch("/api/gallery", data);
+      const res = await axios.patch("/api/gallery/update", data);
       if (res.status === 200) {
         alert("Gallery saved successfully!");
       }
@@ -81,7 +82,7 @@ const GalleryPage = () => {
               Image Gallery
             </Label>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
               {images.map((url, i) => (
                 <div key={i} className="relative w-48 h-48">
                   <Image
@@ -103,29 +104,25 @@ const GalleryPage = () => {
               ))}
             </div>
 
-            {images.length < 7 ? (
-              <>
-                <Label className="font-medium uppercase text-muted-foreground">
-                  Upload an Image
-                </Label>
+            <Label className="font-medium uppercase text-muted-foreground">
+              Upload an Image
+            </Label>
 
-                <div className="h-32 flex border items-center justify-center w-full">
-                  <UploadButton
-                    endpoint="imageUploader"
-                    className="ut-button:px-2 ut-button:py-1.5 ut-button:bg-blue-500 ut-button:hover:bg-blue-500/50 ut-button:ut-readying:bg-blue-500/50"
-                    onClientUploadComplete={(res) => {
-                      const urls = res.map((file) => file.ufsUrl);
-                      setValue("imageUrls", [...images, ...urls], {
-                        shouldDirty: true,
-                      });
-                    }}
-                    onUploadError={(error: Error) => {
-                      alert(`Upload Error: ${error.message}`);
-                    }}
-                  />
-                </div>
-              </>
-            ) : null}
+            <div className="h-32 flex border items-center justify-center w-full">
+              <UploadButton
+                endpoint="imageUploader"
+                className="ut-button:px-2 ut-button:py-1.5 ut-button:bg-blue-500 ut-button:hover:bg-blue-500/50 ut-button:ut-readying:bg-blue-500/50"
+                onClientUploadComplete={(res) => {
+                  const urls = res.map((file) => file.ufsUrl);
+                  setValue("imageUrls", [...images, ...urls], {
+                    shouldDirty: true,
+                  });
+                }}
+                onUploadError={(error: Error) => {
+                  alert(`Upload Error: ${error.message}`);
+                }}
+              />
+            </div>
           </div>
 
           <div className="flex justify-end">

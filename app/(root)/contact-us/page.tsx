@@ -1,12 +1,20 @@
-"use client";
-
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import ContactSection from "@/components/landing/ContactSection";
-import { getBannerData } from "@/app/hooks/getBannerData";
 
-const ContactPage = () => {
-  const banner = getBannerData("contact");
+export default async function ContactPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">Failed to load Banners</div>
+    );
+  }
+
+  const { banners = [] } = await res.json();
+
   return (
     <main>
       <div className="absolute w-full z-20">
@@ -14,16 +22,14 @@ const ContactPage = () => {
       </div>
       <div>
         <HeroSection
-          title={banner?.title}
-          description={banner?.description}
+          title={banners[4].title}
+          description={banners[4].description}
           buttonText="Explore Bends"
-          imageUrl={banner?.imageUrl || "/images/banner4.jpg"}
+          imageUrl={banners[4].imageUrl}
         />
 
         <ContactSection />
       </div>
     </main>
   );
-};
-
-export default ContactPage;
+}

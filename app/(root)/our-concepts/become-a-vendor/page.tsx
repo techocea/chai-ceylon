@@ -1,13 +1,21 @@
-"use client";
-
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import VendorSection from "@/components/landing/VendorSection";
 import BrandHighlights from "@/components/common/BrandHighlights";
-import { getBannerData } from "@/app/hooks/getBannerData";
 
-const JoinAsVendorPage = () => {
-  const banner = getBannerData("our-concepts");
+export default async function JoinAsVendorPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">Failed to load Banners</div>
+    );
+  }
+
+  const { banners = [] } = await res.json();
+
   return (
     <main>
       <div className="absolute w-full z-20">
@@ -15,10 +23,10 @@ const JoinAsVendorPage = () => {
       </div>
       <div>
         <HeroSection
-          title={banner?.title}
-          description={banner?.description}
+          title={banners[2].title}
+          description={banners[2].description}
           buttonText="Explore Bends"
-          imageUrl={banner?.imageUrl || "/images/banner5.jpg"}
+          imageUrl={banners[2].imageUrl}
         />
 
         <BrandHighlights
@@ -31,6 +39,4 @@ const JoinAsVendorPage = () => {
       </div>
     </main>
   );
-};
-
-export default JoinAsVendorPage;
+}

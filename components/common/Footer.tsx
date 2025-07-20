@@ -17,6 +17,7 @@ interface FooterContentProps {
   quickLinks: LinkItem[];
   socialMediaLinks: LinkItem[];
   workingHours: string;
+  logoUrl: string;
 }
 
 const Footer = () => {
@@ -25,9 +26,9 @@ const Footer = () => {
   useEffect(() => {
     const fetchFooterData = async () => {
       try {
-        const res = await axios.get("/api/footer");
+        const res = await axios.get("/api/site-config");
         if (res.status === 200 && res.data) {
-          setFooterData(res.data.footerContent[0]);
+          setFooterData(res.data.SiteConfigContent[0]);
         } else {
           console.error("Error in fetching footer content");
         }
@@ -53,7 +54,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
           <div className="flex flex-col items-start gap-6 max-w-xs">
             <Image
-              src="/images/logo.png"
+              src={footerData?.logoUrl || "/images/logo.png"}
               alt="Chaiyo Ceylon"
               width={150}
               height={105}
@@ -67,8 +68,8 @@ const Footer = () => {
                       social.label.toLowerCase().includes("facebook")
                         ? "/icons/facebook.svg"
                         : social.label.toLowerCase().includes("instagram")
-                          ? "/icons/instagram.svg"
-                          : "/icons/facebook.svg"
+                        ? "/icons/instagram.svg"
+                        : "/icons/facebook.svg"
                     }
                     width={32}
                     height={32}

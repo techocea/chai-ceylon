@@ -2,13 +2,31 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { NAV_ITEMS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [navData, setNavData] = useState<{ logoUrl: string }>();
+
+  useEffect(() => {
+    const fetchNavbarContent = async () => {
+      try {
+        const res = await axios.get("/api/site-config");
+        if (res.status === 200 && res.data) {
+          setNavData(res.data.SiteConfigContent[0]);
+        } else {
+          console.error("Error in fetching footer content");
+        }
+      } catch (error) {
+        console.error("Error in fetching footer content:", error);
+      }
+    };
+    fetchNavbarContent();
+  }, []);
 
   return (
     <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-12">
@@ -16,7 +34,7 @@ const Navbar = () => {
         <div>
           <Link href="/">
             <Image
-              src="/images/logo.png"
+              src={navData?.logoUrl || "/images/logo.png"}
               alt="Chaiyo Ceylon"
               width={150}
               height={75}

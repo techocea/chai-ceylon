@@ -16,7 +16,7 @@ export const formSchema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
-export const footerContentSchema = z.object({
+export const siteConfigSchema = z.object({
   aboutText: z
     .string()
     .max(255, "Cannot exceed 255 characters")
@@ -33,6 +33,7 @@ export const footerContentSchema = z.object({
       href: z.string().min(1, "Href is required"),
     })
   ),
+  logoUrl: z.string(),
   workingHours: z
     .string()
     .max(64, "Cannot exceed 64 characters")
@@ -84,7 +85,7 @@ export const menuSchema = z.object({
             .string()
             .min(2, "Name is too short")
             .max(255, "Name too long"),
-          price: z.coerce.number().min(1, "Price must be greater than 0"),
+          price: z.coerce.number(),
           description: z.string().max(255),
           isAvailable: z.boolean(),
         })
@@ -109,11 +110,30 @@ export const gallerySchema = z.object({
   imageUrls: z.array(z.string().url()),
 });
 
+export const menuGallerySchema = z.object({
+  gallery: z.array(
+    z.object({
+      _id: z.string().optional(),
+      imageUrl: z.string(),
+      slug: z.string(),
+    })
+  ),
+});
+
+export const eventSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  imageUrls: z.array(z.string()),
+  date: z.coerce.date(),
+});
+
 export type FormValues = z.infer<typeof formSchema>;
 export type MenuValues = z.infer<typeof menuSchema>;
 export type BannerValues = z.infer<typeof bannerSchema>;
 export type AuthFormValues = z.infer<typeof authFormSchema>;
 export type GalleryValues = z.infer<typeof gallerySchema>;
+export type MenuGalleryValues = z.infer<typeof menuGallerySchema>;
 export type AboutContentValues = z.infer<typeof aboutContentSchema>;
-export type FooterContentValues = z.infer<typeof footerContentSchema>;
+export type SiteConfigValues = z.infer<typeof siteConfigSchema>;
 export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;
+export type EventValues = z.infer<typeof eventSchema>;

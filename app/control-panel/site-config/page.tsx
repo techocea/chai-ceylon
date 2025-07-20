@@ -1,77 +1,91 @@
 "use client";
 
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import Image from "next/image";
+import { Loader2, XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { footerContentSchema } from "@/lib/zodSchema";
+import { siteConfigSchema, SiteConfigValues } from "@/lib/zodSchema";
+import { UploadButton } from "@/app/utils/uploadthing";
 
-interface LinkItem {
-  label: string;
-  href: string;
-}
+// interface LinkItem {
+//   label: string;
+//   href: string;
+// }
 
-interface FooterContentValues {
-  aboutText: string;
-  quickLinks: LinkItem[];
-  socialMediaLinks: LinkItem[];
-  workingHours: string;
-}
+// interface SiteConfigValues {
+//   aboutText: string;
+//   quickLinks: LinkItem[];
+//   socialMediaLinks: LinkItem[];
+//   workingHours: string;
+//   logoUrl: string;
+// }
 
-const FooterPage = () => {
+const SiteConfigPage = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isDirty },
     reset,
-  } = useForm<FooterContentValues>({
-    resolver: zodResolver(footerContentSchema),
+    trigger,
+  } = useForm<SiteConfigValues>({
+    resolver: zodResolver(siteConfigSchema),
   });
 
   useEffect(() => {
-    const fetchFooterData = async () => {
+    const fetchSiteConfigData = async () => {
       try {
-        const res = await axios.get("/api/footer");
+        const res = await axios.get("/api/site-config");
         if (res.status === 200 && res.data) {
           setIsEditing(true);
-          reset(res.data.footerContent[0]);
+          reset(res.data.SiteConfigContent[0]);
         } else {
-          console.error("Failed to fetch footer data:");
+          console.error("Failed to fetch SiteConfig data:");
         }
-        console.log(res.data.footerContent);
+        console.log(res.data.SiteConfigContent);
       } catch (error) {
-        console.error("Failed to fetch footer data:", error);
+        console.error("Failed to fetch SiteConfig data:", error);
         setIsEditing(false);
       }
     };
 
-    fetchFooterData();
+    fetchSiteConfigData();
   }, [reset]);
 
-  const onSubmit = async (data: FooterContentValues) => {
+  const onSubmit = async (data: SiteConfigValues) => {
     setLoading(true);
     try {
       const res = isEditing
-        ? await axios.patch("/api/footer/update", data)
-        : await axios.post("/api/footer", data);
+        ? await axios.patch("/api/site-config", data)
+        : await axios.post("/api/site-config", data);
 
       if (res.status === 200) {
-        alert("Footer content saved successfully");
+        alert("SiteConfig content saved successfully");
       } else {
-        alert("Error in saving Footer Content");
+        alert("Error in saving SiteConfig Content");
       }
     } catch (error) {
-      alert("Error in publishing Footer Content");
-      console.error("Error in publishing Footer Content:", error);
+      alert("Error in publishing SiteConfig Content");
+      console.error("Error in publishing SiteConfig Content:", error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageDelete = () => {
+    setValue("logoUrl", "", {
+      shouldDirty: true,
+      shouldValidate: true,
+    }),
+      trigger("logoUrl");
   };
 
   if (loading) {
@@ -163,6 +177,53 @@ const FooterPage = () => {
             )}
           </div>
 
+          <div className="flex flex-col gap-3">
+            <Label className="font-medium uppercase text-muted-foreground">
+              logo
+            </Label>
+
+            {errors.logoUrl && (
+              <p className="text-sm text-red-500">{errors.logoUrl?.message}</p>
+            )}
+
+            {watch("logoUrl") ? (
+              <div className="relative w-full border h-28 overflow-hidden">
+                <Image
+                  src={watch("logoUrl")}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute top-1 right-1 bg-red-600 text-white"
+                  onClick={() => handleImageDelete()}
+                >
+                  <XIcon size={16} />
+                </Button>
+              </div>
+            ) : (
+              <div className="border flex items-center justify-center w-full h-28">
+                <UploadButton
+                  endpoint="imageUploader"
+                  className="ut-button:px-2 ut-button:py-1.5 ut-button:bg-blue-500 ut-button:hover:bg-blue-500/50 ut-button:ut-readying:bg-blue-500/50"
+                  onClientUploadComplete={(res) => {
+                    const uploadUrl = res[0].ufsUrl;
+                    setValue("logoUrl", uploadUrl, {
+                      shouldDirty: true,
+                    });
+                    alert("Image uploaded successfully!");
+                  }}
+                  onUploadError={(error: Error) => {
+                    alert(`ERROR! ${error.message}`);
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
           <div className="flex justify-end">
             <Button type="submit" disabled={loading || !isDirty}>
               {loading ? (
@@ -181,4 +242,4 @@ const FooterPage = () => {
   );
 };
 
-export default FooterPage;
+export default SiteConfigPage;

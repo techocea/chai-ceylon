@@ -23,7 +23,7 @@ const AboutSection = () => {
           res.data.aboutUsContent.length > 0
         ) {
           setData(res.data.aboutUsContent[0]);
-          console.log(res.data.aboutUsContent[0]);
+          // console.log(res.data.aboutUsContent[0]);
         } else {
           alert("error in fetching data");
           console.log("Error in fetching about data:");

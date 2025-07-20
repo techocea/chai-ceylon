@@ -1,27 +1,27 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
-import CategoryBlock from "@/components/control-panel/CategoryBlock";
-import { useForm, useFieldArray, FormProvider } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useForm, useFieldArray, FormProvider } from "react-hook-form";
+import CategoryBlock from "@/components/control-panel/CategoryBlock";
 
-export interface Product {
+interface Product {
   _id?: string;
   name: string;
-  price: number;
+  price?: number;
   description?: string;
   isAvailable: boolean;
 }
 
-export interface MenuItem {
+interface MenuItem {
   _id?: string;
   category: string;
   products: Product[];
 }
 
-export interface MenuFormValues {
+interface MenuFormValues {
   menu: MenuItem[];
 }
 
@@ -58,20 +58,12 @@ const MenuPage = () => {
   });
 
   const [loading, setLoading] = useState(true);
-  const [editingInfo, setEditingInfo] = useState<{
-    catIndex: number;
-    prodIndex: number;
-  } | null>(null);
 
   const fetchMenu = async () => {
     try {
       setLoading(true);
       const res = await axios.get("/api/menu");
-      if (
-        res.data &&
-        Array.isArray(res.data.menu) &&
-        res.data.menu.length > 0
-      ) {
+      if (res.data && Array.isArray(res.data.menu)) {
         reset({ menu: res.data.menu });
       } else {
         reset({
@@ -85,8 +77,8 @@ const MenuPage = () => {
           ],
         });
       }
-    } catch (err) {
-      console.error("Fetch error:", err);
+    } catch (error) {
+      console.error("Fetch error:", error);
       reset({
         menu: [
           {
@@ -109,7 +101,6 @@ const MenuPage = () => {
 
   const onSubmit = async (data: MenuFormValues) => {
     try {
-      alert("Saving menu...");
       const categoriesToUpdate: MenuItem[] = [];
       const categoriesToCreate: MenuItem[] = [];
 
@@ -134,7 +125,7 @@ const MenuPage = () => {
       });
 
       const updatePromises = categoriesToUpdate.map((item) =>
-        axios.put(`/api/menu/${item._id}`, item)
+        axios.put(`/api/menu/${item._id}/update`, item)
       );
 
       const createPromises: Promise<any>[] = [];
@@ -174,7 +165,6 @@ const MenuPage = () => {
             catIndex={catIndex}
             removeCategory={removeCategory}
             categoryLength={categoryFields.length}
-            setEditing={setEditingInfo}
           />
         ))}
 

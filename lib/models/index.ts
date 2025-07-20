@@ -31,8 +31,8 @@ const AboutSchema = new mongoose.Schema(
 export const About =
   mongoose.models.About || mongoose.model("About", AboutSchema);
 
-/* ---------- 3.  FOOTER  ---------- */
-const FooterSchema = new mongoose.Schema({
+/* ---------- 3.  SiteConfig  ---------- */
+const SiteConfigSchema = new mongoose.Schema({
   aboutText: { type: String, maxLength: 600, required: true },
   workingHours: { type: String, required: true },
   quickLinks: [
@@ -47,9 +47,10 @@ const FooterSchema = new mongoose.Schema({
       href: { type: String, required: true },
     },
   ],
+  logoUrl: { type: String, required: true },
 });
-export const Footer =
-  mongoose.models.Footer || mongoose.model("Footer", FooterSchema);
+export const SiteConfig =
+  mongoose.models.SiteConfig || mongoose.model("SiteConfig", SiteConfigSchema);
 
 /* ---------- 4.  MENU  ---------- */
 const MenuItemSchema = new mongoose.Schema(
@@ -79,7 +80,19 @@ const GallerySchema = new mongoose.Schema(
 export const GalleryItem =
   mongoose.models.GalleryItem || mongoose.model("GalleryItem", GallerySchema);
 
-/* ---------- 6.  CONTACT US ---------- */
+/* ---------- 6.  GALLERY ---------- */
+const MenuGallerySchema = new mongoose.Schema(
+  {
+    imageUrl: { type: String, required: true },
+    slug: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+export const MenuGalleryItem =
+  mongoose.models.MenuGalleryItem ||
+  mongoose.model("MenuGalleryItem", MenuGallerySchema);
+
+/* ---------- 7.  CONTACT US ---------- */
 const ContactPageSchema = new mongoose.Schema(
   {
     address: { type: String, required: true },
@@ -93,3 +106,16 @@ const ContactPageSchema = new mongoose.Schema(
 export const ContactPage =
   mongoose.models.ContactPage ||
   mongoose.model("ContactPage", ContactPageSchema);
+
+/* ---------- 8.  EVENTS ---------- */
+  const EventSchema = new mongoose.Schema(
+    {
+      title: { type: String, required: true },
+      description: { type: String, required: true },
+      imageUrls: [{ type: String, required: true }],
+      date: { type: Date, required: true },
+    },
+    { timestamps: true }
+  );
+export const Events =
+  mongoose.models.Events || mongoose.model("Events", EventSchema);

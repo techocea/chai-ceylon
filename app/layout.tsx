@@ -19,6 +19,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Chaiyo Ceylon",
   description: "Experience the Soul of Ceylon in Every Sip",
+  icons: {
+    icon: "/icons/icon.png",
+  },
 };
 
 export default function RootLayout({

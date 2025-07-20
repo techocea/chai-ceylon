@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -18,7 +18,7 @@ export default function ControlPanelLayout({
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 shrink-0 bg-background px-6 py-8 text- border-r border-muted-foreground/40">
+      <aside className="hidden lg:flex flex-col w-64 shrink-0 bg-background px-6 py-8 border-r border-muted-foreground/40 fixed inset-y-0 left-0 z-30">
         <div className="mb-8 flex items-center bg-foreground justify-center">
           <Image
             src="/images/logo.png"
@@ -37,11 +37,10 @@ export default function ControlPanelLayout({
                   key={link.href}
                   initial={false}
                   whileHover={{ scale: 1.03 }}
-                  className={`rounded-none ${
-                    isActive
+                  className={`rounded-none ${isActive
                       ? "bg-foreground text-white font-bold"
                       : "hover:bg-foreground hover:text-white"
-                  } transition-colors duration-200`}
+                    } transition-colors duration-200`}
                 >
                   <Link href={link.href} className="block px-4 py-2 w-full">
                     {link.label}
@@ -54,14 +53,19 @@ export default function ControlPanelLayout({
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-y-scroll">
-        <header className="px-4 py-6 lg:px-10 bg-background shadow-sm flex items-center justify-between">
+      <div className="flex-1 flex flex-col ml-0 lg:ml-64 min-h-screen">
+        <header className="px-4 py-6 lg:px-10 bg-background shadow-sm flex items-center justify-between fixed top-0 left-0 lg:left-64 right-0 z-20">
           <h1 className="text-xl font-semibold text-gray-800">
             Content Management System
           </h1>
         </header>
-        <Separator />
-        <main className="flex-1 px-4 py-8 lg:px-10">{children}</main>
+        {/* <Separator className="fixed top-[72px] left-0 lg:left-64 right-0 z-20" /> */}
+        <main
+          className="flex-1 px-4 py-8 lg:px-10 mt-[88px] overflow-y-auto"
+          style={{ minHeight: 0 }}
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

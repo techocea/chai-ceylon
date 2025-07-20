@@ -1,129 +1,132 @@
-"use client";
-
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import Heading from "@/components/common/Heading";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-interface MenuItem {
-  _id?: string;
-  name: string;
-  price: number;
-  description?: string;
-}
-
-interface MenuSectionProps {
-  _id?: string;
-  category: string;
-  products: MenuItem[];
-}
+import { Card, CardContent, CardTitle } from "../ui/card";
 
 interface RenderTypeProps {
   renderType: "home" | "menu";
 }
 
-type MenuDataState = MenuSectionProps[] | null;
-const MenuSection = ({ renderType }: RenderTypeProps) => {
-  const [menuData, setMenuData] = useState<MenuDataState>(null);
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  description?: string;
+  isAvailable: boolean;
+}
 
-  useEffect(() => {
-    const fetchMenuData = async () => {
-      try {
-        const res = await axios.get<{ menu: MenuSectionProps[] }>("/api/menu");
-        if (res.status === 200 && res.data && Array.isArray(res.data.menu)) {
-          setMenuData(res.data.menu);
-          console.log({ menu: res.data.menu });
-        } else {
-          console.error("Error in fetching Menu Data");
-          setMenuData([]);
-        }
-      } catch (error) {
-        console.error("Error in fetching Menu Data:", error);
-        setMenuData([]);
-      }
-    };
-    fetchMenuData();
-  }, []);
+interface MenuItem {
+  _id: string;
+  category: string;
+  products: Product[];
+}
+
+const MenuSection = async ({ renderType }: RenderTypeProps) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/menu`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">
+        Failed to load products!
+      </div>
+    );
+  }
+
+  const { menu = [] } = await res.json();
 
   return (
     <section className="wrapper lg:py-0">
       <div className="flex-center space-y-16 w-full">
-        <div className="lg:max-w-2xl w-full space-y-24">
+        <div className="w-full space-y-24 flex flex-col items-center justify-center">
           {renderType === "home" ? (
-            <>
-              {menuData?.slice(0, 1).map((categoryItem) => (
-                <div
+            <div className="max-w-xl w-full">
+              {(menu as MenuItem[]).slice(0, 1).map((categoryItem) => (
+                <Card
                   key={categoryItem._id || categoryItem.category}
-                  className="lg:max-w-2xl w-full space-y-6"
+                  className="w-full border-t-[4px] border-primary hover:scale-105 transition-transform duration-300"
                 >
-                  <Heading title={categoryItem.category} description={""} />
-                  <div className="flex flex-col gap-4">
-                    {categoryItem.products.map((product) => (
-                      <div
-                        key={product._id || product.name}
-                        className="flex items-center justify-between border-b border-gray-200 pb-2"
-                      >
-                        <div className="flex flex-col">
-                          <h3 className="text-sm lg:text-lg max-w-fit w-full lg:max-w-xl">
-                            {product.name}
-                          </h3>
-                          {product.description && (
-                            <p className="text-xs text-gray-500 mt-1 max-w-[300px] lg:max-w-full">
-                              {product.description}
-                            </p>
-                          )}
+                  <CardTitle>
+                    <h3 className="text-2xl font-playfair-display font-bold text-center">
+                      {categoryItem.category}
+                    </h3>
+                  </CardTitle>
+
+                  <CardContent>
+                    <div className="flex flex-col gap-4">
+                      {categoryItem.products.slice(0, 7).map((product) => (
+                        <div
+                          key={product._id || product.name}
+                          className="flex items-center justify-between border-b border-gray-200 pb-2"
+                        >
+                          <div className="flex flex-col w-full">
+                            <div className="flex items-center justify-between w-full">
+                              <h3 className="text-md font-medium">
+                                {product.name}
+                              </h3>
+                              {product.isAvailable && (
+                                <p className="text-sm font-bold">
+                                  {product.price} LKR
+                                </p>
+                              )}
+                            </div>
+                            {product.description && (
+                              <p className="text-sm text-gray-500 mt-2">
+                                {product.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-sm lg:text-lg font-bold">
-                          {product.price} LKR
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
-            </>
+            </div>
           ) : (
             <>
-              {menuData?.map((categoryItem) => (
-                <div
-                  key={categoryItem._id || categoryItem.category}
-                  className="lg:max-w-2xl w-full space-y-6"
-                >
-                  <Heading title={categoryItem.category} description={""} />
-                  <div className="flex flex-col gap-4">
-                    {categoryItem.products.map((product) => (
-                      <div
-                        key={product._id || product.name}
-                        className="flex items-center justify-between border-b border-gray-200 pb-2"
-                      >
-                        <div className="flex flex-col">
-                          <h3 className="text-sm lg:text-lg max-w-fit w-full lg:max-w-xl">
-                            {product.name}
-                          </h3>
-                          {product.description && (
-                            <p className="text-xs text-gray-500 mt-1 max-w-[300px] lg:max-w-full">
-                              {product.description}
-                            </p>
-                          )}
-                        </div>
-                        <p className="text-sm lg:text-lg font-bold">
-                          {product.price} LKR
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </>
-          )}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+                {(menu as MenuItem[]).map((categoryItem) => (
+                  <Card
+                    key={categoryItem._id || categoryItem.category}
+                    className="border-t-[4px] border-primary hover:scale-105 transition-transform duration-300"
+                  >
+                    <CardTitle>
+                      <h3 className="text-2xl font-playfair-display font-bold text-center">
+                        {categoryItem.category}
+                      </h3>
+                    </CardTitle>
 
-          {renderType === "home" && (
-            <div className="flex-center -mt-10">
-              <Button asChild>
-                <Link href="/products">View All</Link>
-              </Button>
-            </div>
+                    <CardContent>
+                      <div className="flex flex-col gap-4">
+                        {categoryItem.products.map((product) => (
+                          <div
+                            key={product._id || product.name}
+                            className="flex items-center justify-between border-b border-gray-200 pb-2"
+                          >
+                            <div className="flex flex-col w-full">
+                              <div className="flex items-center justify-between w-full">
+                                <h3 className="text-md font-medium">
+                                  {product.name}
+                                </h3>
+                                {product.isAvailable && (
+                                  <p className="text-sm font-bold">
+                                    {product.price} LKR
+                                  </p>
+                                )}
+                              </div>
+                              {product.description && (
+                                <p className="text-sm text-gray-500 mt-2">
+                                  {product.description}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </div>

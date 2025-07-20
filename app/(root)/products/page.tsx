@@ -1,12 +1,20 @@
-"use client";
-
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import MenuSection from "@/components/landing/MenuSection";
-import { getBannerData } from "@/app/hooks/getBannerData";
+import Heading from "@/components/common/Heading";
 
-const MenuPage = () => {
-  const banner = getBannerData("products");
+export default async function ProductsPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return (
+      <div className="text-red-500 text-center p-4">Failed to load Banners</div>
+    );
+  }
+
+  const { banners = [] } = await res.json();
 
   return (
     <main>
@@ -15,13 +23,17 @@ const MenuPage = () => {
       </div>
       <div>
         <HeroSection
-          title={banner?.title}
-          description={banner?.description}
+          title={banners[3].title}
+          description={banners[3].description}
           buttonText="Explore Bends"
-          imageUrl={banner?.imageUrl || "/images/banner5.jpg"}
+          imageUrl={banners[3].imageUrl}
         />
 
+
         <div className="wrapper w-full">
+          <div className="lg:mb-12">
+            <Heading title="our products" />
+          </div>
           <MenuSection renderType="menu" />
         </div>
       </div>
@@ -29,4 +41,4 @@ const MenuPage = () => {
   );
 };
 
-export default MenuPage;
+

@@ -42,26 +42,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
-export async function PATCH(req: NextRequest) {
-  try {
-    await connectDB();
-    const { imageUrls } = await req.json();
-
-    const updatedGallery = await GalleryItem.findOneAndUpdate(
-      {},
-      { imageUrls },
-      { new: true, upsert: true }
-    );
-
-    return NextResponse.json({
-      message: "Gallery updated",
-      data: updatedGallery,
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error updating gallery" },
-      { status: 500 }
-    );
-  }
-}

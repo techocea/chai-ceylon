@@ -1,6 +1,6 @@
 import React from "react";
 import { useFieldArray, useFormContext, Controller } from "react-hook-form";
-import { Trash } from "lucide-react";
+import { Trash, XIcon } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -27,12 +27,11 @@ interface CategoryBlockProps {
   catIndex: number;
   removeCategory: (index: number) => void;
   categoryLength: number;
-  setEditing: (info: { catIndex: number; prodIndex: number }) => void;
 }
 
 export default function CategoryBlock({
   catIndex,
-  setEditing,
+  removeCategory,
 }: CategoryBlockProps) {
   const {
     control,
@@ -53,12 +52,22 @@ export default function CategoryBlock({
   return (
     <div className="bg-gray-50 p-6 mb-8 border border-gray-200 shadow-sm">
       <div className="mb-6">
-        <Label
-          htmlFor={`menu.${catIndex}.category`}
-          className="font-medium uppercase text-muted-foreground mb-3"
-        >
-          Category
-        </Label>
+        <div className="flex justify-between w-full items-center mb-4">
+          <Label
+            htmlFor={`menu.${catIndex}.category`}
+            className="font-medium uppercase text-muted-foreground mb-3"
+          >
+            Category
+          </Label>
+          <Button
+            type="button"
+            variant="destructive"
+            onClick={() => removeCategory(catIndex)}
+            size="sm"
+          >
+            <XIcon className="w-4 h-4" />
+          </Button>
+        </div>
         <Input
           placeholder="Category Name"
           id={`menu.${catIndex}.category`}
@@ -169,7 +178,7 @@ export default function CategoryBlock({
             </div>
 
             <div className="flex justify-end w-full">
-              {/* <div className="flex items-center">
+              <div className="flex items-center">
                 <Controller
                   name={`menu.${catIndex}.products.${prodIndex}.isAvailable`}
                   control={control}
@@ -179,30 +188,30 @@ export default function CategoryBlock({
                       checked={field.value}
                       onChange={field.onChange}
                       id={`menu.${catIndex}.products.${prodIndex}.isAvailable`}
-                      className="h-5 w-5 cursor-pointer"
+                      className="h-4 w-4 cursor-pointer"
                     />
                   )}
                 />
                 <Label
                   htmlFor={`menu.${catIndex}.products.${prodIndex}.isAvailable`}
-                  className="ml-2 block text-base font-medium text-gray-700"
+                  className="ml-2 block text-sm font-medium text-gray-700"
                 >
-                  Is Available
+                  Show Price
                 </Label>
-              </div> */}
+              </div>
               <div className="flex items-center justify-center gap-4">
-                {productFields.length > 1 && (
+                {productFields && (
                   <Button
                     type="button"
-                    variant="ghost"
-                    title="Remove this product"
-                    className="px-0"
+                    variant="link"
+                    className="px-0 text-red-500"
                     onClick={() => removeProduct(prodIndex)}
                   >
                     <Trash className="w-4 h-4 text-red-500" />
+                    Delete
                   </Button>
                 )}
-                {product._id && (
+                {/* {product._id && (
                   <Button
                     type="button"
                     variant="link"
@@ -211,7 +220,7 @@ export default function CategoryBlock({
                   >
                     Edit
                   </Button>
-                )}
+                )} */}
               </div>
             </div>
           </div>

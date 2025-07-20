@@ -18,6 +18,7 @@ const bannerTypes = [
   "products",
   "our-concepts",
   "contact",
+  "events",
 ] as const;
 
 export default function ControlPageBanners() {
@@ -25,23 +26,25 @@ export default function ControlPageBanners() {
     control,
     register,
     handleSubmit,
-    formState: { isDirty },
     trigger,
+    reset,
     watch,
     setValue,
+    formState: { isDirty },
   } = useForm<BannerValues>({
     resolver: zodResolver(bannerSchema),
     defaultValues: {
-      banners: bannerTypes.map((type) => ({
-        type,
-        title: "",
-        description: "",
-        imageUrl: "",
-      })),
+      banners: [],
+      // banners: bannerTypes.map((type) => ({
+      //   type,
+      //   title: "",
+      //   description: "",
+      //   imageUrl: "",
+      // })),
     },
   });
 
-  const { fields, replace } = useFieldArray({
+  const { fields } = useFieldArray({
     name: "banners",
     control,
     keyName: "formId",
@@ -49,27 +52,30 @@ export default function ControlPageBanners() {
   const [loading, setLoading] = useState(true);
 
   const getBannerData = async () => {
-    axios
-      .get("/api/banner")
-      .then((res) => {
-        if (Array.isArray(res.data.banners)) replace(res.data.banners);
-      })
-      .catch(() => {
-        /* ignore */
-      })
-      .finally(() => setLoading(false));
+    try {
+      setLoading(true);
+      const res = await axios.get("/api/banner");
+      if (res.status === 200 && Array.isArray(res.data?.banners)) {
+        // replace(res.data.banners);
+        reset({ banners: res.data.banners });
+      }
+    } catch (error) {
+      console.error("Error in fetching Banner Content:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     getBannerData();
-  }, [replace]);
+  }, [reset]);
 
   const onSubmit = async (data: BannerValues) => {
     setLoading(true);
     try {
       const updatePromises = data.banners.map((item) => {
         if (item._id) {
-          return axios.patch(`/api/banner/${item._id}`, item);
+          return axios.patch(`/api/banner/${item._id}/update`, item);
         } else {
           return axios.post("/api/banner", { banners: [item] });
         }
@@ -78,8 +84,8 @@ export default function ControlPageBanners() {
       await Promise.all(updatePromises);
       alert("Banners saved!");
       await getBannerData();
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error("Error saving Banner:", error);
       alert("Failed to save");
     } finally {
       setLoading(false);
