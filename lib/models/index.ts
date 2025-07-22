@@ -108,14 +108,27 @@ export const ContactPage =
   mongoose.model("ContactPage", ContactPageSchema);
 
 /* ---------- 8.  EVENTS ---------- */
-  const EventSchema = new mongoose.Schema(
-    {
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      imageUrls: [{ type: String, required: true }],
-      date: { type: Date, required: true },
-    },
-    { timestamps: true }
-  );
+const EventSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    imageUrls: [{ type: String, required: true }],
+    date: { type: Date, required: true },
+  },
+  { timestamps: true }
+);
 export const Events =
   mongoose.models.Events || mongoose.model("Events", EventSchema);
+
+/* ---------- 9.  OUR CONCEPTS ---------- */
+const ConceptSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    imageUrl: { type: String, required: true },
+    points: [{ type: String, required: true }],
+  },
+  { timestamps: true }
+);
+export const Concepts =
+  mongoose.models.Concepts || mongoose.model("Concepts", ConceptSchema);

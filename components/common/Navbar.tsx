@@ -30,8 +30,8 @@ const Navbar = () => {
 
   return (
     <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-12">
-      <div className="flex items-end justify-between w-full">
-        <div>
+      <div className="flex items-center justify-between w-full">
+        <div className="w-[150px] h-[75px]">
           <Link href="/">
             <Image
               src={navData?.logoUrl || "/images/logo.png"}

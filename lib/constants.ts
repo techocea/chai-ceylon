@@ -34,6 +34,7 @@ export const CMS_NAV_ITEMS = [
   { href: "/control-panel/site-config", label: "Site Configuration" },
   { href: "/control-panel/about", label: "About Us" },
   { href: "/control-panel/events", label: "Events" },
+  { href: "/control-panel/our-concepts", label: "Our Concepts" },
   { href: "/control-panel/gallery", label: "Gallery" },
   { href: "/control-panel/menu-gallery", label: "Menu Gallery" },
   { href: "/control-panel/contact-us", label: "Contact Us" },
@@ -188,7 +189,7 @@ export const CONTENT = [
       "Menu customization based on location",
       "Branding and co-partnering options available",
     ],
-    imageSrc: "/images/tea-kiosk.jpg",
+    imageUrl: "/images/tea-kiosk.jpg",
   },
   {
     title: "Tea Box",
@@ -200,7 +201,7 @@ export const CONTENT = [
       "Bulk order discounts available",
       "Delivery across Sri Lanka",
     ],
-    imageSrc: "/images/tea-box.jpg",
+    imageUrl: "/images/tea-box.jpg",
   },
   {
     title: "Tea Cart",
@@ -212,7 +213,7 @@ export const CONTENT = [
       "Customizable branding available",
       "Power & water supply options included",
     ],
-    imageSrc: "/images/tea-cart.jpg",
+    imageUrl: "/images/tea-cart.jpg",
   },
   {
     title: "Tea Wheel",
@@ -225,7 +226,7 @@ export const CONTENT = [
       "Customizable branding available",
       "Power & water supply options included",
     ],
-    imageSrc: "/images/tea-cart.jpg",
+    imageUrl: "/images/tea-cart.jpg",
   },
   {
     title: "Tea Bar",
@@ -238,7 +239,7 @@ export const CONTENT = [
       "Ideal for high-footfall areas or franchise models",
       "Barista-led experiences & chai-making workshops",
     ],
-    imageSrc: "/images/banner3.jpg",
+    imageUrl: "/images/banner3.jpg",
   },
   {
     title: "Tea Shop",
@@ -251,7 +252,7 @@ export const CONTENT = [
       "Ideal for high-footfall areas or franchise models",
       "Barista-led experiences & chai-making workshops",
     ],
-    imageSrc: "/images/banner3.jpg",
+    imageUrl: "/images/banner3.jpg",
   },
 ];
 

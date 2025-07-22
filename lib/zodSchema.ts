@@ -127,13 +127,21 @@ export const eventSchema = z.object({
   date: z.coerce.date(),
 });
 
+export const conceptSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  imageUrl: z.string().url(),
+  points: z.array(z.string().min(1, "Point cannot be empty")),
+});
+
 export type FormValues = z.infer<typeof formSchema>;
 export type MenuValues = z.infer<typeof menuSchema>;
+export type EventValues = z.infer<typeof eventSchema>;
 export type BannerValues = z.infer<typeof bannerSchema>;
-export type AuthFormValues = z.infer<typeof authFormSchema>;
 export type GalleryValues = z.infer<typeof gallerySchema>;
+export type ConceptValues = z.infer<typeof conceptSchema>;
+export type AuthFormValues = z.infer<typeof authFormSchema>;
+export type SiteConfigValues = z.infer<typeof siteConfigSchema>;
 export type MenuGalleryValues = z.infer<typeof menuGallerySchema>;
 export type AboutContentValues = z.infer<typeof aboutContentSchema>;
-export type SiteConfigValues = z.infer<typeof siteConfigSchema>;
 export type ContactPageContentValues = z.infer<typeof contactPageContentSchema>;
-export type EventValues = z.infer<typeof eventSchema>;

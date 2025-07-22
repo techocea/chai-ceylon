@@ -1,14 +1,28 @@
-"use client";
-
-import { StickyScroll } from "../ui/sticky-scroll";
+import { Slider } from "../ui/slider";
 import { CONTENT } from "@/lib/constants";
 
-const ServicesSection = () => {
+export default async function ServicesSection() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/our-concepts`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    return (
+      <div className="text-center text-lg text-gray-500 py-10">
+        Failed to load Concepts.
+      </div>
+    );
+  }
+
+  const { concepts = [] } = await res.json();
+
+
   return (
-    <div className="w-full">
-      <StickyScroll content={CONTENT} />
+    <div className="wrapper pb-0">
+      <Slider content={concepts} />
     </div>
   );
-};
-
-export default ServicesSection;
+}

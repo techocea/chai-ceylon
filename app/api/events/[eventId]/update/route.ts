@@ -4,14 +4,14 @@ import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 interface EventProps {
-  params: {
+  params: Promise<{
     eventId: string;
-  };
+  }>;
 }
 
 export async function PUT(req: NextRequest, { params }: EventProps) {
   try {
-    const { eventId } = params;
+    const { eventId } = await params;
     const { title, description, imageUrls, date } = await req.json();
 
     if (!mongoose.Types.ObjectId.isValid(eventId))

@@ -4,14 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 interface MenuItemProps {
-  params: {
+  params: Promise<{
     menuId: string;
-  };
+  }>;
 }
 
 export async function PUT(req: NextRequest, { params }: MenuItemProps) {
   try {
-    const { menuId } = params;
+    const { menuId } = await params;
     const { category, products } = await req.json();
 
     if (!mongoose.Types.ObjectId.isValid(menuId)) {

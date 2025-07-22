@@ -4,14 +4,14 @@ import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 interface MenuGalleryProps {
-  params: {
+  params: Promise<{
     menuGalleryId: string;
-  };
+  }>;
 }
 
 export async function PATCH(req: NextRequest, { params }: MenuGalleryProps) {
   try {
-    const { menuGalleryId } = params;
+    const { menuGalleryId } = await params;
 
     const { imageUrl, slug } = await req.json();
 
@@ -41,7 +41,11 @@ export async function PATCH(req: NextRequest, { params }: MenuGalleryProps) {
       }
     );
 
-    if(!updated) return NextResponse.json({message:"Menu Gallery not found"},{status:404});
+    if (!updated)
+      return NextResponse.json(
+        { message: "Menu Gallery not found" },
+        { status: 404 }
+      );
 
     return NextResponse.json(
       { message: "Menu Gallery updated successfully", menuGallery: updated },

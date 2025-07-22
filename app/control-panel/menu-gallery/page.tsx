@@ -51,7 +51,6 @@ const MenuGallery = () => {
     fetchMenuGallery();
   }, [replace]);
 
-  // Restore handleImageDelete as before
   const handleImageDelete = (index: number) => {
     setValue(`gallery.${index}.imageUrl` as const, "", {
       shouldDirty: true,

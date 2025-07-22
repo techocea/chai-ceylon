@@ -3,31 +3,31 @@
 import React, { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import EventBlock from "@/components/control-panel/EventBlock";
+import ConceptBlock from "@/components/control-panel/ConceptBlock";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
 
-interface Event {
+interface Concept {
   _id?: string;
   title: string;
   description: string;
-  imageUrls: string[];
-  date: string;
+  imageUrl: string;
+  points: string[];
 }
 
-interface EventFormValues {
-  event: Event[];
+interface ConceptFormValues {
+  concepts: Concept[];
 }
 
-const EventsPage = () => {
-  const methods = useForm<EventFormValues>({
+const ConceptsPage = () => {
+  const methods = useForm<ConceptFormValues>({
     defaultValues: {
-      event: [
+      concepts: [
         {
           title: "",
           description: "",
-          imageUrls: [],
-          date: "",
+          imageUrl: "",
+          points: [],
         },
       ],
     },
@@ -42,39 +42,34 @@ const EventsPage = () => {
   } = methods;
 
   const {
-    fields: eventFields,
-    append: appendEvent,
-    remove: removeEvent,
+    fields: conceptFields,
+    append: appendConcept,
+    remove: removeConcept,
     replace,
   } = useFieldArray({
     control,
-    name: "event",
+    name: "concepts",
     keyName: "formId",
   });
 
   const [loading, setLoading] = useState(false);
 
-  const fetchEvents = async () => {
+  const fetchConcepts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/events");
+      const res = await axios.get("/api/our-concepts");
 
-      if (res.data && res.status === 200 && Array.isArray(res.data?.events)) {
-        const parsedEvents = res.data.events.map((ev: any) => ({
-          ...ev,
-          date: ev.date.split("T")[0],
-        }));
-
-        reset({ event: parsedEvents });
-        replace(parsedEvents);
+      if (res.data && res.status === 200 && Array.isArray(res.data?.concepts)) {
+        reset({ concepts: res.data?.concepts });
+        replace(res.data?.concepts);
       } else {
         reset({
-          event: [
+          concepts: [
             {
               title: "",
               description: "",
-              imageUrls: [],
-              date: "",
+              imageUrl: "",
+              points: [],
             },
           ],
         });
@@ -82,61 +77,61 @@ const EventsPage = () => {
           {
             title: "",
             description: "",
-            imageUrls: [],
-            date: "",
+            imageUrl: "",
+            points: [],
           },
         ]);
       }
     } catch (error) {
       console.error("Fetch error:", error);
-      reset({
-        event: [
-          {
-            title: "",
-            description: "",
-            imageUrls: [],
-            date: "",
-          },
-        ],
-      });
-      replace([
-        {
-          title: "",
-          description: "",
-          imageUrls: [],
-          date: "",
-        },
-      ]);
-      alert("Failed to load events. Please refresh or try again.");
+      // reset({
+      //   concept: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       imageUrls: [],
+      //       date: "",
+      //     },
+      //   ],
+      // });
+      // replace([
+      //   {
+      //     title: "",
+      //     description: "",
+      //     imageUrls: [],
+      //     date: "",
+      //   },
+      // ]);
+      console.log("Failed to load concepts. Please refresh or try again.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchEvents();
+    fetchConcepts();
   }, [reset]);
 
-  const onSubmit = async (data: EventFormValues) => {
+  const onSubmit = async (data: ConceptFormValues) => {
     try {
-      const promises = data.event.map((item) => {
+      const promises = data.concepts.map((item) => {
         if (item._id) {
-          return axios.put(`/api/events/${item._id}/update`, item);
+          return axios.patch(`/api/our-concepts/${item._id}/update`, item);
         } else {
-          return axios.post("/api/events", item);
+          return axios.post("/api/our-concepts", item);
         }
       });
 
       await Promise.all(promises);
       alert(
-        data.event.some((item) => item._id)
-          ? "Events updated successfully!"
-          : "Event(s) saved successfully!"
+        data.concepts.some((item) => item._id)
+          ? "Concepts updated successfully!"
+          : "Concept(s) saved successfully!"
       );
-      fetchEvents();
+      fetchConcepts();
     } catch (error) {
-      console.error("Error saving event:", error);
-      alert("Failed to save event!");
+      console.error("Error saving concept:", error);
+      alert("Failed to save concept!");
     }
   };
 
@@ -154,11 +149,11 @@ const EventsPage = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {eventFields.map((eventField, eventIndex) => (
-          <EventBlock
-            key={eventField._id || eventField.formId}
-            eventIndex={eventIndex}
-            removeEvent={removeEvent}
+        {conceptFields.map((conceptField, conceptIndex) => (
+          <ConceptBlock
+            key={conceptField._id || conceptField.formId}
+            conceptIndex={conceptIndex}
+            removeConcept={removeConcept}
           />
         ))}
 
@@ -168,15 +163,15 @@ const EventsPage = () => {
             variant="outline"
             className="border-primary"
             onClick={() =>
-              appendEvent({
+              appendConcept({
                 title: "",
                 description: "",
-                imageUrls: [],
-                date: "",
+                imageUrl: "",
+                points: [],
               })
             }
           >
-            + Create Event
+            + Create Concept
           </Button>
 
           <Button type="submit" disabled={isSubmitting || !isDirty}>
@@ -195,4 +190,4 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+export default ConceptsPage;
