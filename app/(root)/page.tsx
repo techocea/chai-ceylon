@@ -1,14 +1,15 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Navbar from "@/components/common/Navbar";
+import Heading from "@/components/common/Heading";
+import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
+import MenuGallery from "@/components/landing/MenuGallery";
 import MenuSection from "@/components/landing/MenuSection";
 import AboutSection from "@/components/common/AboutSection";
 import BenefitSection from "@/components/landing/BenefitSection";
 import GallerySection from "@/components/landing/GallerySection";
-import Heading from "@/components/common/Heading";
-import MenuGallery from "@/components/landing/MenuGallery";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
@@ -64,6 +65,14 @@ export default async function Page() {
             </div>
           </div>
         </div>
+
+        <CTASection
+          renderType="vendor"
+          title="Tradition Meets Convenience"
+          description="Bring the Chaiyo Ceylon experience to your neighborhood or events."
+          CTATitle="Be a Vendor and Earn with Us"
+          CTADescription="Bring authentic chai to your area or event. It’s simple — sign up, serve, and start earning. "
+        />
 
         <GallerySection />
       </div>

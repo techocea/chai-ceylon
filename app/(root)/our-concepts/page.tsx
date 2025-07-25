@@ -1,5 +1,4 @@
 import Navbar from "@/components/common/Navbar";
-import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
 import WhyUsSection from "@/components/common/WhyUsSection";
 import ServicesSection from "@/components/landing/ServicesSection";
@@ -40,14 +39,6 @@ export default async function ServicePage() {
         />
 
         <ServicesSection />
-
-        <CTASection
-          renderType="vendor"
-          title="Tradition Meets Convenience"
-          description="Bring the Chaiyo Ceylon experience to your neighborhood or events."
-          CTATitle="Be a Vendor and Earn with Us"
-          CTADescription="Bring authentic chai to your area or event. It’s simple — sign up, serve, and start earning. "
-        />
 
         <WhyUsSection />
       </div>

@@ -29,7 +29,6 @@ export default async function ProductsPage() {
           imageUrl={banners[3].imageUrl}
         />
 
-
         <div className="wrapper w-full">
           <div className="lg:mb-12">
             <Heading title="our products" />
@@ -39,6 +38,4 @@ export default async function ProductsPage() {
       </div>
     </main>
   );
-};
-
-
+}

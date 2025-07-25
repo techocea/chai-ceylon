@@ -37,8 +37,8 @@ export const Slider = ({ content }: SliderProps) => {
           ? 0
           : prev + 1
         : prev === 0
-        ? content.length - 1
-        : prev - 1
+          ? content.length - 1
+          : prev - 1
     );
   };
 

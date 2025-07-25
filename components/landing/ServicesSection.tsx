@@ -21,7 +21,7 @@ export default async function ServicesSection() {
 
 
   return (
-    <div className="wrapper pb-0">
+    <div className="wrapper">
       <Slider content={concepts} />
     </div>
   );
