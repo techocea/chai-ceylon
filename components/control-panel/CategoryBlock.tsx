@@ -4,12 +4,15 @@ import { Trash, XIcon } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { UploadButton } from "@/app/utils/uploadthing";
+import Image from "next/image";
 
 interface Product {
   _id?: string;
   name: string;
   price: number;
-  description?: string;
+  description: string;
+  imageUrl: string;
   isAvailable: boolean;
 }
 
@@ -36,6 +39,9 @@ export default function CategoryBlock({
   const {
     control,
     register,
+    watch,
+    setValue,
+    trigger,
     formState: { errors },
   } = useFormContext<MenuFormValues>();
 
@@ -94,6 +100,7 @@ export default function CategoryBlock({
               name: "",
               price: 0,
               description: "",
+              imageUrl: "",
               isAvailable: true,
             })
           }
@@ -175,6 +182,82 @@ export default function CategoryBlock({
                   `menu.${catIndex}.products.${prodIndex}.description`
                 )}
               />
+            </div>
+
+            <div className="flex flex-col gap-3">
+              {watch(`menu.${catIndex}.products.${prodIndex}.imageUrl`) ? (
+                <>
+                  <Label className="font-medium uppercase text-muted-foreground">
+                    Image
+                  </Label>
+
+                  {errors.menu?.[catIndex]?.products?.[prodIndex]?.imageUrl && (
+                    <p className="text-sm text-red-500">
+                      {
+                        errors.menu[catIndex]?.products?.[prodIndex]?.imageUrl
+                          ?.message
+                      }
+                    </p>
+                  )}
+                  <div className="relative w-48 h-48">
+                    <Image
+                      src={watch(
+                        `menu.${catIndex}.products.${prodIndex}.imageUrl`
+                      )}
+                      alt={`Product Image ${prodIndex}`}
+                      fill
+                      className="object-cover"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute top-1 right-1 bg-red-600 text-white"
+                      onClick={() => {
+                        setValue(
+                          `menu.${catIndex}.products.${prodIndex}.imageUrl`,
+                          "",
+                          {
+                            shouldDirty: true,
+                            shouldValidate: true,
+                          }
+                        );
+                        trigger(
+                          `menu.${catIndex}.products.${prodIndex}.imageUrl`
+                        );
+                      }}
+                    >
+                      <XIcon size={16} />
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-col gap-3">
+                  <Label className="font-medium uppercase text-muted-foreground">
+                    Upload an Image
+                  </Label>
+
+                  <div className="h-32 flex border items-center justify-center w-full">
+                    <UploadButton
+                      endpoint="imageUploader"
+                      className="ut-button:px-2 ut-button:py-1.5 ut-button:bg-blue-500 ut-button:hover:bg-blue-500/50 ut-button:ut-readying:bg-blue-500/50"
+                      onClientUploadComplete={(res) => {
+                        const url = res[0].ufsUrl;
+                        setValue(
+                          `menu.${catIndex}.products.${prodIndex}.imageUrl`,
+                          url,
+                          {
+                            shouldDirty: true,
+                          }
+                        );
+                      }}
+                      onUploadError={(error: Error) => {
+                        alert(`Upload Error: ${error.message}`);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end w-full">

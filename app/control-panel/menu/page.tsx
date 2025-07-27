@@ -11,7 +11,8 @@ interface Product {
   _id?: string;
   name: string;
   price?: number;
-  description?: string;
+  description: string;
+  imageUrl: string;
   isAvailable: boolean;
 }
 
@@ -32,7 +33,13 @@ const MenuPage = () => {
         {
           category: "",
           products: [
-            { name: "", price: 0, description: "", isAvailable: true },
+            {
+              name: "",
+              price: 0,
+              description: "",
+              imageUrl: "",
+              isAvailable: true,
+            },
           ],
         },
       ],
@@ -71,7 +78,13 @@ const MenuPage = () => {
             {
               category: "",
               products: [
-                { name: "", price: 0, description: "", isAvailable: true },
+                {
+                  name: "",
+                  price: 0,
+                  description: "",
+                  imageUrl: "",
+                  isAvailable: true,
+                },
               ],
             },
           ],
@@ -84,7 +97,13 @@ const MenuPage = () => {
           {
             category: "",
             products: [
-              { name: "", price: 0, description: "", isAvailable: true },
+              {
+                name: "",
+                price: 0,
+                description: "",
+                imageUrl: "",
+                isAvailable: true,
+              },
             ],
           },
         ],
@@ -109,6 +128,7 @@ const MenuPage = () => {
           name: product.name,
           price: Number(product.price),
           description: product.description || "",
+          imageUrl: product.imageUrl || "",
           isAvailable: Boolean(product.isAvailable),
         }));
 
@@ -177,7 +197,13 @@ const MenuPage = () => {
               appendCategory({
                 category: "",
                 products: [
-                  { name: "", price: 0, description: "", isAvailable: true },
+                  {
+                    name: "",
+                    price: 0,
+                    description: "",
+                    imageUrl: "",
+                    isAvailable: true,
+                  },
                 ],
               })
             }

@@ -87,6 +87,7 @@ export const menuSchema = z.object({
             .max(255, "Name too long"),
           price: z.coerce.number(),
           description: z.string().max(255),
+          imageUrl: z.string().url(),
           isAvailable: z.boolean(),
         })
       ),
@@ -101,7 +102,7 @@ export const bannerSchema = z.object({
       type: z.string(),
       title: z.string(),
       description: z.string(),
-      imageUrl: z.string(),
+      imageUrl: z.string().url(),
     })
   ),
 });

@@ -34,6 +34,7 @@ export async function PUT(req: NextRequest, { params }: MenuItemProps) {
       name: String(product.name),
       price: Number(product.price),
       description: String(product.description || ""),
+      imageUrl: String(product.imageUrl || ""),
       isAvailable: Boolean(product.isAvailable),
     }));
 

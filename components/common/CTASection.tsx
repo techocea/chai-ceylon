@@ -21,7 +21,7 @@ const CTASection = ({
   renderType = "newsletter",
 }: CTASectionProps) => {
   return (
-    <section className="wrapper">
+    <section className="wrapper pt-0 lg:py-0">
       <div className="relative bg-accent min-h-[420px] flex flex-col items-center justify-center py-10 sm:py-16 w-full px-2 sm:px-4">
         <Image
           src="/images/pattern.png"

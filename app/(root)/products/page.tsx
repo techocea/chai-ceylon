@@ -29,10 +29,7 @@ export default async function ProductsPage() {
           imageUrl={banners[3].imageUrl}
         />
 
-        <div className="wrapper w-full">
-          <div className="lg:mb-12">
-            <Heading title="our products" />
-          </div>
+        <div className="wrapper px-0">
           <MenuSection renderType="menu" />
         </div>
       </div>

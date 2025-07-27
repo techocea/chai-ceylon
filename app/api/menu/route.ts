@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
             name: String(product.name),
             price: Number(product.price),
             description: String(product.description || ""),
+            imageUrl: String(product.imageUrl || ""),
             isAvailable: Boolean(product.isAvailable),
           }))
         : [],

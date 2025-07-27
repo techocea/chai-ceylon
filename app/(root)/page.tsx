@@ -5,7 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import Heading from "@/components/common/Heading";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
-import MenuGallery from "@/components/landing/MenuGallery";
+import MenuGallery from "@/components/landing/MenuSlider";
 import MenuSection from "@/components/landing/MenuSection";
 import AboutSection from "@/components/common/AboutSection";
 import BenefitSection from "@/components/landing/BenefitSection";
@@ -58,12 +58,9 @@ export default async function Page() {
               </div>
             )}
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
-            <MenuGallery />
-            <div className="justify-end float-right w-full lg:ml-10">
-              <MenuSection renderType="home" />
-            </div>
-          </div>
+
+          <MenuSection renderType="home" />
+          
         </div>
 
         <CTASection
