@@ -12,19 +12,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { siteConfigSchema, SiteConfigValues } from "@/lib/zodSchema";
 import { UploadButton } from "@/app/utils/uploadthing";
 
-// interface LinkItem {
-//   label: string;
-//   href: string;
-// }
-
-// interface SiteConfigValues {
-//   aboutText: string;
-//   quickLinks: LinkItem[];
-//   socialMediaLinks: LinkItem[];
-//   workingHours: string;
-//   logoUrl: string;
-// }
-
 const SiteConfigPage = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -39,6 +26,8 @@ const SiteConfigPage = () => {
   } = useForm<SiteConfigValues>({
     resolver: zodResolver(siteConfigSchema),
   });
+
+  // const images = watch("clientLogoUrls") ?? [];
 
   useEffect(() => {
     const fetchSiteConfigData = async () => {
@@ -90,13 +79,11 @@ const SiteConfigPage = () => {
     }
   };
 
-  const handleImageDelete = () => {
-    setValue("logoUrl", "", {
-      shouldDirty: true,
-      shouldValidate: true,
-    }),
-      trigger("logoUrl");
-  };
+  // const handleImageDelete = (index: number) => {
+  //   const updated = [...images];
+  //   updated.splice(index, 1);
+  //   setValue("clientLogoUrls", updated, { shouldDirty: true });
+  // };
 
   if (loading) {
     return (
@@ -209,7 +196,13 @@ const SiteConfigPage = () => {
                   variant="ghost"
                   size="sm"
                   className="absolute top-1 right-1 bg-red-600 text-white"
-                  onClick={() => handleImageDelete()}
+                  onClick={() => {
+                    setValue("logoUrl", "", {
+                      shouldDirty: true,
+                      shouldValidate: true,
+                    }),
+                      trigger("logoUrl");
+                  }}
                 >
                   <XIcon size={16} />
                 </Button>
@@ -232,6 +225,108 @@ const SiteConfigPage = () => {
                 />
               </div>
             )}
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <Label className="font-medium uppercase text-muted-foreground">
+              Client Logos
+            </Label>
+
+            {Array.isArray(watch("clientLogoUrls")) &&
+              watch("clientLogoUrls").map((logo, index) => (
+                <div
+                  key={index}
+                  className="border p-3 rounded-lg flex flex-col gap-2 relative"
+                >
+                  {/* Client Name */}
+                  <Input
+                    placeholder="Client Name"
+                    value={logo.name || ""}
+                    onChange={(e) => {
+                      const updated = [...(watch("clientLogoUrls") || [])];
+                      updated[index].name = e.target.value;
+                      setValue("clientLogoUrls", updated, {
+                        shouldDirty: true,
+                      });
+                    }}
+                  />
+
+                  {/* Logo Preview */}
+                  {logo.imageUrl ? (
+                    <div className="relative w-full border h-28 overflow-hidden">
+                      <Image
+                        src={logo.imageUrl}
+                        alt={logo.name || "Client Logo"}
+                        fill
+                        className="object-cover"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute top-1 right-1 bg-red-600 text-white"
+                        onClick={() => {
+                          const updated = [...(watch("clientLogoUrls") || [])];
+                          updated[index].imageUrl = "";
+                          setValue("clientLogoUrls", updated, {
+                            shouldDirty: true,
+                          });
+                        }}
+                      >
+                        <XIcon size={16} />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="border flex items-center justify-center w-full h-28">
+                      <UploadButton
+                        endpoint="imageUploader"
+                        className="ut-button:px-2 ut-button:py-1.5 ut-button:bg-blue-500 ut-button:hover:bg-blue-500/50 ut-button:ut-readying:bg-blue-500/50"
+                        onClientUploadComplete={(res) => {
+                          const uploadUrl = res[0].ufsUrl;
+                          const updated = [...(watch("clientLogoUrls") || [])];
+                          updated[index].imageUrl = uploadUrl;
+                          setValue("clientLogoUrls", updated, {
+                            shouldDirty: true,
+                          });
+                          alert("Image uploaded successfully!");
+                        }}
+                        onUploadError={(error: Error) => {
+                          alert(`ERROR! ${error.message}`);
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Remove Button */}
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => {
+                      const updated = [...(watch("clientLogoUrls") || [])];
+                      updated.splice(index, 1);
+                      setValue("clientLogoUrls", updated, {
+                        shouldDirty: true,
+                      });
+                    }}
+                  >
+                    Remove Client
+                  </Button>
+                </div>
+              ))}
+
+            {/* Add New Client Button */}
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => {
+                const updated = [...(watch("clientLogoUrls") || [])];
+                updated.push({ name: "", imageUrl: "" });
+                setValue("clientLogoUrls", updated, { shouldDirty: true });
+              }}
+            >
+              Add Client
+            </Button>
           </div>
 
           <div className="flex justify-end">

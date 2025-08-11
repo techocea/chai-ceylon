@@ -19,7 +19,7 @@ type SignatureItemsProps = {
 const SignatureItems = ({ title, content }: SignatureItemsProps) => {
   const [activeId, setActiveId] = useState<number | null>(null);
   return (
-    <section className="wrapper lg:py-0">
+    <section className="wrapper pb-0">
       <div className="flex-center">
         <Heading title={title} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full mt-10">
@@ -34,11 +34,10 @@ const SignatureItems = ({ title, content }: SignatureItemsProps) => {
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
               <div
-                className={`absolute inset-0 bg-black/40 flex items-center justify-center duration-300 ${
-                  activeId === id
+                className={`absolute inset-0 bg-black/40 flex items-center justify-center duration-300 ${activeId === id
                     ? "opacity-100"
                     : "opacity-0 group-hover:opacity-100"
-                }`}
+                  }`}
                 tabIndex={0}
                 onClick={() => setActiveId(id)}
                 onTouchStart={() => setActiveId(id)}

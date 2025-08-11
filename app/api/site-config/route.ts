@@ -23,15 +23,41 @@ export async function GET() {
       { message: "Internal Server Error" },
       { status: 500 }
     );
-  }
+  } 
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const { aboutText, workingHours, quickLinks, logoUrl, socialMediaLinks } =
-      await req.json();
+    const {
+      aboutText,
+      workingHours,
+      quickLinks,
+      logoUrl,
+      clientLogoUrls,
+      socialMediaLinks,
+    } = await req.json();
+
+    if (
+      !aboutText ||
+      !workingHours ||
+      !quickLinks ||
+      !logoUrl ||
+      !clientLogoUrls ||
+      !socialMediaLinks
+    )
+      return NextResponse.json(
+        { message: "All fields are required" },
+        { status: 404 }
+      );
 
     await connectDB();
+
+    const sanitizedClientLogoUrls = Array.isArray(clientLogoUrls)
+      ? clientLogoUrls.map((image) => ({
+          name: String(image.name),
+          imageUrl: String(image.imageUrl),
+        }))
+      : [];
 
     const sanitizedQuickLinks = Array.isArray(quickLinks)
       ? quickLinks.map((link) => ({
@@ -51,11 +77,10 @@ export async function POST(req: NextRequest) {
       aboutText,
       workingHours,
       logoUrl,
+      clientLogoUrls: sanitizedClientLogoUrls,
       quickLinks: sanitizedQuickLinks,
       socialMediaLinks: sanitizedSocialMediaLinks,
     });
-
-    SiteConfigContent.save();
 
     return NextResponse.json(
       {
@@ -77,10 +102,23 @@ export async function POST(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const { aboutText, workingHours, quickLinks, logoUrl, socialMediaLinks } =
-      await req.json();
+    const {
+      aboutText,
+      workingHours,
+      quickLinks,
+      logoUrl,
+      clientLogoUrls,
+      socialMediaLinks,
+    } = await req.json();
 
     await connectDB();
+
+    const sanitizedClientLogoUrls = Array.isArray(clientLogoUrls)
+      ? clientLogoUrls.map((image) => ({
+          name: String(image.name),
+          imageUrl: String(image.imageUrl),
+        }))
+      : [];
 
     const sanitizedQuickLinks = Array.isArray(quickLinks)
       ? quickLinks.map((link) => ({
@@ -102,6 +140,7 @@ export async function PATCH(req: NextRequest) {
         aboutText,
         workingHours,
         logoUrl,
+        clientLogoUrls: sanitizedClientLogoUrls,
         quickLinks: sanitizedQuickLinks,
         socialMediaLinks: sanitizedSocialMediaLinks,
       },

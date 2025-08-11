@@ -24,7 +24,7 @@ export default async function AboutSection() {
   const { aboutUsContent = [] } = await res.json();
 
   return (
-    <section className="wrapper lg:pb-0">
+    <section className="wrapper">
       <div className="flex-center lg:flex-row w-full gap-10 lg:gap-0">
         <div className="flex flex-col items-start space-y-6 flex-1">
           <div className="flex items-center justify-center gap-5">

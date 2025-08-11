@@ -17,7 +17,6 @@ const GalleryPage = () => {
     setValue,
     watch,
     reset,
-    register,
     formState: { isDirty },
   } = useForm<GalleryValues>({
     resolver: zodResolver(gallerySchema),

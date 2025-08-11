@@ -48,6 +48,12 @@ const SiteConfigSchema = new mongoose.Schema({
     },
   ],
   logoUrl: { type: String, required: true },
+  clientLogoUrls: [
+    {
+      name: { type: String, required: true },
+      imageUrl: { type: String, required: true },
+    },
+  ],
 });
 export const SiteConfig =
   mongoose.models.SiteConfig || mongoose.model("SiteConfig", SiteConfigSchema);

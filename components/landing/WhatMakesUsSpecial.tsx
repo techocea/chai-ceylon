@@ -5,7 +5,7 @@ interface WhatMakesUsSpecialProps {
 
 const WhatMakesUsSpecial = ({ title, content }: WhatMakesUsSpecialProps) => {
   return (
-    <section className="wrapper py-0">
+    <section className="wrapper pt-0">
       <div>
         <h3 className="title lg:-ml-5">{title}</h3>
         <div className="mt-6">

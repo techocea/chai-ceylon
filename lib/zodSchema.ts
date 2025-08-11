@@ -33,7 +33,13 @@ export const siteConfigSchema = z.object({
       href: z.string().min(1, "Href is required"),
     })
   ),
-  logoUrl: z.string(),
+  logoUrl: z.string().url(),
+  clientLogoUrls: z.array(
+    z.object({
+      name: z.string().min(1, "Name is required"),
+      imageUrl: z.string().min(1, "Image Url is required"),
+    })
+  ),
   workingHours: z
     .string()
     .max(64, "Cannot exceed 64 characters")
@@ -65,7 +71,7 @@ export const aboutContentSchema = z.object({
     .string()
     .max(64, "Should not exceed 64 characters")
     .min(6, "Should be atleast 6 characters long"),
-  imageUrl: z.string(),
+  imageUrl: z.string().url(),
   description: z
     .string()
     .max(555, "Should not exceed 555 characters")

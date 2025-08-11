@@ -5,11 +5,11 @@ import Navbar from "@/components/common/Navbar";
 import Heading from "@/components/common/Heading";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
-import MenuGallery from "@/components/landing/MenuSlider";
 import MenuSection from "@/components/landing/MenuSection";
 import AboutSection from "@/components/common/AboutSection";
 import BenefitSection from "@/components/landing/BenefitSection";
 import GallerySection from "@/components/landing/GallerySection";
+import OurPartners from "@/components/landing/OurPartners";
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
@@ -23,7 +23,6 @@ export default async function Page() {
   }
 
   const { banners = [] } = await res.json();
-
   let renderType: "home" | "menu" = "home";
 
   return (
@@ -43,7 +42,7 @@ export default async function Page() {
 
         <AboutSection />
 
-        <div className="wrapper">
+        <div className="wrapper pt-0">
           <div className="lg:mb-12 -mb-8 px-4 lg:px-0 flex items-center justify-between w-full">
             <Heading title="our products" />
             {renderType === "home" && (
@@ -60,7 +59,6 @@ export default async function Page() {
           </div>
 
           <MenuSection renderType="home" />
-          
         </div>
 
         <CTASection
@@ -72,6 +70,8 @@ export default async function Page() {
         />
 
         <GallerySection />
+
+        <OurPartners />
       </div>
     </>
   );
