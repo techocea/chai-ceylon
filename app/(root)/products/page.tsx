@@ -1,7 +1,6 @@
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
 import MenuSection from "@/components/landing/MenuSection";
-import Heading from "@/components/common/Heading";
 
 export default async function ProductsPage() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {

@@ -22,22 +22,24 @@ const OurPartners = async () => {
   const clientLogos = SiteConfigContent[0]?.clientLogoUrls || [];
 
   return (
-    <div className="wrapper">
+    <div className="wrapper flex flex-col items-center justify-center">
       <Heading title="our partners" />
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-6 lg:mt-10">
-        {clientLogos.map(
-          (logo: { name: string; imageUrl: string }, index: number) => (
-            <div key={index} className="flex flex-col items-center">
-              <Image
-                src={logo.imageUrl}
-                width={280}
-                height={180}
-                alt={logo.name || `Client Logo ${index + 1}`}
-                className="object-contain"
-              />
-            </div>
-          )
-        )}
+      <div className="max-w-3xl w-full flex items-center justify-center mt-6 lg:mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {clientLogos.map(
+            (logo: { name: string; imageUrl: string }, index: number) => (
+              <div key={index} className="flex flex-col w-48 h-32">
+                <Image
+                  src={logo.imageUrl}
+                  width={192}
+                  height={128}
+                  alt={logo.name || `Client Logo ${index + 1}`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

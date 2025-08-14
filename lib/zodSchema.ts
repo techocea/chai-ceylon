@@ -36,8 +36,8 @@ export const siteConfigSchema = z.object({
   logoUrl: z.string().url(),
   clientLogoUrls: z.array(
     z.object({
-      name: z.string().min(1, "Name is required"),
-      imageUrl: z.string().min(1, "Image Url is required"),
+      name: z.string(),
+      imageUrl: z.string(),
     })
   ),
   workingHours: z
@@ -85,6 +85,29 @@ export const menuSchema = z.object({
         .string()
         .min(2, "Category name is too short")
         .max(255, "Category name too long"),
+      products: z.array(
+        z.object({
+          name: z
+            .string()
+            .min(2, "Name is too short")
+            .max(255, "Name too long"),
+          price: z.coerce.number(),
+          description: z.string().max(255),
+          imageUrl: z.string().url(),
+          isAvailable: z.boolean(),
+        })
+      ),
+    })
+  ),
+});
+
+export const packageSchema = z.object({
+  packages: z.array(
+    z.object({
+      packageType: z
+        .string()
+        .min(2, "Package name is too short")
+        .max(255, "Package name too long"),
       products: z.array(
         z.object({
           name: z

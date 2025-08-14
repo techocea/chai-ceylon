@@ -46,13 +46,13 @@ const Navbar = () => {
           {NAV_ITEMS.map(({ id, href, label }) => (
             <Button
               key={id}
-              variant={id === 5 ? "default" : "ghost"}
-              className={cn(
-                "px-4 py-2",
-                id !== 5 && "hover:underline text-white"
-              )}
+              variant={id === 7 ? "outline" : "ghost"}
+              className={cn("px-4 py-2")}
             >
-              <Link href={href} className="text-white">
+              <Link
+                href={href}
+                className={`${id === 7 ? "text-white hover:text-secondary" : " hover:underline text-white"}`}
+              >
                 {label}
               </Link>
             </Button>

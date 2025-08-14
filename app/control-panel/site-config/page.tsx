@@ -85,17 +85,6 @@ const SiteConfigPage = () => {
   //   setValue("clientLogoUrls", updated, { shouldDirty: true });
   // };
 
-  if (loading) {
-    return (
-      <div className="min-h-[90vh] w-full flex items-center justify-center">
-        <div className="flex gap-2 items-center">
-          <p>Please wait</p>
-          <Loader2 className="animate-spin" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="w-full">
       <div className="bg-gray-50 p-6 mb-8 border border-gray-200 shadow-sm space-y-4">
@@ -179,22 +168,19 @@ const SiteConfigPage = () => {
               logo
             </Label>
 
-            {errors.logoUrl && (
-              <p className="text-sm text-red-500">{errors.logoUrl?.message}</p>
-            )}
-
             {watch("logoUrl") ? (
-              <div className="relative w-full border h-28 overflow-hidden">
+              <div className="relative w-48 border h-32 overflow-hidden">
                 <Image
                   src={watch("logoUrl")}
-                  alt=""
-                  fill
-                  className="object-cover"
+                  alt="Logo Url"
+                  height={112}
+                  width={192}
+                  className="w-full h-full object-contain flex items-center justify-center"
                 />
                 <Button
                   type="button"
                   variant="ghost"
-                  size="sm"
+                  size="icon"
                   className="absolute top-1 right-1 bg-red-600 text-white"
                   onClick={() => {
                     setValue("logoUrl", "", {
@@ -228,19 +214,32 @@ const SiteConfigPage = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label className="font-medium uppercase text-muted-foreground">
-              Client Logos
-            </Label>
+            <div className="flex items-center justify-between w-full">
+              <Label className="font-medium uppercase text-muted-foreground">
+                Partner Logos
+              </Label>
+              <Button
+                type="button"
+                variant="outline"
+                className="border-primary"
+                onClick={() => {
+                  const updated = [...(watch("clientLogoUrls") || [])];
+                  updated.push({ name: "", imageUrl: "" });
+                  setValue("clientLogoUrls", updated, { shouldDirty: true });
+                }}
+              >
+                Add Partner
+              </Button>
+            </div>
 
             {Array.isArray(watch("clientLogoUrls")) &&
               watch("clientLogoUrls").map((logo, index) => (
                 <div
                   key={index}
-                  className="border p-3 rounded-lg flex flex-col gap-2 relative"
+                  className="border p-3 rounded-none flex flex-col gap-2 relative"
                 >
-                  {/* Client Name */}
                   <Input
-                    placeholder="Client Name"
+                    placeholder="Partner Name"
                     value={logo.name || ""}
                     onChange={(e) => {
                       const updated = [...(watch("clientLogoUrls") || [])];
@@ -251,19 +250,18 @@ const SiteConfigPage = () => {
                     }}
                   />
 
-                  {/* Logo Preview */}
                   {logo.imageUrl ? (
-                    <div className="relative w-full border h-28 overflow-hidden">
+                    <div className="relative w-full border h-32 overflow-hidden">
                       <Image
                         src={logo.imageUrl}
                         alt={logo.name || "Client Logo"}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                       <Button
                         type="button"
                         variant="ghost"
-                        size="sm"
+                        size="icon"
                         className="absolute top-1 right-1 bg-red-600 text-white"
                         onClick={() => {
                           const updated = [...(watch("clientLogoUrls") || [])];
@@ -296,44 +294,15 @@ const SiteConfigPage = () => {
                       />
                     </div>
                   )}
-
-                  {/* Remove Button */}
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => {
-                      const updated = [...(watch("clientLogoUrls") || [])];
-                      updated.splice(index, 1);
-                      setValue("clientLogoUrls", updated, {
-                        shouldDirty: true,
-                      });
-                    }}
-                  >
-                    Remove Client
-                  </Button>
                 </div>
               ))}
-
-            {/* Add New Client Button */}
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={() => {
-                const updated = [...(watch("clientLogoUrls") || [])];
-                updated.push({ name: "", imageUrl: "" });
-                setValue("clientLogoUrls", updated, { shouldDirty: true });
-              }}
-            >
-              Add Client
-            </Button>
           </div>
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={loading || !isDirty}>
+            <Button type="submit" disabled={loading}>
               {loading ? (
                 <div className="flex items-center gap-2">
-                  Please Wait{" "}
+                  Please Wait
                   <Loader2 className="animate-spin transition-all duration-200" />
                 </div>
               ) : (

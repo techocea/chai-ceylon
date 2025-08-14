@@ -50,8 +50,8 @@ const SiteConfigSchema = new mongoose.Schema({
   logoUrl: { type: String, required: true },
   clientLogoUrls: [
     {
-      name: { type: String, required: true },
-      imageUrl: { type: String, required: true },
+      name: { type: String },
+      imageUrl: { type: String },
     },
   ],
 });
@@ -139,3 +139,22 @@ const ConceptSchema = new mongoose.Schema(
 );
 export const Concepts =
   mongoose.models.Concepts || mongoose.model("Concepts", ConceptSchema);
+
+/* ---------- 10.  OUR PACKAGES  ---------- */
+const PackageSchema = new mongoose.Schema(
+  {
+    packageType: { type: String, required: true },
+    products: [
+      {
+        name: { type: String, required: true },
+        price: { type: Number, required: true },
+        description: { type: String, required: true },
+        imageUrl: { type: String, required: true },
+        isAvailable: { type: Boolean, default: true },
+      },
+    ],
+  },
+  { timestamps: true }
+);
+export const Packages =
+  mongoose.models.Packages || mongoose.model("Packages", PackageSchema);

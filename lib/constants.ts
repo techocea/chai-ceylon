@@ -13,16 +13,26 @@ export const NAV_ITEMS = [
   },
   {
     id: 3,
+    label: "Events",
+    href: "/events",
+  },
+  {
+    id: 4,
     label: "Our Concepts",
     href: "/our-concepts",
   },
   {
-    id: 4,
+    id: 5,
     label: "Products",
     href: "/products",
   },
   {
-    id: 5,
+    id: 6,
+    label: "Our Packages",
+    href: "/our-packages",
+  },
+  {
+    id: 7,
     label: "Contact",
     href: "/contact-us",
   },
@@ -31,6 +41,7 @@ export const NAV_ITEMS = [
 export const CMS_NAV_ITEMS = [
   { href: "/control-panel", label: "Banners" },
   { href: "/control-panel/menu", label: "Menu" },
+  { href: "/control-panel/our-packages", label: "Our Packages" },
   { href: "/control-panel/site-config", label: "Site Configuration" },
   { href: "/control-panel/about", label: "About Us" },
   { href: "/control-panel/events", label: "Events" },

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Carousel,
@@ -6,6 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "../ui/button";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 interface Product {
   _id: string;
@@ -52,6 +56,14 @@ const MenuSlider = ({ products }: { products: Product[] }) => {
                     {product.price} LKR
                   </span>
                 )}
+              </div>
+
+              <div className="flex items-center justify-center mb-6">
+                <Button
+                  onClick={() => openWhatsApp("94753102400", product.name)}
+                >
+                  Buy Now
+                </Button>
               </div>
             </CarouselItem>
           ))}
