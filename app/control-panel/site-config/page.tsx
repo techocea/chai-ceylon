@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import Image from "next/image";
-import { Loader2, XIcon } from "lucide-react";
+import { Loader2, Plus, XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -13,21 +13,19 @@ import { siteConfigSchema, SiteConfigValues } from "@/lib/zodSchema";
 import { UploadButton } from "@/app/utils/uploadthing";
 
 const SiteConfigPage = () => {
-  const [loading, setLoading] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const {
     register,
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, isDirty },
+    formState: { errors },
     reset,
     trigger,
   } = useForm<SiteConfigValues>({
     resolver: zodResolver(siteConfigSchema),
   });
-
-  // const images = watch("clientLogoUrls") ?? [];
+  const [_, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchSiteConfigData = async () => {
@@ -79,12 +77,6 @@ const SiteConfigPage = () => {
     }
   };
 
-  // const handleImageDelete = (index: number) => {
-  //   const updated = [...images];
-  //   updated.splice(index, 1);
-  //   setValue("clientLogoUrls", updated, { shouldDirty: true });
-  // };
-
   return (
     <div className="w-full">
       <div className="bg-gray-50 p-6 mb-8 border border-gray-200 shadow-sm space-y-4">
@@ -126,26 +118,71 @@ const SiteConfigPage = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="socialMediaLinks"
-              className="font-medium uppercase text-muted-foreground"
-            >
-              social media links
-            </Label>
-            {[0, 1].map((index) => (
-              <div key={index} className="flex gap-2 mb-2">
-                <Input
-                  id={`socialMediaLinks-label-${index}`}
-                  placeholder="Label"
-                  {...register(`socialMediaLinks.${index}.label` as const)}
-                />
-                <Input
-                  id={`socialMediaLinks-href-${index}`}
-                  placeholder="Href"
-                  {...register(`socialMediaLinks.${index}.href` as const)}
-                />
-              </div>
-            ))}
+            <div className="flex items-center justify-between w-full">
+              <Label
+                htmlFor="socialMediaLinks"
+                className="font-medium uppercase text-muted-foreground"
+              >
+                social media links
+              </Label>
+              <Button
+                type="button"
+                variant="outline"
+                className="border-primary"
+                onClick={() => {
+                  const updated = [...(watch("socialMediaLinks") || [])];
+                  updated.push({ label: "", href: "" });
+                  setValue("socialMediaLinks", updated, { shouldDirty: true });
+                }}
+              >
+                <Plus size={16} /> Add Link
+              </Button>
+            </div>
+
+            {Array.isArray(watch("socialMediaLinks")) &&
+              watch("socialMediaLinks").map((link, index) => (
+                <div
+                  key={index}
+                  className="flex gap-2 mb-2 items-center relative"
+                >
+                  <Input
+                    placeholder="Label"
+                    value={link.label || ""}
+                    onChange={(e) => {
+                      const updated = [...(watch("socialMediaLinks") || [])];
+                      updated[index].label = e.target.value;
+                      setValue("socialMediaLinks", updated, {
+                        shouldDirty: true,
+                      });
+                    }}
+                  />
+                  <Input
+                    placeholder="Href"
+                    value={link.href || ""}
+                    onChange={(e) => {
+                      const updated = [...(watch("socialMediaLinks") || [])];
+                      updated[index].href = e.target.value;
+                      setValue("socialMediaLinks", updated, {
+                        shouldDirty: true,
+                      });
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="text-red-500"
+                    onClick={() => {
+                      const updated = [...(watch("socialMediaLinks") || [])];
+                      updated.splice(index, 1);
+                      setValue("socialMediaLinks", updated, {
+                        shouldDirty: true,
+                      });
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              ))}
           </div>
 
           <div className="flex flex-col gap-3">
@@ -228,7 +265,7 @@ const SiteConfigPage = () => {
                   setValue("clientLogoUrls", updated, { shouldDirty: true });
                 }}
               >
-                Add Partner
+                <Plus size={16} /> Add Partner
               </Button>
             </div>
 

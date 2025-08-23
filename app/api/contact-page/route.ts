@@ -8,7 +8,7 @@ export async function GET() {
 
     const contactPageContent = await ContactPage.find({});
 
-    if (!contactPageContent)
+    if (!contactPageContent || contactPageContent.length === 0)
       return NextResponse.json(
         { message: "Contact Page Content Not Found" },
         { status: 404 }
@@ -34,7 +34,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { address, email, phone, workingHours, location } = await req.json();
+    const { address, email, phone, workingHours, locations } = await req.json();
 
     await connectDB();
 
@@ -43,10 +43,8 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       workingHours,
-      location,
+      locations,
     });
-
-    contactPageContent.save();
 
     return NextResponse.json(
       {

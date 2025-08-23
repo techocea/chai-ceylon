@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(req: NextRequest) {
   try {
-    const { address, email, phone, workingHours, location } = await req.json();
+    const { address, email, phone, workingHours, locations } = await req.json();
 
     await connectDB();
 
@@ -14,10 +14,10 @@ export async function PATCH(req: NextRequest) {
         address,
         email,
         phone,
-        location,
+        locations,
         workingHours,
       },
-      { new: true }
+      { new: true, upsert: false }
     );
 
     if (!updatedContactPage)

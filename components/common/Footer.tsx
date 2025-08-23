@@ -69,7 +69,9 @@ const Footer = () => {
                         ? "/icons/facebook.svg"
                         : social.label.toLowerCase().includes("instagram")
                         ? "/icons/instagram.svg"
-                        : "/icons/facebook.svg"
+                        : social.label.toLowerCase().includes("tiktok")
+                        ? "/icons/tiktok.svg"
+                        : "/icons/youtube.svg"
                     }
                     width={32}
                     height={32}

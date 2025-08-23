@@ -46,6 +46,18 @@ export const siteConfigSchema = z.object({
     .min(10, "Should be atleast 10 characters long"),
 });
 
+const locationSchema = z.object({
+  label: z.string().min(1, { message: "Location name is required." }),
+  latitude: z
+    .number({ invalid_type_error: "Latitude must be a number." })
+    .min(-90)
+    .max(90),
+  longitude: z
+    .number({ invalid_type_error: "Longitude must be a number." })
+    .min(-180)
+    .max(180),
+});
+
 export const contactPageContentSchema = z.object({
   address: z
     .string()
@@ -60,10 +72,9 @@ export const contactPageContentSchema = z.object({
     .string()
     .max(64, "Cannot exceed 64 characters")
     .min(10, "Should be atleast 10 characters long"),
-  location: z
-    .string()
-    .max(255, "Cannot exceed 255 characters")
-    .min(10, "Should be atleast 10 characters long"),
+  locations: z
+    .array(locationSchema)
+    .min(1, { message: "At least one location is required." }),
 });
 
 export const aboutContentSchema = z.object({

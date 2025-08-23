@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { XIcon } from "lucide-react";
+import { Plus, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { UploadButton } from "@/app/utils/uploadthing";
 import { useFieldArray, useFormContext } from "react-hook-form";
@@ -123,9 +123,19 @@ const ConceptBlock = ({ conceptIndex, removeConcept }: ConceptBlockProps) => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Label className="font-medium uppercase text-muted-foreground">
-            Points
-          </Label>
+          <div className="flex justify-between items-center w-full">
+            <Label className="font-medium uppercase text-muted-foreground">
+              Points
+            </Label>
+            <Button
+              type="button"
+              variant="outline"
+              className="border-primary"
+              onClick={() => appendPoint("")}
+            >
+              <Plus size={16} /> Add Point
+            </Button>
+          </div>
 
           {pointFields.length === 0 && (
             <p className="text-gray-500 text-sm">No points added yet.</p>
@@ -148,15 +158,6 @@ const ConceptBlock = ({ conceptIndex, removeConcept }: ConceptBlockProps) => {
               </Button>
             </div>
           ))}
-
-          <Button
-            type="button"
-            variant="default"
-            className="w-fit"
-            onClick={() => appendPoint("")}
-          >
-            + Add Point
-          </Button>
 
           {errors.concepts?.[conceptIndex]?.points && (
             <p className="text-sm text-red-500">

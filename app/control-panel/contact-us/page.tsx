@@ -1,8 +1,8 @@
 "use client";
 
 import axios from "axios";
-import { Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { Loader2, Plus } from "lucide-react";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,26 +16,37 @@ import {
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+
   const {
     handleSubmit,
     register,
     reset,
+    control,
     formState: { errors, isDirty },
   } = useForm<ContactPageContentValues>({
     resolver: zodResolver(contactPageContentSchema),
+    defaultValues: {
+      locations: [{ label: "", latitude: 0, longitude: 0 }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "locations",
   });
 
   useEffect(() => {
     const fetchContactPageContent = async () => {
+      setLoading(true);
       try {
         const res = await axios.get("/api/contact-page");
-        if (res.status === 200 && res.data) {
+        if (res.data.contactPageContent?.length > 0) {
           setIsEditing(true);
           reset(res.data.contactPageContent[0]);
         }
-        console.log(res.data.contactPageContent[0]);
       } catch (error) {
         console.error("Error in fetching Contact Page Content:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -77,12 +88,13 @@ const ContactPage = () => {
     <div className="w-full">
       <div className="bg-gray-50 p-6 mb-8 border border-gray-200 shadow-sm space-y-4">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          {/* Static form fields for address, phone, email, etc. */}
           <div className="flex flex-col gap-3">
             <Label
               htmlFor="address"
               className="font-medium uppercase text-muted-foreground"
             >
-              address
+              Address
             </Label>
             <Input id="address" {...register("address")} />
             {errors.address && (
@@ -95,7 +107,7 @@ const ContactPage = () => {
               htmlFor="phone"
               className="font-medium uppercase text-muted-foreground"
             >
-              phone
+              Phone
             </Label>
             <Input id="phone" {...register("phone")} />
             {errors.phone && (
@@ -108,7 +120,7 @@ const ContactPage = () => {
               htmlFor="email"
               className="font-medium uppercase text-muted-foreground"
             >
-              email
+              Email
             </Label>
             <Input id="email" {...register("email")} />
             {errors.email && (
@@ -121,7 +133,7 @@ const ContactPage = () => {
               htmlFor="workingHours"
               className="font-medium uppercase text-muted-foreground"
             >
-              opening time
+              Opening Hours
             </Label>
             <Input id="workingHours" {...register("workingHours")} />
             {errors.workingHours && (
@@ -131,17 +143,104 @@ const ContactPage = () => {
             )}
           </div>
 
+          {/* Dynamic location fields */}
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="location"
-              className="font-medium uppercase text-muted-foreground"
-            >
-              outlet locations
-            </Label>
-            <Input id="location" {...register("location")} />
-            {errors.location && (
-              <p className="text-sm text-red-500">{errors.location.message}</p>
-            )}
+            <div className="flex items-center justify-between w-full">
+              <Label
+                htmlFor="locations"
+                className="font-medium uppercase text-muted-foreground"
+              >
+                Outlet Locations
+              </Label>
+              <Button
+                type="button"
+                variant="outline"
+                className="border-primary"
+                onClick={() => append({ label: "", latitude: 0, longitude: 0 })}
+              >
+                <Plus size={16} /> Add Location
+              </Button>
+            </div>
+
+            {fields.map((field, index) => (
+              <div
+                key={field.id}
+                className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 space-y-4 relative"
+              >
+                <Button
+                  type="button"
+                  variant="link"
+                  className="text-red-500 absolute top-2 right-2"
+                  onClick={() => remove(index)}
+                >
+                  Remove
+                </Button>
+
+                <div className="flex flex-col gap-3">
+                  <Label
+                    htmlFor={`locations.${index}.label`}
+                    className="font-medium text-sm"
+                  >
+                    Location Name
+                  </Label>
+                  <Input
+                    placeholder="e.g., Colombo Outlet"
+                    {...register(`locations.${index}.label`)}
+                  />
+                  {errors.locations?.[index]?.label && (
+                    <p className="text-sm text-red-500">
+                      {errors.locations[index]?.label?.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex flex-col gap-3 w-1/2">
+                    <Label
+                      htmlFor={`locations.${index}.latitude`}
+                      className="font-medium text-sm"
+                    >
+                      Latitude
+                    </Label>
+                    <Input
+                      type="number"
+                      step="any"
+                      placeholder="e.g., 6.927079"
+                      {...register(`locations.${index}.latitude`, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.locations?.[index]?.latitude && (
+                      <p className="text-sm text-red-500">
+                        {errors.locations[index]?.latitude?.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col gap-3 w-1/2">
+                    <Label
+                      htmlFor={`locations.${index}.longitude`}
+                      className="font-medium text-sm"
+                    >
+                      Longitude
+                    </Label>
+                    <Input
+                      type="number"
+                      step="any"
+                      placeholder="e.g., 79.861244"
+                      {...register(`locations.${index}.longitude`, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.locations?.[index]?.longitude && (
+                      <p className="text-sm text-red-500">
+                        {errors.locations[index]?.longitude?.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="flex justify-end">

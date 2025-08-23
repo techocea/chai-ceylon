@@ -24,6 +24,7 @@
     "embla-carousel-react": "^8.6.0",
     "jose": "^6.0.12",
     "jsonwebtoken": "^9.0.2",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.522.0",
     "mongoose": "^8.16.1",
     "motion": "^12.18.1",
@@ -31,6 +32,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.58.1",
+    "react-leaflet": "^5.0.0",
     "tailwind-merge": "^3.3.1",
     "uploadthing": "^7.7.3",
     "zod": "^3.25.67"
@@ -39,6 +41,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/leaflet": "^1.9.20",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

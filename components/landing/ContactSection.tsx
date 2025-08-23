@@ -5,30 +5,45 @@ import Heading from "../common/Heading";
 import ContactForm from "./ContactForm";
 import axios from "axios";
 import { Clock, MailCheck, MapPin, PhoneCall } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Update the Location type to match the new data structure
+type Location = {
+  _id?: string;
+  label: string;
+  latitude: number;
+  longitude: number;
+};
 
 interface ContactPageDataProps {
   address: string;
   phone: string;
   email: string;
   workingHours: string;
-  location: string;
+  locations: Location[];
 }
 
+const ContactMap = dynamic(() => import("./ContactMap"), {
+  ssr: false,
+});
+
 const ContactSection = () => {
-  const [contactPageData, setContactPageData] =
-    useState<ContactPageDataProps | null>(null);
+  const [contactPageData, setContactPageData] = useState<ContactPageDataProps | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchContactPageData = async () => {
       try {
         const res = await axios.get("/api/contact-page");
-        if (res.data && res.status === 200) {
+        if (res.data.contactPageContent?.length > 0) {
           setContactPageData(res.data.contactPageContent[0]);
         } else {
-          console.error("Error in fetching Contact Page Content");
+          console.error("No contact page content found.");
         }
       } catch (error) {
-        console.error("Error in fetching Contact Page Content:", error);
+        console.error("Error fetching Contact Page Content:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -44,63 +59,52 @@ const ContactSection = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
         <div className="flex flex-col items-center justify-center h-48 py-4 px-1.5 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div className="bg-primary w-16 h-16 flex items-center justify-center ">
+          <div className="bg-primary w-16 h-16 flex items-center justify-center">
             <MapPin className="text-white" size={32} />
           </div>
-          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
-            Address
-          </p>
+          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">Address</p>
           <p className="mt-1 text-muted-foreground text-sm text-center">
-            {contactPageData?.address || "-"}
+            {contactPageData?.address || (loading ? "Loading..." : "-")}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center h-48 py-4 px-1.5 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div className="bg-primary w-16 h-16 flex items-center justify-center ">
+          <div className="bg-primary w-16 h-16 flex items-center justify-center">
             <PhoneCall className="text-white" size={32} />
           </div>
-          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
-            Contact
-          </p>
+          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">Contact</p>
           <p className="mt-1 text-muted-foreground text-sm text-center">
-            {contactPageData?.phone || "-"}
+            {contactPageData?.phone || (loading ? "Loading..." : "-")}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center h-48 py-4 px-1.5 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div className="bg-primary w-16 h-16 flex items-center justify-center ">
+          <div className="bg-primary w-16 h-16 flex items-center justify-center">
             <MailCheck className="text-white" size={32} />
           </div>
-          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
-            Email
-          </p>
+          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">Email</p>
           <p className="mt-1 text-muted-foreground text-sm text-center">
-            {contactPageData?.email || "-"}
+            {contactPageData?.email || (loading ? "Loading..." : "-")}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center h-48 py-4 px-1.5 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div className="bg-primary w-16 h-16 flex items-center justify-center ">
+          <div className="bg-primary w-16 h-16 flex items-center justify-center">
             <Clock className="text-white" size={32} />
           </div>
-          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">
-            Working Hours
-          </p>
+          <p className="mt-2 text-primary font-playfair-display text-lg font-bold">Working Hours</p>
           <p className="mt-1 text-muted-foreground text-sm text-center">
-            {contactPageData?.workingHours || "-"}
+            {contactPageData?.workingHours || (loading ? "Loading..." : "-")}
           </p>
         </div>
       </div>
 
       <div className="flex flex-col-reverse gap-10 lg:gap-0 lg:flex-row w-full lg:mt-32 mt-16">
         <div className="flex-1 mt-16 lg:mt-0">
-          <iframe
-            src={
-              contactPageData?.location ||
-              "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.59044481431!2d79.84483923314275!3d6.902846641849903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25961265f9517%3A0x70b4d5a5cf6c452e!2sBambalapitiya%2C%20Colombo!5e0!3m2!1sen!2slk!4v1750600399892!5m2!1sen!2slk"
-            }
-            className="lg:max-w-lg w-full min-h-[420px]"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-          ></iframe>
+          {loading ? (
+            <div className="flex justify-center items-center h-96 bg-gray-100 rounded-lg">
+              <p>Loading map...</p>
+            </div>
+          ) : (
+            <ContactMap locations={contactPageData?.locations || []} />
+          )}
         </div>
         <div className="flex-1 mt-16 lg:mt-0">
           <ContactForm />

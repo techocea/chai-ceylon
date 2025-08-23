@@ -100,13 +100,19 @@ export const MenuGalleryItem =
   mongoose.model("MenuGalleryItem", MenuGallerySchema);
 
 /* ---------- 7.  CONTACT US ---------- */
+const LocationSchema = new mongoose.Schema({
+  label: { type: String, required: true },
+  latitude: { type: Number, required: true },
+  longitude: { type: Number, required: true },
+});
+
 const ContactPageSchema = new mongoose.Schema(
   {
     address: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
     workingHours: { type: String, required: true },
-    location: { type: String, required: true },
+    locations: [{ type: LocationSchema, required: true }],
   },
   { timestamps: true }
 );

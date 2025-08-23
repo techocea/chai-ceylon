@@ -1,6 +1,8 @@
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
-import ContactSection from "@/components/landing/ContactSection";
+import ContactSectionWrapper from "@/components/landing/ContactSectionWrapper";
+
+
 
 export default async function ContactPage() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
@@ -28,7 +30,7 @@ export default async function ContactPage() {
           imageUrl={banners[4].imageUrl}
         />
 
-        <ContactSection />
+        <ContactSectionWrapper />
       </div>
     </main>
   );
