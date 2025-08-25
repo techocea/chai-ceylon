@@ -24,19 +24,22 @@ type Location = {
 
 export default function ContactMap({ locations }: { locations: Location[] }) {
     // Filter out any locations without valid coordinates
-    const validLocations = locations.filter(loc =>
-        loc.latitude !== undefined && loc.longitude !== undefined
+    const validLocations = locations.filter(
+        (loc) => loc.latitude !== undefined && loc.longitude !== undefined
     );
 
     if (validLocations.length === 0) return null;
 
     // Set the map center to the first valid location
-    const centerPosition = [validLocations[0].latitude, validLocations[0].longitude] as [number, number];
+    const centerPosition = [
+        validLocations[0].latitude,
+        validLocations[0].longitude,
+    ] as [number, number];
 
     return (
         <MapContainer
             center={centerPosition}
-            zoom={12}
+            zoom={50}
             scrollWheelZoom={true}
             className="w-full h-[500px] rounded-xl shadow-lg"
         >
@@ -51,7 +54,16 @@ export default function ContactMap({ locations }: { locations: Location[] }) {
                     position={[loc.latitude, loc.longitude]}
                     icon={icon}
                 >
-                    <Popup>{loc.label}</Popup>
+                    <Popup>
+                        <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline"
+                        >
+                            {loc.label}
+                        </a>
+                    </Popup>
                 </Marker>
             ))}
         </MapContainer>
