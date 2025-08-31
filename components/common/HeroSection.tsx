@@ -31,14 +31,14 @@ const HeroSection = ({
       </div>
 
       <div className="absolute mt-10 h-[73vh] w-full z-10 top-0 left-0 lg:left-10 xl:left-[25%] lg:max-w-lg flex items-center justify-center">
-        <div className="relative w-full sm:pr-2 z-20 space-y-8 lg:space-y-4 px-4 lg:pl-0 lg:pr-0 py-8 sm:py-4 lg:py-0 top-0 left-0 text-white sm:max-w-md flex flex-col justify-center h-auto">
+        <div className="relative w-full sm:pr-2 z-20 space-y-6 px-4 lg:pl-0 lg:pr-0 py-8 sm:py-4 lg:py-0 top-0 left-0 text-white sm:max-w-md flex flex-col justify-center h-auto">
           <h1 className="title">{title}</h1>
-          <p className="text-[16px]">{description}</p>
+          <p className="text-lg">{description}</p>
           <div>
             <Link href="/products">
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2 text-lg py-4">
                 {buttonText}
-                <ArrowRight size={18} />
+                <ArrowRight size={24} />
               </Button>
             </Link>
           </div>

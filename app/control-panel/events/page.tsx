@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import EventBlock from "@/components/control-panel/EventBlock";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Event {
   _id?: string;
@@ -107,7 +108,7 @@ const EventsPage = () => {
           date: "",
         },
       ]);
-      alert("Failed to load events. Please refresh or try again.");
+      toast.error("Failed to load events");
     } finally {
       setLoading(false);
     }
@@ -128,7 +129,7 @@ const EventsPage = () => {
       });
 
       await Promise.all(promises);
-      alert(
+      toast.success(
         data.event.some((item) => item._id)
           ? "Events updated successfully!"
           : "Event(s) saved successfully!"
@@ -136,7 +137,7 @@ const EventsPage = () => {
       fetchEvents();
     } catch (error) {
       console.error("Error saving event:", error);
-      alert("Failed to save event!");
+      toast.error("Failed to save event!");
     }
   };
 

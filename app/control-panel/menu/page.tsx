@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm, useFieldArray, FormProvider } from "react-hook-form";
 import CategoryBlock from "@/components/control-panel/CategoryBlock";
+import toast from "react-hot-toast";
 
 interface Product {
   _id?: string;
@@ -108,7 +109,7 @@ const MenuPage = () => {
           },
         ],
       });
-      alert("Failed to load menu. Please refresh or try again.");
+      toast.error("Failed to load content");
     } finally {
       setLoading(false);
     }
@@ -124,23 +125,10 @@ const MenuPage = () => {
       const categoriesToCreate: MenuItem[] = [];
 
       data.menu.forEach((item) => {
-        const sanitizedProducts = item.products.map((product) => ({
-          name: product.name,
-          price: Number(product.price),
-          description: product.description || "",
-          imageUrl: product.imageUrl || "",
-          isAvailable: Boolean(product.isAvailable),
-        }));
-
-        const sanitizedItem = {
-          category: item.category,
-          products: sanitizedProducts,
-        };
-
         if (item._id) {
-          categoriesToUpdate.push({ ...sanitizedItem, _id: item._id });
+          categoriesToUpdate.push(item);
         } else {
-          categoriesToCreate.push(sanitizedItem);
+          categoriesToCreate.push(item);
         }
       });
 
@@ -158,10 +146,10 @@ const MenuPage = () => {
       await Promise.all([...updatePromises, ...createPromises]);
       await fetchMenu();
 
-      alert("Menu saved successfully!");
+      toast.success("Menu saved successfully!");
     } catch (err) {
       console.error("Error saving menu:", err);
-      alert("Save failed. Please check your inputs and try again.");
+      toast.error("Save failed. Please check your inputs and try again.");
     }
   };
 

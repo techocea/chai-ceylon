@@ -38,7 +38,7 @@ export default async function OurPackagesPage() {
                     imageUrl={banners[3].imageUrl}
                 />
 
-                <div className="wrapper px-0">
+                <div className="wrapper">
                     <PackagesSection packages={packages} />
                 </div>
             </div>

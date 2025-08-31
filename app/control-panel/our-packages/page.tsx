@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm, useFieldArray, FormProvider } from "react-hook-form";
 import PackageBlock from "@/components/control-panel/PackageBlock";
+import toast from "react-hot-toast";
 
 interface Product {
   _id?: string;
@@ -108,7 +109,7 @@ const OurPackagesPage = () => {
           },
         ],
       });
-      alert("Failed to load packages. Please refresh or try again.");
+      toast.error("Failed to load content");
     } finally {
       setLoading(false);
     }
@@ -124,23 +125,10 @@ const OurPackagesPage = () => {
       const packagesToCreate: Package[] = [];
 
       data.packages.forEach((item) => {
-        const sanitizedProducts = item.products.map((product) => ({
-          name: product.name,
-          price: Number(product.price),
-          description: product.description || "",
-          imageUrl: product.imageUrl || "",
-          isAvailable: Boolean(product.isAvailable),
-        }));
-
-        const sanitizedItem = {
-          packageType: item.packageType,
-          products: sanitizedProducts,
-        };
-
         if (item._id) {
-          packagesToUpdate.push({ ...sanitizedItem, _id: item._id });
+          packagesToUpdate.push(item);
         } else {
-          packagesToCreate.push(sanitizedItem);
+          packagesToCreate.push(item);
         }
       });
 
@@ -158,10 +146,10 @@ const OurPackagesPage = () => {
       await Promise.all([...updatePromises, ...createPromises]);
       await fetchPackages();
 
-      alert("Packag saved successfully!");
+      toast.success("Package saved successfully!");
     } catch (err) {
       console.error("Error saving package:", err);
-      alert("Save failed. Please check your inputs and try again.");
+      toast.error("Failed to save");
     }
   };
 

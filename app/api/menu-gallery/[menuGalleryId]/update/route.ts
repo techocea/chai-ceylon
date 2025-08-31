@@ -12,7 +12,6 @@ interface MenuGalleryProps {
 export async function PATCH(req: NextRequest, { params }: MenuGalleryProps) {
   try {
     const { menuGalleryId } = await params;
-
     const { imageUrl, slug } = await req.json();
 
     if (!mongoose.Types.ObjectId.isValid(menuGalleryId)) {

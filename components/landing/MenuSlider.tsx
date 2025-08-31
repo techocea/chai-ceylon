@@ -27,19 +27,19 @@ const MenuSlider = ({ products }: { products: Product[] }) => {
         opts={{
           align: "start",
         }}
-        className="w-full mb-24"
+        className="w-full"
       >
         <CarouselContent className="space-x-2">
           {products.map((product) => (
             <CarouselItem
               key={product._id}
-              className="rounded-lg border-1 border-primary border-b-primary border-b-[6px] shadow-md flex flex-col basis-[80vw] xs:basis-[320px] md:basis-1/2 lg:basis-1/4 mx-1 lg:ml-4"
+              className="rounded-lg border-1 mx-2 max-w-[386px] border-primary border-b-primary border-b-[6px] shadow-md flex flex-col basis-full md:basis-1/2 lg:basis-1/4"
             >
               <div className="h-40 w-full bg-gray-100 flex items-center justify-center overflow-hidden">
                 <Image
                   src={product.imageUrl}
                   alt={product.name}
-                  width={360}
+                  width={390}
                   height={160}
                   className="object-cover h-full rounded-sm w-full"
                 />

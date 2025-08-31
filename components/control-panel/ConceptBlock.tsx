@@ -66,10 +66,10 @@ const ConceptBlock = ({ conceptIndex, removeConcept }: ConceptBlockProps) => {
       if (res.status === 200) {
         removeConcept(conceptIndex);
       } else {
-        alert("Failed to delete concept.");
+        toast("Failed to delete concept.");
       }
     } catch (error) {
-      alert("Error deleting concept.");
+      toast("Error deleting concept.");
     }
   };
 
@@ -213,7 +213,7 @@ const ConceptBlock = ({ conceptIndex, removeConcept }: ConceptBlockProps) => {
                     });
                   }}
                   onUploadError={(error: Error) => {
-                    alert(`Upload Error: ${error.message}`);
+                    toast(`Upload Error: ${error.message}`);
                   }}
                 />
               </div>

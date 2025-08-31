@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import ConceptBlock from "@/components/control-panel/ConceptBlock";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Concept {
   _id?: string;
@@ -123,7 +124,7 @@ const ConceptsPage = () => {
       });
 
       await Promise.all(promises);
-      alert(
+      toast.success(
         data.concepts.some((item) => item._id)
           ? "Concepts updated successfully!"
           : "Concept(s) saved successfully!"
@@ -131,7 +132,7 @@ const ConceptsPage = () => {
       fetchConcepts();
     } catch (error) {
       console.error("Error saving concept:", error);
-      alert("Failed to save concept!");
+      toast.error("Failed to save concept!");
     }
   };
 

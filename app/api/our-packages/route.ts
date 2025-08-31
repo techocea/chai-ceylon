@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
     const { packages } = await req.json();
 
     if (!packages || !Array.isArray(packages)) {
-      return NextResponse.json({ error: "Invalid packages data" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid packages data" },
+        { status: 400 }
+      );
     }
 
     await connectDB();
@@ -59,46 +62,6 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     console.log("Error in packages Content[POST]:", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function PUT(req: NextRequest) {
-  try {
-    const { packages } = await req.json();
-
-    if (!packages || Array.isArray(packages))
-      return NextResponse.json(
-        { message: "Invalid packages data provided to update" },
-        { status: 400 }
-      );
-
-    await connectDB();
-    await Packages.deleteMany({});
-
-    const sanitizedpackages = packages.map((item: any) => ({
-      packageType: String(item.packageType),
-      products: Array.isArray(item.products)
-        ? item.products.map((product: any) => ({
-            name: String(product.name),
-            price: Number(product.price),
-            description: String(product.description || ""),
-            isAvailable: Boolean(product.isAvailable),
-          }))
-        : [],
-    }));
-
-    const updatedpackages = await Packages.insertMany(sanitizedpackages);
-
-    return NextResponse.json(
-      { message: "packages updated successfully", updatedpackages },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.log("Error in packages Content[PUT]:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

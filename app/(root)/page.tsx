@@ -30,7 +30,7 @@ export default async function Page() {
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
-      <div className="pb-32">
+      <div className="">
         <HeroSection
           title={banners[0].title}
           description={banners[0].description}

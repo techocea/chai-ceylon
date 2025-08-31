@@ -62,10 +62,10 @@ const EventBlock = ({ eventIndex, removeEvent }: EventBlockProps) => {
       if (res.status === 200) {
         removeEvent(eventIndex);
       } else {
-        alert("Failed to delete event.");
+        toast("Failed to delete event.");
       }
     } catch (error) {
-      alert("Error deleting event.");
+      toast("Error deleting event.");
     }
   };
 
@@ -180,7 +180,7 @@ const EventBlock = ({ eventIndex, removeEvent }: EventBlockProps) => {
                   );
                 }}
                 onUploadError={(error: Error) => {
-                  alert(`Upload Error: ${error.message}`);
+                  toast(`Upload Error: ${error.message}`);
                 }}
               />
             </div>

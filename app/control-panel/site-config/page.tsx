@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { siteConfigSchema, SiteConfigValues } from "@/lib/zodSchema";
 import { UploadButton } from "@/app/utils/uploadthing";
+import toast from "react-hot-toast";
 
 const SiteConfigPage = () => {
   const {
@@ -65,12 +66,12 @@ const SiteConfigPage = () => {
       }
 
       if (response.status === 200) {
-        alert("SiteConfig content saved successfully");
+        toast.success("Saved successfully");
       } else {
-        alert("Error in saving SiteConfig Content");
+        toast.error("Failed to save content");
       }
     } catch (error) {
-      alert("Error in publishing SiteConfig Content");
+      toast.error("Error in saving Content");
       console.error("Error in publishing SiteConfig Content:", error);
     } finally {
       setLoading(false);
@@ -240,10 +241,10 @@ const SiteConfigPage = () => {
                     setValue("logoUrl", uploadUrl, {
                       shouldDirty: true,
                     });
-                    alert("Image uploaded successfully!");
+                    toast("Image uploaded successfully!");
                   }}
                   onUploadError={(error: Error) => {
-                    alert(`ERROR! ${error.message}`);
+                    toast(`ERROR! ${error.message}`);
                   }}
                 />
               </div>
@@ -323,10 +324,10 @@ const SiteConfigPage = () => {
                           setValue("clientLogoUrls", updated, {
                             shouldDirty: true,
                           });
-                          alert("Image uploaded successfully!");
+                          toast("Image uploaded successfully!");
                         }}
                         onUploadError={(error: Error) => {
-                          alert(`ERROR! ${error.message}`);
+                          toast(`ERROR! ${error.message}`);
                         }}
                       />
                     </div>

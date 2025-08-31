@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { NAV_ITEMS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { Menu, XIcon } from "lucide-react";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,8 +54,8 @@ const Navbar = () => {
               <Link
                 href={href}
                 className={`${id === 7
-                    ? "text-white hover:text-secondary"
-                    : " hover:underline text-white"
+                  ? "text-white hover:text-secondary"
+                  : " hover:underline text-white"
                   }`}
               >
                 {label}
@@ -68,50 +69,20 @@ const Navbar = () => {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen((open) => !open)}
         >
-          {mobileOpen ? (
-            // X Icon
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            // Hamburger Icon
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
+          {mobileOpen ? <XIcon className="text-white z-20" size={32} /> : <Menu className="text-white" size={32} />}
         </button>
       </div>
       {/* Mobile Nav */}
       {mobileOpen && (
-        <nav className="lg:hidden h-96 mt-4 flex flex-col gap-2 w-screen absolute left-0 bg-black p-4">
+        <nav className="lg:hidden h-120 z-10 top-0 flex flex-col gap-2 w-screen absolute left-0 bg-black p-4">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {NAV_ITEMS.map(({ id, href, label }) => (
               <Button
                 key={id}
-                variant={id === 5 ? "default" : "ghost"}
+                variant={id === 7 ? "default" : "ghost"}
                 className={cn(
                   "w-full justify-start px-4 py-6",
-                  id !== 5 && "hover:underline text-white"
+                  id !== 7 && "hover:underline text-white"
                 )}
                 onClick={() => setMobileOpen(false)}
               >

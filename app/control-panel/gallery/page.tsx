@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UploadButton } from "@/app/utils/uploadthing";
 import { gallerySchema, GalleryValues } from "@/lib/zodSchema";
+import toast from "react-hot-toast";
 
 const GalleryPage = () => {
   const {
@@ -36,6 +37,7 @@ const GalleryPage = () => {
         }
       } catch (err) {
         console.error("Error fetching gallery:", err);
+        toast.error("Failed to fetch content");
       } finally {
         setLoading(false);
       }
@@ -53,11 +55,11 @@ const GalleryPage = () => {
     try {
       const res = await axios.patch("/api/gallery/update", data);
       if (res.status === 200) {
-        alert("Gallery saved successfully!");
+        toast.success("Saved successfully!");
       }
     } catch (error) {
       console.error("Error saving gallery:", error);
-      alert("Failed to save gallery");
+      toast.error("Failed to save content");
     }
   };
 
@@ -118,7 +120,7 @@ const GalleryPage = () => {
                   });
                 }}
                 onUploadError={(error: Error) => {
-                  alert(`Upload Error: ${error.message}`);
+                  toast(`Upload Error: ${error.message}`);
                 }}
               />
             </div>

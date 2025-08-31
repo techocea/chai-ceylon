@@ -99,12 +99,11 @@ function NotificationMessage({
 }) {
   return (
     <div
-      className={`border-l-4 px-4 py-3 rounded mb-4 ${
-        success
+      className={`border-l-4 px-4 py-3 rounded mb-4 ${success
           ? "border-green-500 bg-green-100 text-green-700"
           : "border-red-500 bg-red-100 text-red-700"
-      }`}
-      role="alert"
+        }`}
+      role="toast"
     >
       {success || error}
     </div>

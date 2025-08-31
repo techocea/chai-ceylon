@@ -66,42 +66,4 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function PUT(req: NextRequest) {
-  try {
-    const { menu } = await req.json();
 
-    if (!menu || Array.isArray(menu))
-      return NextResponse.json(
-        { message: "Invalid menu data provided to update" },
-        { status: 400 }
-      );
-
-    await connectDB();
-    await MenuItem.deleteMany({});
-
-    const sanitizedMenu = menu.map((item: any) => ({
-      category: String(item.category),
-      products: Array.isArray(item.products)
-        ? item.products.map((product: any) => ({
-            name: String(product.name),
-            price: Number(product.price),
-            description: String(product.description || ""),
-            isAvailable: Boolean(product.isAvailable),
-          }))
-        : [],
-    }));
-
-    const updatedMenu = await MenuItem.insertMany(sanitizedMenu);
-
-    return NextResponse.json(
-      { message: "Menu updated successfully", updatedMenu },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.log("Error in Menu Content[PUT]:", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}

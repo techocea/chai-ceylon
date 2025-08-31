@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UploadButton } from "@/app/utils/uploadthing";
 import { menuGallerySchema, MenuGalleryValues } from "@/lib/zodSchema";
+import toast from "react-hot-toast";
 
 const MenuGallery = () => {
   const {
@@ -43,7 +44,7 @@ const MenuGallery = () => {
           replace(res.data.gallery);
         }
       } catch (error) {
-        alert("Failed to load Menu Gallery content. Please try again.");
+        toast.error("Failed to load content");
       } finally {
         setLoading(false);
       }
@@ -62,10 +63,10 @@ const MenuGallery = () => {
     setLoading(true);
     try {
       await axios.post("/api/menu-gallery", data);
-      alert("Gallery saved!");
+      toast.success("Saved successfully!");
       reset(data);
     } catch {
-      alert("Failed to save gallery.");
+      toast.error("Failed to save content");
     } finally {
       setLoading(false);
     }
@@ -119,7 +120,7 @@ const MenuGallery = () => {
                   });
                 }}
                 onUploadError={(error: Error) => {
-                  alert(`Upload Error: ${error.message}`);
+                  toast(`Upload Error: ${error.message}`);
                 }}
               />
             </div>

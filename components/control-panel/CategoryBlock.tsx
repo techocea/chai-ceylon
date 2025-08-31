@@ -252,7 +252,7 @@ export default function CategoryBlock({
                         );
                       }}
                       onUploadError={(error: Error) => {
-                        alert(`Upload Error: ${error.message}`);
+                        toast(`Upload Error: ${error.message}`);
                       }}
                     />
                   </div>

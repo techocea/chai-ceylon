@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UploadButton } from "@/app/utils/uploadthing";
 import { useForm, useFieldArray } from "react-hook-form";
 import { bannerSchema, BannerValues } from "@/lib/zodSchema";
+import toast from "react-hot-toast";
 
 const bannerTypes = [
   "home",
@@ -61,6 +62,7 @@ export default function ControlPageBanners() {
       }
     } catch (error) {
       console.error("Error in fetching Banner Content:", error);
+      toast.error("Error in fetching Banner Content");
     } finally {
       setLoading(false);
     }
@@ -82,11 +84,11 @@ export default function ControlPageBanners() {
       });
 
       await Promise.all(updatePromises);
-      alert("Banners saved!");
+      toast.success("Banners saved!");
       await getBannerData();
     } catch (error) {
       console.error("Error saving Banner:", error);
-      alert("Failed to save");
+      toast.error("Failed to save banner");
     } finally {
       setLoading(false);
     }
@@ -163,7 +165,9 @@ export default function ControlPageBanners() {
                       shouldDirty: true,
                     });
                   }}
-                  onUploadError={(err) => alert(err.message)}
+                  onUploadError={(err) => {
+                    toast.error(err.message || "Upload failed");
+                  }}
                 />
               </div>
             )}

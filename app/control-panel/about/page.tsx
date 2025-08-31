@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { aboutContentSchema, AboutContentValues } from "@/lib/zodSchema";
 import { UploadButton } from "@/app/utils/uploadthing";
+import toast from "react-hot-toast";
 
 const AboutPage = () => {
   const {
@@ -40,11 +41,11 @@ const AboutPage = () => {
           console.error(
             "No existing About Us content found or insufficient data. Initializing with default blocks."
           );
+          toast.error("Failed to load About Us content");
         }
       } catch (error) {
         console.error("Error in fetching About Us Content:", error);
-
-        alert("Failed to load About Us content. Please try again.");
+        toast.error("Failed to load About Us content");
       } finally {
         setLoading(false);
       }
@@ -58,17 +59,13 @@ const AboutPage = () => {
       const res = await axios.patch("/api/about/update", data);
 
       if (res.status === 200) {
-        alert("About Us content saved successfully!");
+        toast.success("Saved successfully!");
       } else {
-        alert(
-          "Failed to save About Us content. Please check your inputs and try again."
-        );
+        toast.error("Failed to save content");
       }
     } catch (error) {
-      console.error("Error saving About Us content:", error);
-      alert(
-        "Failed to save About Us content. Please check your inputs and try again."
-      );
+      console.error("Error in saving About Us content:", error);
+      toast.error("Failed to save content");
     } finally {
       setLoading(false);
     }
@@ -162,10 +159,10 @@ const AboutPage = () => {
                     setValue("imageUrl", uploadUrl, {
                       shouldDirty: true,
                     });
-                    alert("Image uploaded successfully!");
+                    toast("Image uploaded successfully!");
                   }}
                   onUploadError={(error: Error) => {
-                    alert(`ERROR! ${error.message}`);
+                    toast.error(`Upload Failed! ${error.message}`);
                   }}
                 />
               </div>

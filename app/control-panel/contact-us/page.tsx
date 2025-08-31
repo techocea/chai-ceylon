@@ -12,6 +12,7 @@ import {
   contactPageContentSchema,
   ContactPageContentValues,
 } from "@/lib/zodSchema";
+import toast from "react-hot-toast";
 
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ const ContactPage = () => {
         }
       } catch (error) {
         console.error("Error in fetching Contact Page Content:", error);
+        toast.error("Failed to fetch content");
       } finally {
         setLoading(false);
       }
@@ -61,12 +63,12 @@ const ContactPage = () => {
         : await axios.post("/api/contact-page", data);
 
       if (res.status === 200) {
-        alert("Contact Page content saved successfully");
+        toast.success("Saved successfully");
       } else {
-        alert("Error in saving Contact Page Content");
+        toast.error("Error in saving content");
       }
     } catch (error) {
-      alert("Error in publishing Contact Page Content");
+      toast.error("Failed to save content");
       console.error("Error in publishing Contact Page Content:", error);
     } finally {
       setLoading(false);

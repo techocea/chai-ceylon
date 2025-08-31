@@ -7,7 +7,7 @@ import React from "react";
 
 const GallerySection = () => {
   return (
-    <section className="wrapper mt-8">
+    <section className="wrapper">
       <div className="mb-8 flex items-center justify-between w-full">
         <Heading title="our gallery" />
         <div className="flex-center justify-center">

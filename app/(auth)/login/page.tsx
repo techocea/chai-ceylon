@@ -13,6 +13,7 @@ import BgGradient from "@/components/control-panel/BgGradient";
 import AuthNavbar from "@/components/control-panel/AuthNavbar";
 import { authFormSchema, AuthFormValues } from "@/lib/zodSchema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -30,14 +31,14 @@ const LoginPage = () => {
     try {
       const res = await axios.post("/api/auth", data);
       if (res.status === 200) {
-        alert("Logged in successfully!");
+        toast.success("Logged in successfully!");
         router.push("/control-panel");
       } else {
-        alert("Logged in Failed!");
+        toast.error("Logging Failed!");
       }
     } catch (error) {
       console.log("Error in ADMIN LOGIN:", error);
-      alert(error);
+      toast.error("Logging failed!");
     } finally {
       setLoading(false);
     }
@@ -45,9 +46,9 @@ const LoginPage = () => {
   return (
     <>
       <AuthNavbar />
-      <div className="min-h-[85vh] flex items-center justify-center">
+      <div className="min-h-[75vh] flex items-center justify-center">
         <BgGradient />
-        <Card className="w-full max-w-sm lg:max-w-md shadow-xl border z-10 mx-4 sm:mx-0">
+        <Card className="rounded-sm w-full max-w-sm lg:max-w-md shadow-xl border z-10 mx-4 sm:mx-0">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold">
               Admin Login

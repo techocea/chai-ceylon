@@ -25,7 +25,7 @@ const OurPartners = async () => {
     <div className="wrapper flex flex-col items-center justify-center">
       <Heading title="our partners" />
       <div className="max-w-3xl w-full flex items-center justify-center">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
           {clientLogos.map(
             (logo: { name: string; imageUrl: string }, index: number) => (
               <div key={index} className="flex flex-col w-48 h-32">

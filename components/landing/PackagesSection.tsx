@@ -21,21 +21,19 @@ interface PackagePageProps {
 
 const PackagesSection = ({ packages }: PackagePageProps) => {
   return (
-    <section className="wrapper px-10 lg:py-0">
-      <div className="w-full">
-        {packages.map((packageItem) => (
-          <div
-            key={packageItem._id || packageItem.packageType}
-            className="w-full"
-          >
-            <h3 className="text-2xl font-playfair-display font-bold text-center mb-6">
-              {packageItem.packageType}
-            </h3>
-            <MenuSlider products={packageItem.products} />
-          </div>
-        ))}
-      </div>
-    </section>
+    <div className="w-full">
+      {packages.map((packageItem) => (
+        <div
+          key={packageItem._id || packageItem.packageType}
+          className="w-full"
+        >
+          <h3 className="text-2xl font-playfair-display font-bold text-center mb-6">
+            {packageItem.packageType}
+          </h3>
+          <MenuSlider products={packageItem.products} />
+        </div>
+      ))}
+    </div>
   );
 };
 
