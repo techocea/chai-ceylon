@@ -35,7 +35,7 @@ const Navbar = () => {
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-[150px] h-[120px] bg-white rounded-b-full shadow-md z-0" />
           <Link href="/" className="relative z-10">
             <Image
-              src={"/images/chai.webp"}
+              src={navData?.logoUrl || "/images/chai.webp"}
               alt="Chaiyo Ceylon"
               width={120}
               height={75}
@@ -52,11 +52,10 @@ const Navbar = () => {
             >
               <Link
                 href={href}
-                className={`${
-                  id === 7
+                className={`${id === 7
                     ? "text-white hover:text-secondary"
                     : " hover:underline text-white"
-                }`}
+                  }`}
               >
                 {label}
               </Link>

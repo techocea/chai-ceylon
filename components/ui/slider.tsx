@@ -65,8 +65,8 @@ export const Slider = ({ content }: SliderProps) => {
   const activeItem = content[activeIndex];
 
   return (
-    <div className="relative flex flex-col items-center w-full max-w-4xl mx-auto px-8 bg-gradient-to-br from-primary-50 via-white to-secondary-100 rounded-2xl shadow-xl border border-primary-200">
-      <div className="flex flex-col lg:flex-row items-center w-full">
+    <div className="relative flex flex-col items-center w-full max-w-4xl mx-auto px-8 py-5 bg-white rounded-2xl shadow-xl border border-primary-200">
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full">
         <div className="flex-1 w-full">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -127,7 +127,7 @@ export const Slider = ({ content }: SliderProps) => {
       <div className="flex justify-center items-center mt-8 space-x-6">
         <Button
           onClick={() => paginate(-1)}
-          className="px-5 py-2 bg-primary text-primary rounded-full shadow hover:bg-primary-700 transition font-bold text-lg"
+          className="px-5 py-2 bg-primary text-white rounded-full shadow hover:bg-primary-700 transition font-bold text-lg"
           aria-label="Previous"
         >
           <ArrowLeft />
@@ -137,7 +137,7 @@ export const Slider = ({ content }: SliderProps) => {
         </span>
         <Button
           onClick={() => paginate(1)}
-          className="px-5 py-2 bg-primary text-primary rounded-full shadow hover:bg-primary-700 transition font-bold text-lg"
+          className="px-5 py-2 bg-primary text-white rounded-full shadow hover:bg-primary-700 transition font-bold text-lg"
           aria-label="Next"
         >
           <ArrowRight />
