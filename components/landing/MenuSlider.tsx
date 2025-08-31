@@ -51,19 +51,27 @@ const MenuSlider = ({ products }: { products: Product[] }) => {
                   {product.description}
                 </p>
 
-                {product.isAvailable && (
-                  <span className="text-primary font-bold">
-                    {product.price} LKR
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center justify-center mb-6">
-                <Button
-                  onClick={() => openWhatsApp("94753102400", product.name)}
+                <div
+                  className="flex items-center justify-between
+                    w-full mt-4"
                 >
-                  Buy Now
-                </Button>
+                  {product.isAvailable && (
+                    <span className="text-primary font-bold">
+                      {product.price} LKR
+                    </span>
+                  )}
+                  <div
+                    className={`${product.isAvailable ? "block" : "hidden"}`}
+                  >
+                    <Button
+                      variant="outline"
+                      className="border-primary"
+                      onClick={() => openWhatsApp("94753102400", product.name)}
+                    >
+                      Buy Now
+                    </Button>
+                  </div>
+                </div>
               </div>
             </CarouselItem>
           ))}

@@ -5,10 +5,10 @@ interface WhatMakesUsSpecialProps {
 
 const WhatMakesUsSpecial = ({ title, content }: WhatMakesUsSpecialProps) => {
   return (
-    <section className="wrapper pt-0">
+    <section className="wrapper">
       <div>
-        <h3 className="title lg:-ml-5">{title}</h3>
-        <div className="mt-6">
+        <h3 className="title">{title}</h3>
+        <div className="my-6">
           <ul className="space-y-3 px-4">
             {content.map((item, idx) => {
               const [highlight, rest] = item.split(":");

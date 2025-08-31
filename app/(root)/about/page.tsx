@@ -25,7 +25,7 @@ export default async function AboutPage() {
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
-      <div className="pb-32">
+      <div>
         <HeroSection
           title={banners[1].title}
           description={banners[1].description}
@@ -42,8 +42,8 @@ export default async function AboutPage() {
 
         <CTASection
           renderType="newsletter"
-          title="The Best Tea Quality"
-          description="high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
+          title=""
+          description=""
           CTATitle="Love chai? Stay in the loop."
           CTADescription="Get the latest updates, promos, and recipes—fresh in your inbox every week."
         />
@@ -53,17 +53,19 @@ export default async function AboutPage() {
           content={SIGNATURE_OFFERINGS}
         />
 
-        <BrandHighlights
-          renderType="about"
-          title="Where to Find Us?"
-          description="You’ll find Chaiyo Ceylon at food stalls, mobile tea carts, events, and pop-up locations across Sri Lanka. Whether it's a tea break on a busy street or a warm drink at a celebration, we’re always ready to serve."
-        />
+        <div className="wrapper">
+          <BrandHighlights
+            renderType="about"
+            title="Where to Find Us?"
+            description="You’ll find Chaiyo Ceylon at food stalls, mobile tea carts, events, and pop-up locations across Sri Lanka. Whether it's a tea break on a busy street or a warm drink at a celebration, we’re always ready to serve."
+          />
 
-        <BrandHighlights
-          renderType="about"
-          title="Our Promise"
-          description="We don't just make tea — we create moments. With every cup of Chaiyo, you're sipping tradition, care, and community."
-        />
+          <BrandHighlights
+            renderType="about"
+            title="Our Promise"
+            description="We don't just make tea — we create moments. With every cup of Chaiyo, you're sipping tradition, care, and community."
+          />
+        </div>
       </div>
     </main>
   );

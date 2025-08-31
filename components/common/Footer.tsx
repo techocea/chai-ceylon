@@ -54,7 +54,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-16 lg:gap-0 py-8">
           <div className="flex flex-col items-start gap-6 max-w-xs">
             <Image
-              src={footerData?.logoUrl || "/images/logo.png"}
+              src={"/images/chai.webp"}
               alt="Chaiyo Ceylon"
               width={150}
               height={105}
@@ -68,10 +68,10 @@ const Footer = () => {
                       social.label.toLowerCase().includes("facebook")
                         ? "/icons/facebook.svg"
                         : social.label.toLowerCase().includes("instagram")
-                        ? "/icons/instagram.svg"
-                        : social.label.toLowerCase().includes("tiktok")
-                        ? "/icons/tiktok.svg"
-                        : "/icons/youtube.svg"
+                          ? "/icons/instagram.svg"
+                          : social.label.toLowerCase().includes("tiktok")
+                            ? "/icons/tiktok.svg"
+                            : "/icons/youtube.svg"
                     }
                     width={32}
                     height={32}

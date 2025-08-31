@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const BenefitSection = () => {
   return (
-    <section className="wrapper lg:pb-0 h-full">
+    <section className="wrapper  h-full">
       <div className="flex flex-col items-center justify-center h-full space-y-8">
         <Heading
           title="Benefits"

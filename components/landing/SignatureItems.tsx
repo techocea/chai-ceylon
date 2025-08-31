@@ -18,8 +18,9 @@ type SignatureItemsProps = {
 
 const SignatureItems = ({ title, content }: SignatureItemsProps) => {
   const [activeId, setActiveId] = useState<number | null>(null);
+  
   return (
-    <section className="wrapper pb-0">
+    <section className="wrapper">
       <div className="flex-center">
         <Heading title={title} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full mt-10">

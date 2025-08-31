@@ -3,20 +3,20 @@ import Link from "next/link";
 
 const AuthNavbar = () => {
   return (
-    <header className="px-4 py-6 sm:px-4 sm:py-5 lg:px-12 bg-primary">
+    <header className="px-4 py-4 sm:px-4 sm:py-3 lg:px-12">
       <div className="lg:max-w-6xl w-full mx-auto">
         <div className="flex items-end justify-between w-full">
           <div>
             <Link href="/">
               <Image
-                src="/images/logo.png"
+                src="/images/chai.webp"
                 alt="Chaiyo Ceylon"
                 width={150}
                 height={75}
               />
             </Link>
           </div>
-          <div className="text-white font-bold text-2xl">
+          <div className="text-primary font-bold text-2xl">
             <h2 className="flex sm:hidden">CMS</h2>
             <h2 className="hidden sm:flex">Content Management System</h2>
           </div>

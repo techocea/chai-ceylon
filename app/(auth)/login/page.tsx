@@ -45,7 +45,7 @@ const LoginPage = () => {
   return (
     <>
       <AuthNavbar />
-      <div className="min-h-[90vh] flex items-center justify-center">
+      <div className="min-h-[85vh] flex items-center justify-center">
         <BgGradient />
         <Card className="w-full max-w-sm lg:max-w-md shadow-xl border z-10 mx-4 sm:mx-0">
           <CardHeader>

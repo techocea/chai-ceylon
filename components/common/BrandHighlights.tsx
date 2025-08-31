@@ -20,7 +20,7 @@ const BrandHighlights = ({
   renderType,
   content = [],
 }: BrandHighlightsProps) => (
-  <section className="wrapper pb-0 flex-center">
+  <section className="flex-center mb-10">
     <div className="flex-center lg:max-w-lg w-full text-center">
       <Heading
         title={title}
@@ -30,7 +30,7 @@ const BrandHighlights = ({
     </div>
 
     {renderType === "services" && (
-      <div className="flex-center w-full mt-16 lg:mt-32">
+      <div className="flex-center w-full">
         <div className="flex flex-col md:flex-row gap-16 lg:gap-24">
           {content.map((item) => (
             <div key={item.id}>

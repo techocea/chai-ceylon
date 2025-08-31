@@ -34,9 +34,10 @@ export async function POST(req: NextRequest) {
     }
 
     // const salt = await bcrypt.genSalt(10);
-    // const adminPassword = await bcrypt.hash("chaiyoShah", salt);
+    // const adminPassword = await bcrypt.hash("Shah@2400@", salt);
     // console.log(adminPassword);
 
+    // dUnSfOrD1@#23
     const token = signToken({
       _id: admin._id,
       email: admin.email,
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24,
+      maxAge: 60 * 60, //1 hour
     });
 
     return response;

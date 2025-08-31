@@ -29,20 +29,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="lg:max-w-6xl w-full mx-auto px-4 py-6 sm:px-4 sm:py-5 lg:px-12">
+    <header className="lg:max-w-6xl w-full mx-auto px-4 sm:px-4 lg:px-12">
       <div className="flex items-center justify-between w-full">
-        <div className="w-[150px] h-[75px]">
-          <Link href="/">
+        <div className="relative w-[150px] h-[75px] flex items-center justify-center">
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-[150px] h-[120px] bg-white rounded-b-full shadow-md z-0" />
+          <Link href="/" className="relative z-10">
             <Image
-              src={navData?.logoUrl || "/images/logo.png"}
+              src={"/images/chai.webp"}
               alt="Chaiyo Ceylon"
-              width={150}
+              width={120}
               height={75}
             />
           </Link>
         </div>
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex gap-3">
+        <nav className="hidden lg:flex gap-3 py-6 sm:py-5">
           {NAV_ITEMS.map(({ id, href, label }) => (
             <Button
               key={id}
@@ -51,7 +52,11 @@ const Navbar = () => {
             >
               <Link
                 href={href}
-                className={`${id === 7 ? "text-white hover:text-secondary" : " hover:underline text-white"}`}
+                className={`${
+                  id === 7
+                    ? "text-white hover:text-secondary"
+                    : " hover:underline text-white"
+                }`}
               >
                 {label}
               </Link>

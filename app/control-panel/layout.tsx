@@ -18,10 +18,10 @@ export default function ControlPanelLayout({
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 shrink-0 bg-background px-6 py-8 border-r border-muted-foreground/40 fixed inset-y-0 left-0 z-30">
-        <div className="mb-8 flex items-center bg-foreground justify-center">
+      <aside className="overflow-y-scroll no-scrollbar  lg:flex flex-col w-64 shrink-0 bg-background px-6 py-8 border-r border-muted-foreground/40 fixed inset-y-0 left-0 z-30">
+        <div className="mb-8 flex items-center justify-center">
           <Image
-            src="/images/logo.png"
+            src="/images/chai.webp"
             alt="Chaiyo Ceylon"
             width={150}
             height={75}
@@ -38,8 +38,8 @@ export default function ControlPanelLayout({
                   initial={false}
                   whileHover={{ scale: 1.03 }}
                   className={`rounded-none ${isActive
-                      ? "bg-foreground text-white font-bold"
-                      : "hover:bg-foreground hover:text-white"
+                    ? "bg-foreground text-white font-bold"
+                    : "hover:bg-foreground hover:text-white"
                     } transition-colors duration-200`}
                 >
                   <Link href={link.href} className="block px-4 py-2 w-full">

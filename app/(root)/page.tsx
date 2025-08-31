@@ -30,7 +30,7 @@ export default async function Page() {
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
-      <div>
+      <div className="pb-32">
         <HeroSection
           title={banners[0].title}
           description={banners[0].description}
@@ -42,8 +42,8 @@ export default async function Page() {
 
         <AboutSection />
 
-        <div className="wrapper pt-0">
-          <div className="lg:mb-12 -mb-8 px-4 lg:px-0 flex items-center justify-between w-full">
+        <div className="wrapper pb-0">
+          <div className="px-4 lg:px-0 flex items-center justify-between w-full mb-8">
             <Heading title="our products" />
             {renderType === "home" && (
               <div className="flex-center justify-center">
@@ -63,8 +63,8 @@ export default async function Page() {
 
         <CTASection
           renderType="vendor"
-          title="Tradition Meets Convenience"
-          description="Bring the Chaiyo Ceylon experience to your neighborhood or events."
+          title=""
+          description=""
           CTATitle="Be a Vendor and Earn with Us"
           CTADescription="Bring authentic chai to your area or event. It’s simple — sign up, serve, and start earning. "
         />
