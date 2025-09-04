@@ -11,7 +11,7 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       // This will be logged to your backend console if you have a custom logger
       console.log("Upload complete for file:", file.ufsUrl);
-      // You could save file.url to a database here if needed,
+      // You could save file.ufsUrl to a database here if needed,
       // but for this specific form, we'll handle saving the URL directly from the frontend.
     }),
 } satisfies FileRouter;

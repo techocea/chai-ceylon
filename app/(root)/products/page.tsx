@@ -1,8 +1,8 @@
 import Navbar from "@/components/common/Navbar";
 import HeroSection from "@/components/common/HeroSection";
-import MenuSection from "@/components/landing/MenuSection";
+import ProductList from "@/components/landing/ProductList";
 
-export default async function ProductsPage() {
+export default async function Products() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
     cache: "no-store",
   });
@@ -16,7 +16,7 @@ export default async function ProductsPage() {
   const { banners = [] } = await res.json();
 
   return (
-    <main>
+    <main className="pb-20">
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
@@ -29,7 +29,7 @@ export default async function ProductsPage() {
         />
 
         <div className="wrapper">
-          <MenuSection renderType="menu" />
+          <ProductList />
         </div>
       </div>
     </main>

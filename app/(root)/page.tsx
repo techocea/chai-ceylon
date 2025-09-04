@@ -5,11 +5,11 @@ import Navbar from "@/components/common/Navbar";
 import Heading from "@/components/common/Heading";
 import CTASection from "@/components/common/CTASection";
 import HeroSection from "@/components/common/HeroSection";
-import MenuSection from "@/components/landing/MenuSection";
 import AboutSection from "@/components/common/AboutSection";
 import BenefitSection from "@/components/landing/BenefitSection";
 import GallerySection from "@/components/landing/GallerySection";
 import OurPartners from "@/components/landing/OurPartners";
+import ProductSection from "@/components/landing/FeaturedProducts";
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/banner`, {
@@ -58,7 +58,7 @@ export default async function Page() {
             )}
           </div>
 
-          <MenuSection renderType="home" />
+          <ProductSection />
         </div>
 
         <CTASection

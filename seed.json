@@ -1,0 +1,105 @@
+{
+  "_id": { "$oid": "6885e157064abe629761c61d" },
+  "category": "Hot Beverages",
+  "products": [
+    {
+      "name": "Spice Milk Tea (Cup 150ml & Bottle 200ml)",
+      "price": { "$numberInt": "200" },
+      "description": " Creamy Ceylon tea brewed with warming spices. ",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1foZCvNSfy6MkJVScU1IXRvq5rY80eoONLHl2",
+      "isAvailable": false,
+      "_id": { "$oid": "68b9644fd2649333631d8b62" }
+    },
+    {
+      "name": "Cardamom Milk Tea (Cup 150ml & Bottle 200ml)",
+      "price": { "$numberInt": "200" },
+      "description": "Rich milk tea infused with fragrant cardamom",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1SgNepgoCrKmCny9Oea1cwZjTpBiRIhY27E3z",
+      "isAvailable": false,
+      "_id": { "$oid": "68b9644fd2649333631d8b63" }
+    },
+    {
+      "name": "Classic Milk Tea (Cup 150ml & Bottle 200ml)",
+      "price": { "$numberInt": "130" },
+      "description": "Pure Ceylon tea brewed to perfection, offering a bold and refreshing taste. Ideal for those who love traditional, unsweetened tea.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1TVYvS9hSUXfpwg1xk7ZEtBLzWnG3uIoD02sv",
+      "isAvailable": false,
+      "_id": { "$oid": "68b9644fd2649333631d8b64" }
+    },
+    {
+      "name": "Ginger Milk Tea (Cup 150ml & Bottle 200ml)",
+      "price": { "$numberInt": "200" },
+      "description": " A warm, comforting blend of Ceylon tea, fresh milk, and natural ginger. Perfect for soothing and uplifting with a spicy twist.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1chu1tv0HKm6FZvd15wXOMVraqIePDtJ9WSCQ",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b65" }
+    },
+    {
+      "name": "Spice Milk Coffee (Qahwa) (150ml) ",
+      "price": { "$numberInt": "200" },
+      "description": "Opening our first outlet in Bambalapitiya",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1GOhbNQJslrUqeXE4m5OhjC9dDTWbn8xkgBN6",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b66" }
+    },
+    {
+      "name": "Badham Doodh (150ml) ",
+      "price": { "$numberInt": "250" },
+      "description": "Warm milk blended with almonds and subtle sweetness",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1sDeCySv28YA1L6Toal0kqWpwQ4zU7cvmyGPR",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b67" }
+    },
+    {
+      "name": "Spice Plain Tea (150ml) ",
+      "price": { "$numberInt": "150" },
+      "description": "Strong black tea infused with traditional Sri Lankan spices — rich, bold, and served without milk.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d19ox1QUnjtchb5rWKNG3eXBYRL1pvzC4Sylmf",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b68" }
+    },
+    {
+      "name": "Plain Coffee (150ml) ",
+      "price": { "$numberInt": "100" },
+      "description": "A simple black coffee made without milk or sugar. Strong, bold, and pure in flavor.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1LqzqBzD95YOwe1CDzlZcVPSogXRK4vhHBpaF",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b69" }
+    },
+    {
+      "name": "Spice Plain Coffee (150ml) ",
+      "price": { "$numberInt": "130" },
+      "description": "Black coffee infused with spices like cardamom, cinnamon, or cloves for an aromatic and flavorful twist.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1r1tqkEeP7dipmMY4FnIuTgaKeyo0zCO3w6XR",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b6a" }
+    },
+    {
+      "name": "Lime & Mint Plain Tea (150ml) ",
+      "price": { "$numberInt": "120" },
+      "description": "A refreshing blend of plain tea infused with zesty lime and cool mint. Light, soothing, and naturally energizing.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1DvtERkGxvBoGzb7OHjf8XrmNLtkSwFxdh6sP",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b6b" }
+    },
+    {
+      "name": "Cinnomon Plain Tea (150ml) ",
+      "price": { "$numberInt": "120" },
+      "description": "Mild black tea with a warm cinnamon twist — soothing and aromatic.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1MGQqZt2rAs7HxZVG9hIKJdq4wfSPmrulvbp3",
+      "isAvailable": true,
+      "_id": { "$oid": "68b9644fd2649333631d8b6c" }
+    },
+    {
+      "name": "Ginger Plain Tea (150ml)",
+      "price": { "$numberInt": "120" },
+      "description": "Bold black tea infused with fresh ginger — spicy, warming, and great for digestion.",
+      "imageUrl": "https://g5eqynrmtx.ufs.sh/f/0ee3X6QbX5d1MzysgcrAs7HxZVG9hIKJdq4wfSPmrulvbp3a",
+      "isAvailable": false,
+      "_id": { "$oid": "68b9644fd2649333631d8b6d" }
+    }
+  ],
+  "__v": { "$numberInt": "0" },
+  "createdAt": { "$date": { "$numberLong": "1753604439505" } },
+  "updatedAt": { "$date": { "$numberLong": "1756980303007" } }
+}

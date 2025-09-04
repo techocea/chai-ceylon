@@ -58,24 +58,34 @@ const SiteConfigSchema = new mongoose.Schema({
 export const SiteConfig =
   mongoose.models.SiteConfig || mongoose.model("SiteConfig", SiteConfigSchema);
 
-/* ---------- 4.  MENU  ---------- */
-const MenuItemSchema = new mongoose.Schema(
+const CategorySchema = new mongoose.Schema(
   {
-    category: { type: String, required: true },
-    products: [
-      {
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        description: { type: String, required: true },
-        imageUrl: { type: String, required: true },
-        isAvailable: { type: Boolean, default: true },
-      },
-    ],
+    name: { type: String, required: true },
   },
   { timestamps: true }
 );
-export const MenuItem =
-  mongoose.models.MenuItem || mongoose.model("MenuItem", MenuItemSchema);
+
+export const Category =
+  mongoose.models.Category || mongoose.model("Category", CategorySchema);
+
+/* ---------- 4.  MENU  ---------- */
+const ProductSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    description: { type: String, required: true },
+    imageUrl: { type: String, required: true },
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    isAvailable: { type: Boolean, default: true },
+  },
+  { timestamps: true }
+);
+export const Product =
+  mongoose.models.Product || mongoose.model("Product", ProductSchema);
 
 /* ---------- 5.  GALLERY ---------- */
 const GallerySchema = new mongoose.Schema(
@@ -146,19 +156,30 @@ const ConceptSchema = new mongoose.Schema(
 export const Concepts =
   mongoose.models.Concepts || mongoose.model("Concepts", ConceptSchema);
 
+const PackageTypeSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+export const PackageType =
+  mongoose.models.PackageType ||
+  mongoose.model("PackageType", PackageTypeSchema);
+
 /* ---------- 10.  OUR PACKAGES  ---------- */
 const PackageSchema = new mongoose.Schema(
   {
-    packageType: { type: String, required: true },
-    products: [
-      {
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        description: { type: String, required: true },
-        imageUrl: { type: String, required: true },
-        isAvailable: { type: Boolean, default: true },
-      },
-    ],
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    description: { type: String, required: true },
+    imageUrl: { type: String, required: true },
+    packageTypeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PackageType",
+      required: true,
+    },
+    isAvailable: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

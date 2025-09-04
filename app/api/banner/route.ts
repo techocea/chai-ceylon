@@ -8,7 +8,7 @@ export async function GET() {
 
     const banners = await Banner.find({});
 
-    if (!banners || banners.length === 0) {
+    if (banners.length === 0) {
       return NextResponse.json(
         { message: "No banners found", banners: [] },
         { status: 200 }
@@ -59,8 +59,6 @@ export async function POST(req: NextRequest) {
       description,
       imageUrl,
     });
-
-    savedBanners.save();
 
     return NextResponse.json(
       { message: "Banner Item Created Successfully", savedBanners },

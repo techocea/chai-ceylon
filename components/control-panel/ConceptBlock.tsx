@@ -9,6 +9,7 @@ import { Plus, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { UploadButton } from "@/app/utils/uploadthing";
 import { useFieldArray, useFormContext } from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface Concept {
   _id?: string;
@@ -65,11 +66,12 @@ const ConceptBlock = ({ conceptIndex, removeConcept }: ConceptBlockProps) => {
       const res = await axios.delete(`/api/our-concepts/${conceptId}/delete`);
       if (res.status === 200) {
         removeConcept(conceptIndex);
+        toast.success("Concept deleted successfully!")
       } else {
-        toast("Failed to delete concept.");
+        toast.error("Failed to delete concept.");
       }
     } catch (error) {
-      toast("Error deleting concept.");
+      toast.error("Error deleting concept.");
     }
   };
 

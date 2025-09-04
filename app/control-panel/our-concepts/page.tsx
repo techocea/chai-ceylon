@@ -55,6 +55,10 @@ const ConceptsPage = () => {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    fetchConcepts();
+  }, [reset]);
+
   const fetchConcepts = async () => {
     try {
       setLoading(true);
@@ -108,10 +112,6 @@ const ConceptsPage = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchConcepts();
-  }, [reset]);
 
   const onSubmit = async (data: ConceptFormValues) => {
     try {

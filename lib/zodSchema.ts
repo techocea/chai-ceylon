@@ -89,50 +89,20 @@ export const aboutContentSchema = z.object({
     .min(10, "Should be atleast 10 characters long"),
 });
 
-export const menuSchema = z.object({
-  menu: z.array(
-    z.object({
-      category: z
-        .string()
-        .min(2, "Category name is too short")
-        .max(255, "Category name too long"),
-      products: z.array(
-        z.object({
-          name: z
-            .string()
-            .min(2, "Name is too short")
-            .max(255, "Name too long"),
-          price: z.coerce.number(),
-          description: z.string().max(255),
-          imageUrl: z.string().url(),
-          isAvailable: z.boolean(),
-        })
-      ),
-    })
-  ),
+export const productSchema = z.object({
+  name: z.string().min(2, "Name is too short").max(255, "Name too long"),
+  price: z.coerce.number(),
+  description: z.string().max(255),
+  imageUrl: z.string().url(),
+  isAvailable: z.boolean(),
 });
 
 export const packageSchema = z.object({
-  packages: z.array(
-    z.object({
-      packageType: z
-        .string()
-        .min(2, "Package name is too short")
-        .max(255, "Package name too long"),
-      products: z.array(
-        z.object({
-          name: z
-            .string()
-            .min(2, "Name is too short")
-            .max(255, "Name too long"),
-          price: z.coerce.number(),
-          description: z.string().max(255),
-          imageUrl: z.string().url(),
-          isAvailable: z.boolean(),
-        })
-      ),
-    })
-  ),
+  name: z.string().min(2, "Name is too short").max(255, "Name too long"),
+  price: z.coerce.number(),
+  description: z.string().max(255),
+  imageUrl: z.string().url(),
+  isAvailable: z.boolean(),
 });
 
 export const bannerSchema = z.object({
@@ -176,7 +146,7 @@ export const conceptSchema = z.object({
 });
 
 export type FormValues = z.infer<typeof formSchema>;
-export type MenuValues = z.infer<typeof menuSchema>;
+export type ProductValues = z.infer<typeof productSchema>;
 export type EventValues = z.infer<typeof eventSchema>;
 export type BannerValues = z.infer<typeof bannerSchema>;
 export type GalleryValues = z.infer<typeof gallerySchema>;

@@ -40,12 +40,12 @@ export const NAV_ITEMS = [
 
 export const CMS_NAV_ITEMS = [
   { href: "/control-panel", label: "Banners" },
-  { href: "/control-panel/menu", label: "Menu" },
-  { href: "/control-panel/our-packages", label: "Our Packages" },
-  { href: "/control-panel/site-config", label: "Site Configuration" },
+  { href: "/control-panel/products", label: "Products" },
+  { href: "/control-panel/packages", label: "Packages" },
+  { href: "/control-panel/site-config", label: "Configuration" },
   { href: "/control-panel/about", label: "About Us" },
   { href: "/control-panel/events", label: "Events" },
-  { href: "/control-panel/our-concepts", label: "Our Concepts" },
+  { href: "/control-panel/our-concepts", label: "Concepts" },
   { href: "/control-panel/gallery", label: "Gallery" },
   { href: "/control-panel/menu-gallery", label: "Menu Gallery" },
   { href: "/control-panel/contact-us", label: "Contact Us" },
@@ -60,7 +60,7 @@ export const BENEFITS = [
   "Reduces inflammation with spices",
 ];
 
-export const MENU_SECTIONS = [
+export const PRODUCTS = [
   {
     id: 1,
     title: "Hot Beverages",
