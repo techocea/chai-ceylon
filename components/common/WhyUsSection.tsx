@@ -22,7 +22,7 @@ const WhyUsSection = () => {
               alt={label}
               className="w-16 h-16"
             />
-            <p className="mt-2 text-primary text-center font-playfair-display text-lg font-bold">
+            <p className="mt-2 text-green-800 text-center font-playfair-display text-lg font-bold">
               {label}
             </p>
           </div>

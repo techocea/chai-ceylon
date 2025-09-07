@@ -55,7 +55,7 @@ const ProductList = () => {
             : products.filter((product) => product.categoryId === activeCategory);
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold text-center">Our Products</h1>
             <p className="text-gray-500 text-center mb-8">
                 Browse our catalog by category.
@@ -73,16 +73,16 @@ const ProductList = () => {
                     All
                 </Button>
                 {categories.map((category) => (
-                    <button
+                    <Button
                         key={category._id}
                         onClick={() => handleCategoryClick(category._id)}
-                        className={`py-2 px-6 rounded-full text-lg font-medium transition-colors duration-300 ${activeCategory === category._id
+                        className={`py-2 px-6 rounded-full text-sm font-medium transition-colors duration-300 ${activeCategory === category._id
                             ? "bg-primary text-white"
                             : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                             }`}
                     >
                         {category.name}
-                    </button>
+                    </Button>
                 ))}
             </div>
 
@@ -103,15 +103,15 @@ const ProductList = () => {
                                     <Image
                                         src={product.imageUrl}
                                         alt={product.name}
-                                        layout="fill"
-                                        objectFit="cover"
+                                        fill
+                                        className="object-cover"
                                     />
                                 </div>
                                 <div className="p-4">
-                                    <h3 className="font-semibold text-lg text-gray-800 mb-1">
+                                    <h3 className="font-semibold text-[16px] text-gray-800 mb-1">
                                         {product.name}
                                     </h3>
-                                    <p className="text-gray-600 mb-2">${product.price}</p>
+                                    <p className="text-gray-600 text-sm mb-2">Rs&nbsp;{product.price}</p>
                                     <p className="text-sm text-gray-500 line-clamp-2">
                                         {product.description}
                                     </p>

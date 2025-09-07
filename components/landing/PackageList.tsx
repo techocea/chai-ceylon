@@ -1,10 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import Image from "next/image";
 import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useState, useEffect } from "react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 interface PackageType {
   _id: string;
@@ -22,9 +34,9 @@ interface Package {
 
 const PackageList = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [types, setTypes] = useState<PackageType[]>([]);
   const [packages, setPackages] = useState<Package[]>([]);
   const [activePackageType, setActivePackageType] = useState("all");
-  const [types, setTypes] = useState<PackageType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,8 +65,8 @@ const PackageList = () => {
     activePackageType === "all"
       ? packages
       : packages.filter(
-          (product) => product.packageTypeId === activePackageType
-        );
+        (product) => product.packageTypeId === activePackageType
+      );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -67,11 +79,10 @@ const PackageList = () => {
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         <button
           onClick={() => handlePackageTypeClick("all")}
-          className={`py-2 px-6 rounded-full text-lg font-medium transition-colors duration-300 ${
-            activePackageType === "all"
+          className={`py-2 px-6 rounded-full text-lg font-medium transition-colors duration-300 ${activePackageType === "all"
               ? "bg-primary text-white"
               : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-          }`}
+            }`}
         >
           All
         </button>
@@ -79,11 +90,10 @@ const PackageList = () => {
           <Button
             key={type._id}
             onClick={() => handlePackageTypeClick(type._id)}
-            className={`py-2 px-6 rounded-full text-lg font-medium capitalize transition-colors duration-300 ${
-              activePackageType === type._id
+            className={`py-2 px-6 rounded-full text-sm font-medium capitalize transition-colors duration-300 ${activePackageType === type._id
                 ? "bg-primary text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            }`}
+              }`}
           >
             {type.name}
           </Button>
@@ -101,24 +111,70 @@ const PackageList = () => {
             filtered.map((product) => (
               <div
                 key={product._id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+                className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:shadow-2xs"
               >
                 <div className="relative w-full h-36">
                   <Image
                     src={product.imageUrl}
                     alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-lg text-gray-800 mb-1">
+                  <h3 className="font-semibold text-[16px] text-gray-800 mb-1">
                     {product.name}
                   </h3>
-                  <p className="text-gray-600 mb-2">${product.price}</p>
-                  <p className="text-sm text-gray-500 line-clamp-2">
-                    {product.description}
-                  </p>
+                  <div className="flex items-center justify-between w-full mt-2">
+                    <p className="text-gray-600 text-sm">
+                      Rs&nbsp;{product.price}
+                    </p>
+                    <div>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="outline" className="border-primary">
+                            Read More
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>{product.name}</AlertDialogTitle>
+                          </AlertDialogHeader>
+                          <div className="relative w-full h-36">
+                            <Image
+                              src={product.imageUrl}
+                              alt={product.name}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div>
+                            <p className="font-semibold">Price:</p>
+                            <AlertDialogDescription>
+                              Rs&nbsp;{product.price}
+                            </AlertDialogDescription>
+                          </div>
+                          <div>
+                            <p className="font-semibold">Description:</p>
+                            <AlertDialogDescription>
+                              {product.description}
+                            </AlertDialogDescription>
+                          </div>
+
+                          <AlertDialogFooter>
+                            <AlertDialogCancel className="border-primary">
+                              Close
+                            </AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => openWhatsApp(product.name)}
+                            >
+                              Order Now
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))

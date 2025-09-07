@@ -17,7 +17,7 @@ export interface ProductData {
   isAvailable: boolean;
 }
 
-export interface ProductType {
+export interface Category {
   _id: string;
   name: string;
 }
@@ -26,7 +26,7 @@ interface ProductModalProps {
   isOpen: boolean;
   isLoading: boolean;
   onClose: () => void;
-  categories: ProductType[];
+  categories: Category[];
   initialData?: ProductData | null;
   onSubmit: (formData: ProductData) => void;
 }

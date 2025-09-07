@@ -45,7 +45,6 @@ const Packages = () => {
         if (prodRes.status === "fulfilled" && prodRes.value.status === 200) {
           setPackages(prodRes.value.data.packages);
         }
-        toast.success("Data fetched successfully");
       } catch (error) {
         console.log("Error fetching data:", error);
         toast.error("Error fetching data");

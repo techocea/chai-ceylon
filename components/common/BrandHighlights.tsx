@@ -31,7 +31,7 @@ const BrandHighlights = ({
 
     {renderType === "services" && (
       <div className="flex-center w-full mt-10 lg:mt-16">
-        <div className="flex flex-col md:flex-row gap-16 lg:gap-24">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-24">
           {content.map((item) => (
             <div key={item.id}>
               <div className="flex flex-col items-start gap-4">

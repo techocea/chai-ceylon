@@ -10,15 +10,9 @@ export default async function OurPackagesPage() {
     }
   );
 
-  const packagesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/packages`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!packagesRes.ok || !bannerRes.ok) {
+  if (!bannerRes.ok) {
     return (
-      <div className="text-red-500 text-center p-4">Failed to load Data</div>
+      <div className="text-red-500 text-center p-4">Failed to load Banner</div>
     );
   }
 

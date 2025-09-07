@@ -8,13 +8,17 @@ export default async function EventSection() {
       cache: "no-store",
     }
   );
+
+  const { events = [] } = await eventsData.json();
+  if (events.length === 0) return <div className="wrapper flex-center text-4xl font-bold">No events</div>
+
   if (!eventsData.ok) {
     return (
       <div className="text-red-500 text-center p-4">Failed to load Events</div>
     );
   }
 
-  const { events = [] } = await eventsData.json();
+
 
   return (
     <section className="wrapper space-y-16">

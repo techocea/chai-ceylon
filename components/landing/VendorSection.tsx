@@ -59,7 +59,7 @@ function VendorDetails({
       <p className="text-primary">{subTitle}</p>
       <p className="my-4 text-muted-foreground font-medium">{description}</p>
       <div>
-        <Button onClick={() => openWhatsApp("94724388956", title)}>
+        <Button onClick={() => openWhatsApp(title)}>
           Proceed Now
         </Button>
       </div>

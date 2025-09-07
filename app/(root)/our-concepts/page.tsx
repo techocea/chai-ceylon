@@ -23,7 +23,7 @@ export default async function ServicePage() {
       <div className="absolute w-full z-20">
         <Navbar />
       </div>
-      <div>
+      <div className="pb-20">
         <HeroSection
           title={banners[2].title}
           description={banners[2].description}
@@ -31,12 +31,14 @@ export default async function ServicePage() {
           imageUrl={banners[2].imageUrl}
         />
 
-        <BrandHighlights
-          renderType="services"
-          content={BRANDING_HIGHLIGHTS}
-          title="At Chaiyo Ceylon, our vision is simple yet strong"
-          description="To deliver high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
-        />
+        <div className="wrapper">
+          <BrandHighlights
+            renderType="services"
+            content={BRANDING_HIGHLIGHTS}
+            title="At Chaiyo Ceylon, our vision is simple yet strong"
+            description="To deliver high-quality, freshly prepared tea and snacks — quickly, affordably, and without compromise."
+          />
+        </div>
 
         <ServicesSection />
 

@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import ProductModal, {
   ProductData,
-  ProductType,
+  Category,
 } from "@/components/control-panel/ProductModal";
 
 interface Product extends ProductData {
@@ -25,7 +25,7 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isProductLoading, setIsProductLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<ProductType[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -46,7 +46,6 @@ const Products = () => {
         if (prodRes.status === "fulfilled" && prodRes.value.status === 200) {
           setProducts(prodRes.value.data.products);
         }
-        toast.success("Data fetched successfully");
       } catch (error) {
         console.log("Error fetching data:", error);
         toast.error("Error fetching data");

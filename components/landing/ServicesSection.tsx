@@ -1,5 +1,4 @@
 import { Slider } from "../ui/slider";
-import { CONTENT } from "@/lib/constants";
 
 export default async function ServicesSection() {
   const res = await fetch(
@@ -21,7 +20,7 @@ export default async function ServicesSection() {
 
 
   return (
-    <div className="wrapper">
+    <div className="wrapper pt-0">
       <Slider content={concepts} />
     </div>
   );
